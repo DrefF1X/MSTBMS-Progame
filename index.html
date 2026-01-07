@@ -216,9 +216,9 @@ img {
 }
 
 #welcomeCard {
-  max-width: 300px;      /* mas maliit kaysa dati */
+  max-width: 300px;
   margin: 20px auto;
-  padding: 15px 18px;    /* mas compact */
+  padding: 15px 18px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -235,7 +235,7 @@ img {
 }
 
 .welcome-gif img {
-  width: 80px;   /* liit na GIF */
+  width: 80px;
   height: auto;
 
   filter:
@@ -246,7 +246,7 @@ img {
 }
 
 .welcome-text h2 {
-  font-size: 1.2em; /* mas maliit na text */
+  font-size: 1.2em;
 }
 
 .welcome-text p {
@@ -373,7 +373,7 @@ img {
   font-size: 1.8em;
   font-weight: bold;
   color: #eafff2;
-  background: rgba(0, 180, 120, 0.85); /* soft green */
+  background: rgba(0, 180, 120, 0.85);
   padding: 18px 35px;
   border-radius: 20px;
   border: 3px solid #00ff99;
@@ -599,9 +599,9 @@ setTimeout(() => {
       currentUser = loggedUser;
       document.getElementById("welcomePlayer").innerText =
         "👋 Welcome back, " + currentUser + "!";
-      show("introScreen"); // may account
+      show("introScreen");
     } else {
-      show("authScreen"); // walang account → login/create
+      show("authScreen");
     }
 
   }, 1000);
@@ -621,16 +621,13 @@ function show(id){
 // Select all images
 document.querySelectorAll('img').forEach(img => {
   img.addEventListener('click', function(e){
-    e.preventDefault(); // walang default action
-    e.stopPropagation(); // prevent bubbling
-    // optional: pwede magdagdag ng animation o sound effect dito
+    e.preventDefault();
+    e.stopPropagation();
   });
 
   // Prevent right-click
   img.addEventListener('contextmenu', function(e){
-    e.preventDefault(); 
-    // optional alert
-    // alert("You cannot open the image directly!");
+    e.preventDefault();
   });
 });
 
@@ -806,7 +803,7 @@ document.getElementById("successModal").style.display = "flex";
 
 function closeSuccess(){
   document.getElementById("successModal").style.display = "none";
-  showLogin(); // balik sa login form
+  showLogin();
 }
 
 
@@ -856,7 +853,7 @@ function loadQuestion(){
   finalScore.innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
 
   const rankText = document.getElementById("rankText");
-  rankText.className = ""; // reset
+  rankText.className = "";
 
   if(percent === 100){
     rankText.innerText = "🏆 LEGEND";
@@ -951,5 +948,6 @@ function fireworks(){
 
 </body>
 </html>
+
 
 
