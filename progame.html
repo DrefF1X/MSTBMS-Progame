@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PROGAME</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: #f8fafc;
+  font-size: 18px;
+  line-height: 1.6;
+  background: linear-gradient(
+    -45deg,
+    #020024,
+    #05053a,
+    #062a4d,
+    #044b3f
+  );
+  background-size: 400% 400%;
+  animation: bgMove 18s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.screen {
+  display: none;
+  padding: 25px;
+  min-height: 100vh;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+}
+.active { display: block; }
+
+h1, h2 {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #f1f5f9;
+}
+
+/* Developers Screen */
+.dev-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 10px 0;
+  border: 3px solid #00ff99;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+.dev-name {
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #e2e8f0;
+}
+
+
+.button {
+  width: 90%;
+  max-width: 420px;
+  padding: 15px;
+  margin: 12px auto;
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #e2e8f0;
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: 0.2s;
+}
+.button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #00965f, #007aa3);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  -webkit-user-drag: none;
+  user-select: none;         
+  pointer-events: auto;      
+}
+
+/* INTRO */
+#introImageScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #020024, #090979, #00d4ff);
+  background-size: 400% 400%;
+  animation: gradientMove 6s ease infinite;
+  transition: opacity 1s ease, transform 1s ease;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+#introImageScreen h1 {
+  font-size: 3.2em;
+  font-weight: 800;
+  color: #eaffea;
+  text-shadow:
+    0 0 6px #37FD12,
+    0 0 14px #00ff99,
+    0 4px 8px rgba(0,0,0,0.8);
+}
+
+#introImageScreen img {
+  width: 85vw;
+  max-width: 320px;
+  animation: logoSpin 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 35px #00ffcc);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+.loading-bar {
+  width: 70%;
+  height: 10px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+.loading-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff99, #00ccff);
+  animation: loading 3s linear forwards;
+}
+@keyframes loading {
+  to { width: 100%; }
+}
+
+/* Floating particles */
+.particle {
+  position: fixed;
+  bottom: -10px;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+
+.fade-out {
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+#successModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#successBox {
+  background: linear-gradient(135deg, #00ff99, #00bcd4);
+  color: #003333;
+  padding: 35px 45px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow:
+    0 0 25px rgba(0,255,153,0.8),
+    0 10px 30px rgba(0,0,0,0.8);
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#welcomeCard {
+  max-width: 300px;      /* mas maliit kaysa dati */
+  margin: 20px auto;
+  padding: 15px 18px;    /* mas compact */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 18px rgba(0,255,153,0.4),
+    0 6px 18px rgba(0,0,0,0.65);
+
+  animation: welcomeFade 0.8s ease;
+}
+
+.welcome-gif img {
+  width: 80px;   /* liit na GIF */
+  height: auto;
+
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.9))
+    drop-shadow(0 0 12px rgba(0,255,153,0.6));
+
+  border-radius: 50%;
+}
+
+.welcome-text h2 {
+  font-size: 1.2em; /* mas maliit na text */
+}
+
+.welcome-text p {
+  font-size: 0.85em;
+}
+
+
+
+
+/* QUIZ */
+.qb {
+  max-width: 600px;
+  margin: auto;
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  border-radius: 25px;
+}
+#scoreBox {
+  background: rgba(0,0,0,0.4);
+  color: #00ff99;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+#question {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.7);
+}
+
+#questionImage {
+  max-width: 230px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+#d h3 {
+  font-size: 1.1em;
+  color: #a7f3d0;
+  margin-bottom: 15px;
+}
+
+/* RESULT */
+
+#scoreBox {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+#finalScore {
+  font-size: 1.6em;
+  color: #00ff99;
+}
+
+#result {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+}
+
+.wrong {
+  font-size: 2em;
+  background: rgba(255,0,0,0.85);
+  padding: 25px 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,0,0,0.7);
+}
+
+@keyframes shake {
+  0% { transform: translate(-50%, -50%) translateX(0); }
+  25% { transform: translate(-50%, -50%) translateX(-10px); }
+  50% { transform: translate(-50%, -50%) translateX(10px); }
+  75% { transform: translate(-50%, -50%) translateX(-10px); }
+  100% { transform: translate(-50%, -50%) translateX(0); }
+}
+
+
+/* Excellent Text */
+#excellentText {
+  margin-top: 15px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #a7f3d0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+
+/* Fireworks */
+.firework {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: yellow;
+  border-radius: 100%;
+  animation: explode 1s linear forwards;
+}
+@keyframes explode {
+  to { transform: scale(8); opacity: 0; }
+}
+
+/* Thumbs Up */
+#thumbsContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2100;
+  text-align: center;
+  display: none;
+}
+
+#thumbsUp {
+  width: 180px;
+  display: block;
+  margin: 0 auto;
+}
+
+#excellentText {
+  margin-top: 12px;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #eafff2;
+  background: rgba(0, 180, 120, 0.85); /* soft green */
+  padding: 18px 35px;
+  border-radius: 20px;
+  border: 3px solid #00ff99;
+  box-shadow:
+    0 0 15px rgba(0,255,153,0.5),
+    0 4px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.4em; }
+  .button { font-size: 1em; }
+}
+
+#rankText {
+  margin-top: 15px;
+  font-size: 1.6em;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+.rank-legend {
+  background: linear-gradient(135deg, #ffd700, #ff9f00);
+  color: black;
+}
+.rank-master {
+  background: linear-gradient(135deg, #00ffcc, #0099ff);
+  color: black;
+}
+.rank-expert {
+  background: linear-gradient(135deg, #a7f3d0, #34d399);
+  color: black;
+}
+.rank-intermediate {
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+  color: black;
+}
+.rank-beginner {
+  background: linear-gradient(135deg, #e5e7eb, #9ca3af);
+  color: black;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="screen active" id="introImageScreen">
+  <h1>PROGAME</h1>
+  <img src="https://i.postimg.cc/1RpXCLks/1767524373820.png" alt="PROGAME Logo">
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- AUTH SCREEN -->
+<div class="screen" id="authScreen">
+  <h1>PROGAME</h1>
+
+  <!-- LOGIN FORM -->
+  <div id="loginBox">
+    <input id="loginName" placeholder="Username"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="loginPass" type="password" placeholder="Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <button class="button" onclick="login()">Login</button>  <br>
+    <button class="button" onclick="showRegister()">Create Account</button>
+  </div>
+
+  <!-- REGISTER FORM -->
+  <div id="registerBox" style="display:none;">
+    <input id="regName" placeholder="New Username"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="regPass" type="password" placeholder="Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="regConfirm" type="password" placeholder="Confirm Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <button class="button" onclick="register()">Create</button> <br>
+    <button class="button" onclick="showLogin()">Back to Login</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal" style="display:none;">
+  <div id="successBox">
+    <div style="font-size:3em;">✅</div>
+    <h2>Account Created!</h2>
+    <p>You can now log in and play 🎮</p>
+    <button class="button" onclick="closeSuccess()">OK</button>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="screen" id="introScreen">
+  <h1>PROGAME</h1>
+  <a href="https://ibb.co/JwnRg5HP">
+    <img src="https://i.ibb.co/bM1gDzXn/1753415138696.png" alt="Logo" width="150" height="150">
+  </a>
+<br>
+<!-- WELCOME CARD -->
+<div id="welcomeCard">
+  <div class="welcome-gif">
+    <img src="https://i.postimg.cc/KYqp5Q8B/200.gif" alt="Welcome Animation">
+  </div>
+
+  <div class="welcome-text">
+    <h2 id="welcomePlayer"></h2>
+    <p>Ready to play <b>PROGAME</b>?</p>
+  </div>
+</div>
+
+<br>
+  <button class="button" onclick="show('optionsScreen')">Play</button> <br>
+  <button class="button" onclick="show('settingsScreen')">Settings</button>
+
+</div>
+
+<!-- OPTIONS -->
+<div class="screen" id="optionsScreen">
+  <h2>Select Topic</h2>
+  <select id="topic">
+    <option value="html">HTML</option>
+    <option value="css">CSS</option>
+    <option value="javascript">JavaScript</option>
+  </select> <br>
+  <button class="button" onclick="startGame()">Start</button> <br>
+  <button class="button" onclick="show('introScreen')">Back</button>
+</div>
+
+<!-- SETTINGS -->
+<div class="screen" id="settingsScreen">
+  <h2>Settings</h2>
+  <button class="button" onclick="showDevelopers()">Developers</button> <br>
+  <button class="button" onclick="logout()">Logout</button> <br>
+  <button class="button" onclick="goMenu()">Back</button>
+</div>
+
+<!-- DEVELOPERS -->
+<div class="screen" id="developersScreen">
+  <h2>Developers</h2>
+
+  <img class="dev-img" src="https://i.postimg.cc/nz6vLRjd/Screenshot-20251225-144406-2.jpg">
+  <div class="dev-name">Lee Malajos</div>
+
+  <img class="dev-img" src="https://i.ibb.co/d489M9sK/quality-restoration-20250724104525132.jpg">
+  <div class="dev-name">Ash Salgado</div>
+
+  <img class="dev-img" src="https://i.ibb.co/qLmbQt36/beauty-20250726133004.jpg">
+  <div class="dev-name">Christian Tenorio</div>
+
+  <img class="dev-img" src="https://i.postimg.cc/sxh1vTPv/received-754104770781678-2.jpg">
+  <div class="dev-name">Vyncent Bagadiong</div>
+
+  <img class="dev-img" src="https://i.ibb.co/gFRSNprt/Picsart-25-07-24-13-51-31-183.jpg">
+  <div class="dev-name">Mavy Servenias</div>
+
+  <img class="dev-img" src="https://i.postimg.cc/SRB2rBQG/Screenshot-20250907-091806-2.jpg">
+  <div class="dev-name">Ashley Kid Maño</div>
+
+  <button class="button" onclick="goBackToSettings()">Back</button>
+</div>
+
+
+<!-- QUIZ -->
+<div class="screen" id="quizScreen">
+  <div class="qb">
+    <div id="scoreBox">Score: 0</div>
+    <h2 id="question"></h2>
+    <img id="questionImage" alt="Question Image"><br><br>
+    <div id="choices">
+      <button class="button" onclick="answer(0)"></button>
+      <button class="button" onclick="answer(1)"></button>
+      <button class="button" onclick="answer(2)"></button>
+      <button class="button" onclick="answer(3)"></button>
+    </div>
+  </div>
+  <div id="result"></div>
+</div>
+
+<!-- RESULT -->
+<div class="screen" id="resultScreen">
+  <h1>🎉 Quiz Complete!</h1>
+ <p id="finalScore"></p>
+<h2 id="rankText"></h2>
+
+<br>
+  <button class="button" onclick="show('introScreen')">Main Menu</button>
+</div>
+
+<!-- SETTINGS -->
+<div class="screen" id="settingsScreen">
+  <h2>Settings</h2>
+  <button class="button" onclick="show('introScreen')">Back</button>
+</div>
+
+<div id="thumbsContainer">
+  <img id="thumbsUp" src="https://i.postimg.cc/Rh0f9n0T/f9776f5f0ed2d8251ea7c253349def9c.gif">
+  <div id="excellentText">Excellent</div>
+</div>
+
+<script>
+// INTRO
+setTimeout(() => {
+  const intro = document.getElementById("introImageScreen");
+  intro.classList.add("fade-out");
+
+  setTimeout(() => {
+    intro.remove();
+
+    const loggedUser = localStorage.getItem("loggedUser");
+
+    if (loggedUser) {
+      currentUser = loggedUser;
+      document.getElementById("welcomePlayer").innerText =
+        "👋 Welcome back, " + currentUser + "!";
+      show("introScreen"); // may account
+    } else {
+      show("authScreen"); // walang account → login/create
+    }
+
+  }, 1000);
+}, 3000);
+
+
+function goMenu(){ show("introScreen"); }
+function showOptions(){ show("optionsScreen"); }
+function showSettings(){ show("settingsScreen"); }
+function showDevelopers(){ show("developersScreen"); }
+function goBackToSettings(){ show("settingsScreen"); }
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+// Select all images
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('click', function(e){
+    e.preventDefault(); // walang default action
+    e.stopPropagation(); // prevent bubbling
+    // optional: pwede magdagdag ng animation o sound effect dito
+  });
+
+  // Prevent right-click
+  img.addEventListener('contextmenu', function(e){
+    e.preventDefault(); 
+    // optional alert
+    // alert("You cannot open the image directly!");
+  });
+});
+
+// QUESTIONS
+const questions = [
+ {
+    q: "Who is considered the founder of HTML and in what year was it introduced?",
+    i: "https://i.ibb.co/LXyDz0Mh/berners-lee-2.jpg",
+    c: ["Bill Gates, 1995", "Tim Berners-Lee, 1991", "Steve Jobs, 1989", "Mark Zuckerberg, 2004"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What does HTML stand for?",
+    i: "https://i.postimg.cc/h4zrwHHg/images-(5)-2.jpg",
+    c: ["Hyperlink and Text Markup Language", "Home Tool Markup Language", "Hyper Text Markup Language", "Hyper Transfer Markup Language"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which HTML tag is used to create a hyperlink?",
+    i: "https://i.postimg.cc/CLQ5BQcQ/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-175157-0000.png",
+    c: ["<link>", "<a>", "<href>", "<url>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to insert an image in HTML?",
+    i: "https://i.postimg.cc/RVFYN6HR/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-180828-0000.png",
+    c: ["<picture>", "<image>", "<img>", "<src>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which HTML element is used for the largest heading?",
+    i: "https://i.postimg.cc/V6RdHLmG/A-20260103-185421-0000.png",
+    c: ["<heading>", "<h6>", "<head>", "<h1>"],
+    a: 3,
+    t: "html"
+  },
+  {
+    q: "Who developed CSS and when was it first introduced?",
+    i: "https://i.postimg.cc/5083RzR5/Håkon_Wium_Lie_2009_03_2.jpg",
+    c: ["Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996", "Brendan Eich, 1995", "Bill Gates, 1998"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "What does CSS stand for?",
+    i: "https://i.postimg.cc/Mpk1hH1v/images-(6)-2.jpg",
+    c: ["Colorful Style Sheets", "Creative Style System", "Cascading Style Sheets", "Computer Style Sheets"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which CSS property is used to change text color?",
+    i: "https://i.postimg.cc/mrnXqMyW/B-20260103-195630-0000.png",
+    c: ["font-color", "color", "text-color", "style"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which symbol is used to select a class in CSS?",
+    i: "https://i.postimg.cc/HWvwtHzh/C-20260103-201039-0000.png",
+    c: ["#", "*", ".", "@"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which CSS property controls the size of text?",
+    i: "https://i.postimg.cc/26h4jBhH/D-20260103-202258-0000.png",
+    c: ["text-size", "font-style", "text-style", "font-size"],
+    a: 3,
+    t: "css"
+  },
+  {
+    q: "Who created JavaScript and in what year?",
+    i: "https://i.postimg.cc/tC1SrWDG/Brendan-Eich-Mozilla-Foundation-official-photo-2.jpg",
+    c: ["Brendan Eich, 1995", "Bill Gates, 1994", "Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996"],
+    a: 0,
+    t: "javascript"
+  },
+  {
+    q: "What is JavaScript mainly used for?",
+    i: "https://i.postimg.cc/LXYDyMB9/sta-je-javascript-2.jpg",
+    c: ["Styling web pages", "Structuring web content", "Creating databases", "Making web pages interactive"],
+    a: 3,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword is used to declare a variable in JavaScript?",
+    i: "https://i.postimg.cc/HsyGrfqp/E-20260104-100430-0000.png",
+    c: ["ver", "vor", "var", "vur"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which symbol is used for comments in JavaScript?",
+    i: "https://i.postimg.cc/59p5wyMr/F_20260104_102026_0000.png",
+    c: ["##", "//", "@@", "$$"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "What will this code output?",
+    i: "https://i.postimg.cc/RZqzMWvk/G-20260104-102932-0000.png",
+    c: ["55", "10", "5 + 5", "Error"],
+    a: 1,
+    t: "javascript"
+  }
+];
+
+let quiz=[], index=0, score=0;
+
+let currentUser = "";
+
+// AUTO LOGIN
+window.onload = () => {
+  const loggedUser = localStorage.getItem("loggedUser");
+  if (loggedUser) {
+    currentUser = loggedUser;
+    document.getElementById("welcomePlayer").innerText =
+      "👋 Welcome back, " + currentUser + "!";
+    show("introScreen");
+  } else {
+    show("authScreen");
+  }
+};
+
+// GET USERS
+function getUsers(){
+  return JSON.parse(localStorage.getItem("users")) || {};
+}
+
+// SAVE USERS
+function saveUsers(users){
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+// REGISTER
+function register(){
+  const name = regName.value.trim();
+  const pass = regPass.value.trim();
+  const confirm = regConfirm.value.trim();
+
+  if(!name || !pass || !confirm){
+    alert("Please fill all fields");
+    return;
+  }
+
+  if(pass !== confirm){
+    alert("Passwords do not match");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+
+  if(users[name]){
+    alert("Username already exists");
+    return;
+  }
+
+  users[name] = { password: pass };
+  localStorage.setItem("users", JSON.stringify(users));
+
+  users[name] = { password: pass };
+localStorage.setItem("users", JSON.stringify(users));
+
+document.getElementById("successModal").style.display = "flex";
+
+  showLogin();
+}
+
+function closeSuccess(){
+  document.getElementById("successModal").style.display = "none";
+  showLogin(); // balik sa login form
+}
+
+
+// LOGIN
+function login(){
+  const name = loginName.value.trim();
+  const pass = loginPass.value.trim();
+
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+
+  if(!users[name] || users[name].password !== pass){
+    alert("Invalid username or password");
+    return;
+  }
+
+  localStorage.setItem("loggedUser", name);
+  currentUser = name;
+
+  document.getElementById("welcomePlayer").innerText =
+    "👋 Welcome, " + currentUser + "!";
+
+  show("introScreen");
+}
+
+
+// PARTICLES INTRO
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (3 + Math.random() * 4) + "s";
+  document.getElementById("introImageScreen").appendChild(p);
+}
+
+function startGame(){
+  score=0; index=0;
+  quiz = questions.filter(q => q.t === topic.value);
+  if(quiz.length===0){ alert("No questions"); return; }
+  document.getElementById("scoreBox").innerText="Score: 0";
+  show("quizScreen");
+  loadQuestion();
+}
+
+function loadQuestion(){
+  if(index >= quiz.length){
+  const percent = Math.round((score / quiz.length) * 100);
+  finalScore.innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
+
+  const rankText = document.getElementById("rankText");
+  rankText.className = ""; // reset
+
+  if(percent === 100){
+    rankText.innerText = "🏆 LEGEND";
+    rankText.classList.add("rank-legend");
+  } else if(percent >= 80){
+    rankText.innerText = "🥇 MASTER";
+    rankText.classList.add("rank-master");
+  } else if(percent >= 60){
+    rankText.innerText = "🥈 EXPERT";
+    rankText.classList.add("rank-expert");
+  } else if(percent >= 40){
+    rankText.innerText = "🥉 INTERMEDIATE";
+    rankText.classList.add("rank-intermediate");
+  } else {
+    rankText.innerText = "🎓 BEGINNER";
+    rankText.classList.add("rank-beginner");
+  }
+
+  show("resultScreen");
+  return;
+}
+
+  const q=quiz[index];
+  question.innerText=q.q;
+  questionImage.src=q.i;
+  document.querySelectorAll("#choices .button").forEach((b,i)=>b.innerText=q.c[i]);
+}
+
+// ANSWER
+function answer(choice){
+  const resultBox = document.getElementById("result");
+
+  if(choice === quiz[index].a){
+    score++;
+    document.getElementById("scoreBox").innerText = "Score: " + score;
+
+    showThumbsUp();
+    fireworks();
+
+  } else {
+    resultBox.innerHTML =
+      '<div class="wrong">❌ Wrong!</div>';
+
+    document.body.classList.add("red-flash");
+    setTimeout(() => {
+      document.body.classList.remove("red-flash");
+    }, 400);
+  }
+
+  index++;
+
+  setTimeout(() => {
+    resultBox.innerHTML = "";
+    loadQuestion();
+  }, 1000);
+}
+
+function showRegister(){
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("registerBox").style.display = "block";
+}
+
+function showLogin(){
+  document.getElementById("registerBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+}
+
+
+function logout(){
+  localStorage.removeItem("loggedUser");
+  location.reload();
+}
+
+// EFFECTS
+function showThumbsUp(){
+  const c = document.getElementById("thumbsContainer");
+  c.style.display = "block";
+  setTimeout(() => c.style.display = "none", 1000);
+}
+
+function fireworks(){
+  for(let i=0;i<10;i++){
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = Math.random()*100+"vw";
+    f.style.top = Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
+  }
+}
+</script>
+
+</body>
+</html>
