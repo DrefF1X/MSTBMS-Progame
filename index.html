@@ -214,9 +214,9 @@ img {
 }
 
 #welcomeCard {
-  max-width: 300px;      /* mas maliit kaysa dati */
+  max-width: 300px;
   margin: 20px auto;
-  padding: 15px 18px;    /* mas compact */
+  padding: 15px 18px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -233,7 +233,7 @@ img {
 }
 
 .welcome-gif img {
-  width: 80px;   /* liit na GIF */
+  width: 80px;
   height: auto;
 
   filter:
@@ -244,7 +244,7 @@ img {
 }
 
 .welcome-text h2 {
-  font-size: 1.2em; /* mas maliit na text */
+  font-size: 1.2em;
 }
 
 .welcome-text p {
@@ -852,7 +852,7 @@ document.getElementById("successModal").style.display = "flex";
 
 function closeSuccess(){
   document.getElementById("successModal").style.display = "none";
-  showLogin(); // balik sa login form
+  showLogin();
 }
 
 
@@ -934,7 +934,7 @@ function startGame(){
 }
 
 function loadQuestion(){
-  clearInterval(timerInterval); // stop old timer
+  clearInterval(timerInterval);
 
   if(index >= quiz.length){
     const percent = Math.round((score / quiz.length) * 100);
@@ -971,7 +971,7 @@ function loadQuestion(){
   document.querySelectorAll("#choices .button")
     .forEach((b,i)=> b.innerText = q.c[i]);
 
-  startTimer(); // ✅ DAPAT NASA DITO
+  startTimer();
 }
 
 
@@ -1056,5 +1056,6 @@ function fireworks(){
 
 </body>
 </html>
+
 
 
