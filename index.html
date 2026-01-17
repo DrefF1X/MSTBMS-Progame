@@ -460,6 +460,35 @@ img {
   color: black;
 }
 
+	.correct {
+  background: linear-gradient(135deg, #ffd700, #ffb300) !important;
+  color: black !important;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+.wrong-btn {
+  background: rgba(220, 38, 38, 0.9) !important;
+  color: white !important;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.85;
+	}
+
 </style>
 </head>
 
@@ -993,31 +1022,40 @@ function timeUp(){
 // ANSWER
 function answer(choice){
   const resultBox = document.getElementById("result");
+  const btns = document.querySelectorAll("#quizScreen .button");
+  const correctIndex = quiz[index].a;
 
-  if(choice === quiz[index].a){
+  // disable all buttons
+  btns.forEach(b => b.classList.add("disabled"));
+
+  if(choice === correctIndex){
     score++;
     document.getElementById("scoreBox").innerText = "Score: " + score;
-
     showThumbsUp();
     fireworks();
-
   } else {
-    resultBox.innerHTML =
-      '<div class="wrong">❌ Wrong!</div>';
+    // maling pinindot = RED + SHAKE
+    btns[choice].classList.add("wrong-btn", "shake");
 
-    document.body.classList.add("red-flash");
-    setTimeout(() => {
-      document.body.classList.remove("red-flash");
-    }, 400);
+    // tamang sagot = GOLD
+    btns[correctIndex].classList.add("correct");
+
+    resultBox.innerHTML = '<div class="wrong">❌ Wrong!</div>';
   }
 
   index++;
 
   setTimeout(() => {
     resultBox.innerHTML = "";
+
+    // reset styles
+    btns.forEach(b => {
+      b.classList.remove("wrong-btn", "shake", "correct", "disabled");
+    });
+
     loadQuestion();
-  }, 1000);
-}
+  }, 1200);
+	}
 
 function showRegister(){
   document.getElementById("loginBox").style.display = "none";
@@ -1056,6 +1094,7 @@ function fireworks(){
 
 </body>
 </html>
+
 
 
 
