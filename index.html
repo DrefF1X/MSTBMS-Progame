@@ -85,6 +85,157 @@ h2 { font-size: 1.5em; }
   background: linear-gradient(135deg, #dd3333, #aa0000);
 }
 
+/* Chat Button */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,255,153,0.4);
+  z-index: 140;
+  transition: 0.2s;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+.chat-toggle .badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Chat Panel */
+.chat-panel {
+  position: fixed;
+  bottom: -500px;
+  right: 20px;
+  width: 350px;
+  height: 450px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+  transition: bottom 0.3s ease;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-panel.open {
+  bottom: 0;
+}
+
+.chat-header {
+  padding: 15px;
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.1em;
+}
+
+.close-chat {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chat-message.sent {
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  margin-left: auto;
+  text-align: right;
+}
+
+.chat-message.received {
+  background: rgba(255,255,255,0.15);
+  margin-right: auto;
+}
+
+.chat-sender {
+  font-size: 0.8em;
+  color: #94a3b8;
+  margin-bottom: 5px;
+}
+
+.chat-text {
+  color: white;
+  font-size: 0.95em;
+}
+
+.chat-input-area {
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #00ff99;
+  background: rgba(255,255,255,0.9);
+  font-size: 0.95em;
+  color: #000;
+}
+
+.chat-send-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.chat-send-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
 /* Developers Grid */
 .dev-grid {
   display: grid;
@@ -137,6 +288,9 @@ h2 { font-size: 1.5em; }
 .button:hover {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #00965f, #007aa3);
+}
+.button:active {
+  transform: translateY(0);
 }
 
 .button-small {
@@ -208,6 +362,7 @@ h2 { font-size: 1.5em; }
   font-size: 1em;
   display: block;
   box-sizing: border-box;
+  color: #000;
 }
 
 .question-input {
@@ -354,8 +509,8 @@ img {
   height: auto;
   border-radius: 12px;
   -webkit-user-drag: none;
-  user-select: none;         
-  pointer-events: auto;      
+  user-select: none;
+  pointer-events: auto;
 }
 
 /* Logo */
@@ -364,6 +519,43 @@ img {
   height: 140px;
   margin: 15px auto;
   display: block;
+}
+
+/* Welcome Card */
+#welcomeCard {
+  max-width: 400px;
+  margin: 25px auto;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.welcome-gif {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 15px;
+}
+
+.welcome-gif img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,255,153,0.3);
+}
+
+.welcome-text {
+  text-align: center;
+}
+
+.welcome-text h2 {
+  margin: 10px 0 5px;
+  color: #00ff99;
+  font-size: 1.5em;
+}
+
+.welcome-text p {
+  margin: 5px 0;
+  color: #cbd5e1;
 }
 
 /* INTRO */
@@ -398,380 +590,275 @@ img {
 }
 
 #introImageScreen img {
-  width: 70vw;
-  max-width: 280px;
-  animation: logoSpin 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 35px #00ffcc);
+  max-width: 70%;
+  max-height: 50%;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow:
+    0 0 40px rgba(0,255,153,0.6),
+    0 8px 30px rgba(0,0,0,0.8);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-.fade-out {
+@keyframes glow {
+  from { box-shadow: 0 0 30px rgba(0,255,153,0.4), 0 8px 30px rgba(0,0,0,0.8); }
+  to { box-shadow: 0 0 60px rgba(0,255,153,0.8), 0 8px 30px rgba(0,0,0,0.8); }
+}
+
+#introImageScreen.fade-out {
   opacity: 0;
-  transform: scale(1.2);
+  transform: scale(0.9);
 }
 
-.loading-bar {
-  width: 70%;
-  height: 10px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 25px;
-}
-
-.loading-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00ff99, #00ccff);
-  animation: loading 3s linear forwards;
-}
-
-@keyframes loading {
-  to { width: 100%; }
-}
-
-/* Particles */
-.particle {
-  position: fixed;
-  bottom: -10px;
-  width: 6px;
-  height: 6px;
-  background: rgba(255,255,255,0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-110vh);
-    opacity: 0;
-  }
-}
-
+/* Auth */
 #successModal {
+  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 5000;
-  display: flex;
-  align-items: center;
+  background: rgba(0,0,0,0.9);
+  z-index: 9001;
   justify-content: center;
+  align-items: center;
 }
 
 #successBox {
-  background: linear-gradient(135deg, #00ff99, #00bcd4);
-  color: #003333;
-  padding: 35px 45px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow:
-    0 0 25px rgba(0,255,153,0.8),
-    0 10px 30px rgba(0,0,0,0.8);
-  animation: pop 0.4s ease;
-}
-
-@keyframes pop {
-  from {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-#welcomeCard {
-  max-width: 320px;
-  margin: 20px auto;
-  padding: 15px 20px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding: 40px;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 0 18px rgba(0,255,153,0.4),
-    0 6px 18px rgba(0,0,0,0.65);
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 0 40px rgba(0,255,153,0.6);
+  border: 2px solid #00ff99;
+  text-align: center;
+  animation: bounceIn 0.5s ease;
 }
 
-.welcome-gif img {
-  width: 70px;
-  height: auto;
-  filter:
-    drop-shadow(0 0 6px rgba(0,0,0,0.9))
-    drop-shadow(0 0 12px rgba(0,255,153,0.6));
-  border-radius: 50%;
+@keyframes bounceIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-.welcome-text h2 {
-  font-size: 1.1em;
-  margin: 5px 0;
-}
-
-.welcome-text p {
-  font-size: 0.85em;
-  margin: 5px 0;
-}
-
-/* QUIZ */
+/* Quiz Specific */
 .qb {
-  max-width: 600px;
-  width: 95%;
-  margin: auto;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
   padding: 20px;
-  border-radius: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
 #scoreBox {
-  background: rgba(0,0,0,0.4);
-  color: #00ff99;
-  padding: 10px;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
-}
-
-#question {
+  background: linear-gradient(135deg, #00b37a, #0093c0);
+  padding: 12px 24px;
+  border-radius: 12px;
   font-size: 1.3em;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
   margin-bottom: 20px;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.7);
+  box-shadow: 0 4px 12px rgba(0,255,153,0.3);
 }
 
-#questionImage {
-  max-width: 220px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-  margin: 0 auto 15px auto;
-  display: block;
-  border-radius: 10px;
-}
-
-/* TIMER */
 #timerBox {
   margin: 15px auto;
   max-width: 300px;
-  text-align: center;
 }
 
 #timeText {
   font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 6px;
-  color: #00ff99;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  font-weight: 700;
+  margin-bottom: 8px;
+  transition: color 0.3s;
 }
 
 #timeBar {
-  width: 100%;
-  height: 14px;
+  height: 12px;
   background: rgba(255,255,255,0.2);
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 }
 
 #timeFill {
   height: 100%;
-  width: 100%;
   background: linear-gradient(90deg, #00ff99, #00ccff);
   transition: width 1s linear;
+  border-radius: 6px;
 }
 
-.time-warning {
-  color: #facc15;
+#question {
+  font-size: 1.2em;
+  margin: 20px 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1f5f9;
 }
 
-.time-danger {
-  color: #ff4d4d;
+#questionImage {
+  max-width: 100%;
+  max-height: 300px;
+  margin: 15px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
 }
 
-#finalScore {
-  font-size: 1.6em;
-  color: #00ff99;
-  margin: 15px 0;
+#choices {
+  margin-top: 20px;
 }
 
 #result {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3000;
-}
-
-.wrong {
-  font-size: 1.8em;
-  background: rgba(255,0,0,0.85);
-  padding: 25px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255,0,0,0.7);
-}
-
-@keyframes shake {
-  0% { transform: translate(-50%, -50%) translateX(0); }
-  25% { transform: translate(-50%, -50%) translateX(-10px); }
-  50% { transform: translate(-50%, -50%) translateX(10px); }
-  75% { transform: translate(-50%, -50%) translateX(-10px); }
-  100% { transform: translate(-50%, -50%) translateX(0); }
-}
-
-/* Fireworks */
-.firework {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: yellow;
-  border-radius: 100%;
-  animation: explode 1s linear forwards;
-}
-
-@keyframes explode {
-  to { transform: scale(8); opacity: 0; }
-}
-
-/* Thumbs Up */
-#thumbsContainer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2100;
-  text-align: center;
-  display: none;
-}
-
-#thumbsUp {
-  width: 160px;
-  display: block;
-  margin: 0 auto;
-}
-
-#excellentText {
-  margin-top: 12px;
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #eafff2;
-  background: rgba(0, 180, 120, 0.85);
-  padding: 16px 32px;
-  border-radius: 20px;
-  border: 3px solid #00ff99;
-  box-shadow:
-    0 0 15px rgba(0,255,153,0.5),
-    0 4px 8px rgba(0,0,0,0.8);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  h1 { font-size: 1.9em; }
-  h2 { font-size: 1.3em; }
-  .button { font-size: 0.95em; }
-  .container { padding-top: 50px; }
-}
-
-#rankText {
-  margin-top: 15px;
-  font-size: 1.5em;
-  font-weight: bold;
-  padding: 15px 30px;
-  border-radius: 20px;
-  display: inline-block;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-}
-
-.rank-legend {
-  background: linear-gradient(135deg, #ffd700, #ff9f00);
-  color: black;
-}
-
-.rank-master {
-  background: linear-gradient(135deg, #00ffcc, #0099ff);
-  color: black;
-}
-
-.rank-expert {
-  background: linear-gradient(135deg, #a7f3d0, #34d399);
-  color: black;
-}
-
-.rank-intermediate {
-  background: linear-gradient(135deg, #fde68a, #fbbf24);
-  color: black;
-}
-
-.rank-beginner {
-  background: linear-gradient(135deg, #e5e7eb, #9ca3af);
-  color: black;
+  margin-top: 20px;
+  font-size: 1.3em;
+  font-weight: 700;
 }
 
 .correct {
-  background: linear-gradient(135deg, #ffd700, #ffb300) !important;
-  color: black !important;
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
 }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-6px); }
-  80% { transform: translateX(6px); }
-  100% { transform: translateX(0); }
-}
-
-.shake {
-  animation: shake 0.4s;
+.wrong {
+  color: #ff4d4d;
+  font-weight: 700;
+  animation: shake 0.3s;
 }
 
 .wrong-btn {
-  background: rgba(220, 38, 38, 0.9) !important;
-  color: white !important;
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
 }
 
 .disabled {
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
-select {
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #00ff99;
-  background: rgba(255,255,255,0.9);
-  font-size: 1em;
-  margin: 10px auto;
-  width: 100%;
-  max-width: 400px;
-  display: block;
+/* Thumbs */
+#thumbsContainer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#thumbsUp {
+  max-width: 300px;
+  animation: zoomBounce 0.6s ease;
+}
+
+@keyframes zoomBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+#excellentText {
+  position: absolute;
+  bottom: 30%;
+  font-size: 3em;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow:
+    0 0 20px #ffd700,
+    0 0 40px #ffd700,
+    0 4px 8px rgba(0,0,0,0.8);
+  animation: pulse 0.8s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Rank Styles */
+.rank-legend {
+  color: #ffd700;
+  font-size: 2em;
+  text-shadow: 0 0 20px #ffd700;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.rank-master {
+  color: #ff1493;
+  font-size: 1.8em;
+  text-shadow: 0 0 15px #ff1493;
+}
+
+.rank-expert {
+  color: #00ccff;
+  font-size: 1.6em;
+  text-shadow: 0 0 10px #00ccff;
+}
+
+.rank-intermediate {
+  color: #ffaa00;
+  font-size: 1.4em;
+}
+
+.rank-beginner {
+  color: #ff8888;
+  font-size: 1.2em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container { padding-top: 40px; }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.3em; }
+  .button { font-size: 0.95em; padding: 12px; }
+  .dev-grid { grid-template-columns: 1fr; max-width: 300px; }
+  .chat-panel { width: 100%; right: 0; }
+}
 </style>
 </head>
-
 <body>
 
-<!-- Audio Elements - Will use Web Audio API for sounds -->
+<!-- Chat Toggle Button -->
+<button class="chat-toggle" id="chatToggle" onclick="toggleChat()" style="display: none;">
+  💬
+  <span class="badge" id="chatBadge" style="display: none;">0</span>
+</button>
 
-<!-- INTRO -->
-<div class="screen active" id="introImageScreen">
+<!-- Chat Panel -->
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <h3>🌍 Global Chat</h3>
+    <button class="close-chat" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+    <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<!-- INTRO SCREEN -->
+<div id="introImageScreen">
   <h1>PROGAME</h1>
-  <img src="https://i.postimg.cc/1RpXCLks/1767524373820.png" alt="PROGAME Logo">
-  <div class="loading-bar"><div class="loading-fill"></div></div>
+  <img src="https://i.ibb.co/bM1gDzXn/1753415138696.png" alt="PROGAME">
 </div>
 
 <!-- AUTH SCREEN -->
 <div class="screen" id="authScreen">
   <div class="container">
-    <h1>PROGAME</h1>
-
+    <h1>🎮 PROGAME</h1>
+    <p>Test Your Knowledge!</p>
+    
     <!-- LOGIN FORM -->
     <div id="loginBox">
       <input id="loginName" placeholder="Username" class="custom-input">
@@ -792,7 +879,7 @@ select {
 </div>
 
 <!-- SUCCESS MODAL -->
-<div id="successModal" style="display:none;">
+<div id="successModal">
   <div id="successBox">
     <div style="font-size:3em;">✅</div>
     <h2>Account Created!</h2>
@@ -820,13 +907,35 @@ select {
     </div>
 
     <button class="button" onclick="show('playMenu')">Play</button>
+    <button class="button" onclick="show('friendsMenu')">Friends</button>
     <button class="button" onclick="show('optionsMenu')">Options</button>
     <button class="button" onclick="show('settingsMenu')">Settings</button>
   </div>
 </div>
 
+<!-- FRIENDS MENU -->
+<div class="screen" id="friendsMenu">
+  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
+  <div class="container">
+    <h2>👥 Friends</h2>
+    
+    <div style="margin: 20px auto; max-width: 400px;">
+      <input type="text" id="friendUsername" class="custom-input" placeholder="Enter friend's username">
+      <button class="button" onclick="addFriend()">Add Friend</button>
+    </div>
+    
+    <h3 style="margin-top: 30px;">Your Friends:</h3>
+    <div id="friendsList" style="max-width: 400px; margin: 20px auto;">
+      <p style="text-align: center; color: #94a3b8;">No friends yet. Add your first friend!</p>
+    </div>
+    
+    <button class="button" onclick="show('mainMenu')" style="margin-top: 30px;">Back to Main Menu</button>
+  </div>
+</div>
+
 <!-- PLAY MENU -->
 <div class="screen" id="playMenu">
+  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
   <div class="container">
     <h2>Play Menu</h2>
     
@@ -839,10 +948,11 @@ select {
 
 <!-- TOPIC SELECTION -->
 <div class="screen" id="topicSelect">
+  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
   <div class="container">
     <h2>Select Topic</h2>
     
-    <select id="topic">
+    <select id="topic" class="custom-input">
       <option value="html">HTML</option>
       <option value="css">CSS</option>
       <option value="javascript">JavaScript</option>
@@ -857,6 +967,7 @@ select {
 
 <!-- DIFFICULTY SELECTION -->
 <div class="screen" id="difficultySelect">
+  <button class="logout-btn" onclick="show('topicSelect')">← Back</button>
   <div class="container">
     <h2>Select Difficulty</h2>
     
@@ -881,6 +992,7 @@ select {
 
 <!-- CREATE CUSTOM TOPIC -->
 <div class="screen" id="createTopic">
+  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
   <div class="container">
     <h2>Create Custom Topic</h2>
     
@@ -916,6 +1028,7 @@ select {
 
 <!-- JOIN GROUP STUDY -->
 <div class="screen" id="joinTopic">
+  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
   <div class="container">
     <h2>Join Group Study</h2>
     
@@ -930,6 +1043,7 @@ select {
 
 <!-- OPTIONS MENU -->
 <div class="screen" id="optionsMenu">
+  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
   <div class="container">
     <h2>Options</h2>
     
@@ -941,6 +1055,7 @@ select {
 
 <!-- DEVELOPERS -->
 <div class="screen" id="developersScreen">
+  <button class="logout-btn" onclick="show('optionsMenu')">← Back</button>
   <div class="container">
     <h2>Developers</h2>
 
@@ -982,6 +1097,7 @@ select {
 
 <!-- MY TOPICS -->
 <div class="screen" id="myTopics">
+  <button class="logout-btn" onclick="show('optionsMenu')">← Back</button>
   <div class="container">
     <h2>My Custom Topics</h2>
     
@@ -993,6 +1109,7 @@ select {
 
 <!-- SETTINGS -->
 <div class="screen" id="settingsMenu">
+  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
   <div class="container">
     <h2>Settings</h2>
     
@@ -1019,13 +1136,8 @@ select {
       </div>
       
       <div class="setting-row">
-        <span>Background Music Volume</span>
-        <input type="range" min="0" max="100" value="30" style="width: 60%;" oninput="adjustBgVolume(this.value)">
-      </div>
-      
-      <div class="setting-row">
-        <span>Game Music Volume</span>
-        <input type="range" min="0" max="100" value="20" style="width: 60%;" oninput="adjustGameVolume(this.value)">
+        <span>Music Volume</span>
+        <input type="range" min="0" max="100" value="30" style="width: 60%;" oninput="adjustMusicVolume(this.value)">
       </div>
       
       <div class="setting-row">
@@ -1094,6 +1206,38 @@ select {
 </div>
 
 <script>
+// ========== STORAGE HELPERS (localStorage) ==========
+async function saveToStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (error) {
+    console.error('Storage save error:', error);
+    return false;
+  }
+}
+
+async function loadFromStorage(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      return JSON.parse(raw);
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function deleteFromStorage(key) {
+  try {
+    localStorage.removeItem(key);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 // Settings object - must be defined first
 const settings = {
   sound: true,
@@ -1101,708 +1245,459 @@ const settings = {
   timer: true
 };
 
-// Web Audio API Setup
-// ==================== AUDIO SYSTEM ====================
-let audioCtx = null;
+let synth = null;
+let bgPattern = null;
+let musicVolume = 0.3;
+let sfxVolume = 0.5;
 
-function initAudioContext() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  return audioCtx;
-}
-
-// ============ BEAT MUSIC SYSTEM (Tone.js) ============
-let bgSynth, bassSynth, drumSynth, hihatSynth;
-let bgLoop = null;
-let gameLoop = null;
-let musicInitialized = false;
-let toneStarted = false;
-
-async function initBeatMusic() {
-  if (musicInitialized) return;
+// ========== TONE.JS MUSIC SETUP ==========
+async function initMusic() {
+  await Tone.start();
   
-  try {
-    // Ensure Tone.js is started
-    if (!toneStarted) {
-      await Tone.start();
-      toneStarted = true;
-      console.log('Tone.js started');
-    }
-    
-    // Melodic synth
-    bgSynth = new Tone.PolySynth(Tone.Synth, {
-      oscillator: { type: 'triangle' },
-      envelope: { attack: 0.1, decay: 0.2, sustain: 0.5, release: 0.8 }
-    }).toDestination();
-    bgSynth.volume.value = -12;
-    
-    // Bass synth
-    bassSynth = new Tone.MonoSynth({
-      oscillator: { type: 'sawtooth' },
-      envelope: { attack: 0.01, decay: 0.2, sustain: 0.3, release: 0.5 },
-      filter: { Q: 2, type: 'lowpass', rolloff: -24 }
-    }).toDestination();
-    bassSynth.volume.value = -10;
-    
-    // Drum synth
-    drumSynth = new Tone.MembraneSynth({
-      pitchDecay: 0.05,
-      octaves: 6,
-      oscillator: { type: 'sine' },
-      envelope: { attack: 0.001, decay: 0.2, sustain: 0, release: 0.2 }
-    }).toDestination();
-    drumSynth.volume.value = -14;
-    
-    // Hi-hat synth
-    hihatSynth = new Tone.MetalSynth({
-      frequency: 200,
-      envelope: { attack: 0.001, decay: 0.1, release: 0.01 },
-      harmonicity: 5.1,
-      modulationIndex: 32,
-      resonance: 4000,
-      octaves: 1.5
-    }).toDestination();
-    hihatSynth.volume.value = -24;
-    
-    musicInitialized = true;
-    console.log('Music initialized');
-  } catch (e) {
-    console.log('Music init error:', e);
-  }
-}
-
-async function playBGMusicLoop() {
-  if (!settings.music) return;
+  synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  synth.volume.value = Tone.gainToDb(musicVolume);
   
-  try {
-    await initBeatMusic();
-    
-    if (bgLoop) {
-      console.log('BG music already playing');
-      return;
+  const melody = ["C4", "E4", "G4", "A4"];
+  
+  bgPattern = new Tone.Pattern((time, note) => {
+    if (settings.music) {
+      synth.triggerAttackRelease(note, "8n", time);
     }
-    
-    const melody = ['C4', 'E4', 'G4', 'E4', 'C4', 'E4', 'G4', 'A4'];
-    const bass = ['C2', 'C2', 'G1', 'G1', 'C2', 'C2', 'F2', 'F2'];
-    
-    let melodyIdx = 0;
-    let bassIdx = 0;
-    
-    bgLoop = new Tone.Loop((time) => {
-      bgSynth.triggerAttackRelease(melody[melodyIdx % melody.length], '8n', time);
-      melodyIdx++;
-      
-      if (melodyIdx % 2 === 0) {
-        bassSynth.triggerAttackRelease(bass[bassIdx % bass.length], '4n', time);
-        bassIdx++;
-      }
-      
-      drumSynth.triggerAttackRelease('C1', '16n', time);
-      hihatSynth.triggerAttackRelease('8n', time + 0.125);
-    }, '8n');
-    
-    Tone.Transport.bpm.value = 120;
-    bgLoop.start(0);
+  }, melody, "up");
+  
+  Tone.Transport.bpm.value = 100;
+  
+  if (settings.music) {
+    bgPattern.start(0);
     Tone.Transport.start();
-    console.log('BG music started');
-  } catch (e) {
-    console.log('BG music error:', e);
   }
 }
 
-async function playGameMusicLoop() {
-  if (!settings.music) return;
+function toggleMusic() {
+  const toggle = document.getElementById('musicToggle');
+  toggle.classList.toggle('active');
+  settings.music = toggle.classList.contains('active');
   
-  try {
-    await initBeatMusic();
-    
-    if (gameLoop) {
-      console.log('Game music already playing');
-      return;
-    }
-    
-    const melody = ['E4', 'G4', 'A4', 'G4', 'E4', 'G4', 'A4', 'C5'];
-    const bass = ['E2', 'E2', 'A1', 'A1', 'E2', 'E2', 'C2', 'C2'];
-    
-    let melodyIdx = 0;
-    let bassIdx = 0;
-    let beatCount = 0;
-    
-    gameLoop = new Tone.Loop((time) => {
-      bgSynth.triggerAttackRelease(melody[melodyIdx % melody.length], '16n', time);
-      melodyIdx++;
-      
-      if (beatCount % 2 === 0) {
-        bassSynth.triggerAttackRelease(bass[bassIdx % bass.length], '8n', time);
-        bassIdx++;
-      }
-      
-      drumSynth.triggerAttackRelease('C1', '32n', time);
-      hihatSynth.triggerAttackRelease('16n', time);
-      hihatSynth.triggerAttackRelease('16n', time + 0.0625);
-      
-      beatCount++;
-    }, '16n');
-    
-    Tone.Transport.bpm.value = 140;
-    gameLoop.start(0);
+  if (settings.music && bgPattern) {
+    bgPattern.start(0);
     Tone.Transport.start();
-    console.log('Game music started');
-  } catch (e) {
-    console.log('Game music error:', e);
-  }
-}
-
-function stopBGMusicLoop() {
-  if (bgLoop) {
-    bgLoop.stop();
-    bgLoop.dispose();
-    bgLoop = null;
-  }
-  Tone.Transport.bpm.value = 120;
-}
-
-function stopGameMusicLoop() {
-  if (gameLoop) {
-    gameLoop.stop();
-    gameLoop.dispose();
-    gameLoop = null;
-  }
-  Tone.Transport.bpm.value = 120;
-}
-
-function stopAllMusicLoops() {
-  stopBGMusicLoop();
-  stopGameMusicLoop();
-  if (Tone.Transport.state === 'started') {
+  } else if (bgPattern) {
     Tone.Transport.stop();
   }
 }
 
-// Mock objects for compatibility
-const bgMusic = {
-  volume: 0.3,
-  currentTime: 0,
-  play: () => {
-    stopGameMusicLoop();
-    playBGMusicLoop();
-    return Promise.resolve();
-  },
-  pause: () => {
-    stopBGMusicLoop();
-  }
-};
-
-const gameMusic = {
-  volume: 0.2,
-  currentTime: 0,
-  play: () => {
-    stopBGMusicLoop();
-    playGameMusicLoop();
-    return Promise.resolve();
-  },
-  pause: () => {
-    stopGameMusicLoop();
-  }
-};
-
-// ============ SOUND EFFECTS ============
-const clickSound = {
-  volume: 0.5,
-  currentTime: 0,
-  play: () => {
-    if (!settings.sound) return Promise.resolve();
-    initAudioContext();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.frequency.value = 800;
-    oscillator.type = 'sine';
-    gainNode.gain.setValueAtTime(clickSound.volume * 0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-    oscillator.start(audioCtx.currentTime);
-    oscillator.stop(audioCtx.currentTime + 0.1);
-    return Promise.resolve();
-  }
-};
-
-const correctSound = {
-  volume: 0.5,
-  currentTime: 0,
-  play: () => {
-    if (!settings.sound) return Promise.resolve();
-    initAudioContext();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.type = 'sine';
-    gainNode.gain.setValueAtTime(correctSound.volume * 0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
-    oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-    oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15);
-    oscillator.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3);
-    oscillator.start(audioCtx.currentTime);
-    oscillator.stop(audioCtx.currentTime + 0.5);
-    return Promise.resolve();
-  }
-};
-
-const wrongSound = {
-  volume: 0.5,
-  currentTime: 0,
-  play: () => {
-    if (!settings.sound) return Promise.resolve();
-    initAudioContext();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.type = 'sawtooth';
-    oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
-    gainNode.gain.setValueAtTime(wrongSound.volume * 0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-    oscillator.start(audioCtx.currentTime);
-    oscillator.stop(audioCtx.currentTime + 0.3);
-    return Promise.resolve();
-  }
-};
-
-// Initialize audio on first user interaction
-let audioInitialized = false;
-function initializeAudio() {
-  if (!audioInitialized) {
-    audioInitialized = true;
-    initAudioContext();
-  }
-}
-
-// Add click listener to initialize audio on first interaction
-document.addEventListener('click', initializeAudio, { once: true });
-
-// Function to start music on first user interaction
-let musicStarted = false;
-async function startMusicOnInteraction() {
-  if (!musicStarted) {
-    musicStarted = true;
-    console.log('First click - initializing music');
-    // Initialize Tone.js on first interaction
-    if (settings.music) {
-      try {
-        await Tone.start();
-        await initBeatMusic();
-        
-        const currentScreen = document.querySelector('.screen.active');
-        if (currentScreen && currentScreen.id === 'quizScreen') {
-          await playGameMusicLoop();
-        } else if (currentScreen && currentScreen.id !== 'introImageScreen') {
-          await playBGMusicLoop();
-        }
-      } catch (e) {
-        console.log('Music init prevented:', e);
-      }
-    }
-  }
-}
-
-// Add multiple event listeners to catch first user interaction
-document.addEventListener('click', startMusicOnInteraction, { once: true });
-document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
-document.addEventListener('keydown', startMusicOnInteraction, { once: true });
-
-// Volume adjustment functions
-function adjustBgVolume(value) {
-  bgMusic.volume = value / 100;
-}
-
-function adjustGameVolume(value) {
-  gameMusic.volume = value / 100;
-}
-
-function adjustSfxVolume(value) {
-  const vol = value / 100;
-  clickSound.volume = vol;
-  correctSound.volume = vol;
-  wrongSound.volume = vol;
-}
-
-// Sound playing functions
-function playClickSound() {
-  if (!settings.sound) return;
-  clickSound.currentTime = 0;
-  clickSound.play().catch(e => console.log('Sound play prevented'));
-}
-
-function playCorrectSound() {
-  if (!settings.sound) return;
-  correctSound.currentTime = 0;
-  correctSound.play().catch(e => console.log('Sound play prevented'));
-}
-
-function playWrongSound() {
-  if (!settings.sound) return;
-  wrongSound.currentTime = 0;
-  wrongSound.play().catch(e => console.log('Sound play prevented'));
-}
-
-// Music control functions
-function stopBgMusic() {
-  bgMusic.pause();
-  bgMusic.currentTime = 0;
-}
-
-function playBgMusic() {
-  if (!settings.music) return;
-  bgMusic.play().catch(e => console.log('Music play prevented'));
-}
-
-function stopGameMusic() {
-  gameMusic.pause();
-  gameMusic.currentTime = 0;
-}
-
-function playGameMusic() {
-  if (!settings.music) return;
-  gameMusic.play().catch(e => console.log('Music play prevented'));
-}
-
-// Settings
 function toggleSound() {
-  settings.sound = !settings.sound;
-  document.getElementById('soundToggle').classList.toggle('active');
-  localStorage.setItem('settings', JSON.stringify(settings));
-  if (settings.sound) playClickSound();
-}
-
-async function toggleMusic() {
-  settings.music = !settings.music;
-  document.getElementById('musicToggle').classList.toggle('active');
-  localStorage.setItem('settings', JSON.stringify(settings));
-  
-  if (settings.music) {
-    // Ensure Tone.js is initialized
-    if (!musicStarted) {
-      try {
-        await Tone.start();
-        await initBeatMusic();
-        musicStarted = true;
-      } catch (e) {
-        console.log('Music init error:', e);
-      }
-    }
-    
-    // Start appropriate music based on current screen
-    const currentScreen = document.querySelector('.screen.active');
-    if (currentScreen && currentScreen.id === 'quizScreen') {
-      await playGameMusic();
-    } else if (currentScreen && currentScreen.id !== 'introImageScreen') {
-      await playBgMusic();
-    }
-  } else {
-    // Stop all music
-    stopBgMusic();
-    stopGameMusic();
-  }
-  
-  playClickSound();
+  const toggle = document.getElementById('soundToggle');
+  toggle.classList.toggle('active');
+  settings.sound = toggle.classList.contains('active');
 }
 
 function toggleTimer() {
-  settings.timer = !settings.timer;
-  document.getElementById('timerToggle').classList.toggle('active');
-  localStorage.setItem('settings', JSON.stringify(settings));
+  const toggle = document.getElementById('timerToggle');
+  toggle.classList.toggle('active');
+  settings.timer = toggle.classList.contains('active');
 }
 
-function loadSettings() {
-  const saved = localStorage.getItem('settings');
-  if (saved) {
-    Object.assign(settings, JSON.parse(saved));
+function adjustMusicVolume(val) {
+  musicVolume = val / 100;
+  if (synth) {
+    synth.volume.value = Tone.gainToDb(musicVolume);
   }
-  // Always update UI based on current settings
-  if (settings.sound) document.getElementById('soundToggle').classList.add('active');
-  if (settings.music) document.getElementById('musicToggle').classList.add('active');
-  if (settings.timer) document.getElementById('timerToggle').classList.add('active');
 }
 
-// INTRO
-setTimeout(() => {
-  const intro = document.getElementById("introImageScreen");
-  intro.classList.add("fade-out");
+function adjustSfxVolume(val) {
+  sfxVolume = val / 100;
+}
 
-  setTimeout(() => {
-    intro.remove();
+function playClickSound() {
+  if (!settings.sound || !synth) return;
+  const now = Tone.now();
+  synth.triggerAttackRelease("C5", "16n", now, sfxVolume);
+}
 
-    const loggedUser = localStorage.getItem("loggedUser");
+function playCorrectSound() {
+  if (!settings.sound || !synth) return;
+  const now = Tone.now();
+  synth.triggerAttackRelease("E5", "8n", now, sfxVolume);
+  synth.triggerAttackRelease("G5", "8n", now + 0.1, sfxVolume);
+}
 
-    if (loggedUser) {
-      currentUser = loggedUser;
-      document.getElementById("welcomePlayer").innerText =
-        "Welcome, " + currentUser + "!";
-      show("mainMenu");
-    } else {
-      show("authScreen");
-    }
-    
-    // Try to start music (will work if user already interacted)
-    if (settings.music && musicStarted) {
-      playBgMusic();
-    }
+function playWrongSound() {
+  if (!settings.sound || !synth) return;
+  const now = Tone.now();
+  synth.triggerAttackRelease("C3", "8n", now, sfxVolume);
+}
 
-  }, 1000);
-}, 3000);
+// ========== GLOBAL VARIABLES ==========
+let currentUser = "";
+let score = 0;
+let index = 0;
+let quiz = [];
+let selectedDifficulty = "easy";
+let selectedCustomTopicCode = "";
+let customQuestions = [];
+let userTopics = {};
+let friends = [];
 
-function show(screenId){
+// Chat
+let globalMessages = [];
+let unreadMessages = 0;
+
+// ========== CHAT FUNCTIONS ==========
+function toggleChat() {
+  const panel = document.getElementById('chatPanel');
+  panel.classList.toggle('open');
+  
+  if (panel.classList.contains('open')) {
+    loadChat();
+    unreadMessages = 0;
+    updateChatBadge();
+  }
+}
+
+async function loadChat() {
+  globalMessages = await loadFromStorage('globalChat') || [];
+  displayMessages();
+}
+
+function displayMessages() {
+  const container = document.getElementById('chatMessages');
+  
+  if (globalMessages.length === 0) {
+    container.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:20px;">No messages yet. Start the conversation!</p>';
+    return;
+  }
+  
+  container.innerHTML = globalMessages.slice(-50).map(msg => {
+    const isSent = msg.sender === currentUser;
+    return `
+      <div class="chat-message ${isSent ? 'sent' : 'received'}">
+        ${!isSent ? `<div class="chat-sender">${msg.sender}</div>` : ''}
+        <div class="chat-text">${msg.text}</div>
+      </div>
+    `;
+  }).join('');
+  
+  container.scrollTop = container.scrollHeight;
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  
+  if (!text) return;
+  
+  const message = {
+    sender: currentUser,
+    text: text,
+    timestamp: Date.now()
+  };
+  
+  globalMessages.push(message);
+  await saveToStorage('globalChat', globalMessages);
+  
+  input.value = '';
+  displayMessages();
   playClickSound();
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-  document.getElementById(screenId).classList.add("active");
-  
-  // Music control based on screen (async to handle Tone.js properly)
-  if (settings.music && musicStarted) {
-    if (screenId === 'quizScreen') {
-      stopBgMusic();
-      playGameMusic();
-    } else if (screenId !== 'introImageScreen') {
-      stopGameMusic();
-      playBgMusic();
-    }
-  }
-  
-  if (screenId === 'myTopics') {
-    displayMyTopics();
-  }
-  if (screenId === 'topicSelect') {
-    displayCustomTopicButtons();
+}
+
+function updateChatBadge() {
+  const badge = document.getElementById('chatBadge');
+  if (unreadMessages > 0) {
+    badge.textContent = unreadMessages;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
   }
 }
 
-// Prevent image context menu
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('contextmenu', e => e.preventDefault());
-  });
-});
-
-// QUESTIONS
-const questions = [
-  // HTML - EASY
-  {
-    q: "What does HTML stand for?",
-    i: "https://i.ibb.co/8VrGqpy/images-5-2.jpg",
-    c: ["Hyperlink and Text Markup Language", "Home Tool Markup Language", "Hyper Text Markup Language", "Hyper Transfer Markup Language"],
-    a: 2,
-    t: "html",
-    d: "easy"
-  },
-  {
-    q: "Which HTML element is used for the largest heading?",
-    i: "https://i.postimg.cc/V6RdHLmG/A-20260103-185421-0000.png",
-    c: ["<heading>", "<h6>", "<head>", "<h1>"],
-    a: 3,
-    t: "html",
-    d: "easy"
-  },
-  {
-    q: "Which tag is used to insert an image in HTML?",
-    i: "https://i.postimg.cc/59gy7HC6/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-180828-0000.png",
-    c: ["<picture>", "<image>", "<img>", "<src>"],
-    a: 2,
-    t: "html",
-    d: "easy"
-  },
-  // HTML - NORMAL
-  {
-    q: "Which HTML tag is used to create a hyperlink?",
-    i: "https://i.postimg.cc/CLQ5BQcQ/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-175157-0000.png",
-    c: ["<link>", "<a>", "<href>", "<url>"],
-    a: 1,
-    t: "html",
-    d: "normal"
-  },
-  {
-    q: "Who is considered the founder of HTML and in what year was it introduced?",
-    i: "https://i.ibb.co/LXyDz0Mh/berners-lee-2.jpg",
-    c: ["Bill Gates, 1995", "Tim Berners-Lee, 1991", "Steve Jobs, 1989", "Mark Zuckerberg, 2004"],
-    a: 1,
-    t: "html",
-    d: "normal"
-  },
-  // HTML - HARD
-  {
-    q: "Which HTML5 element is used for navigation links?",
-    i: "",
-    c: ["<navigation>", "<nav>", "<navbar>", "<menu>"],
-    a: 1,
-    t: "html",
-    d: "hard"
-  },
-  // CSS - EASY
-  {
-    q: "What does CSS stand for?",
-    i: "https://i.ibb.co/8L33Rj6k/images-6-2.jpg",
-    c: ["Colorful Style Sheets", "Creative Style System", "Cascading Style Sheets", "Computer Style Sheets"],
-    a: 2,
-    t: "css",
-    d: "easy"
-  },
-  {
-    q: "Which CSS property is used to change text color?",
-    i: "https://i.postimg.cc/mrnXqMyW/B-20260103-195630-0000.png",
-    c: ["font-color", "color", "text-color", "style"],
-    a: 1,
-    t: "css",
-    d: "easy"
-  },
-  {
-    q: "Which CSS property controls the size of text?",
-    i: "https://i.postimg.cc/26h4jBhH/D-20260103-202258-0000.png",
-    c: ["text-size", "font-style", "text-style", "font-size"],
-    a: 3,
-    t: "css",
-    d: "easy"
-  },
-  // CSS - NORMAL
-  {
-    q: "Which symbol is used to select a class in CSS?",
-    i: "https://i.postimg.cc/HWvwtHzh/C-20260103-201039-0000.png",
-    c: ["#", "*", ".", "@"],
-    a: 2,
-    t: "css",
-    d: "normal"
-  },
-  {
-    q: "Who developed CSS and when was it first introduced?",
-    i: "https://i.postimg.cc/5083RzR5/Håkon_Wium_Lie_2009_03_2.jpg",
-    c: ["Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996", "Brendan Eich, 1995", "Bill Gates, 1998"],
-    a: 1,
-    t: "css",
-    d: "normal"
-  },
-  // CSS - HARD
-  {
-    q: "Which CSS property is used for flexible box layout?",
-    i: "",
-    c: ["flex-box", "display: flex", "flexbox", "box-flex"],
-    a: 1,
-    t: "css",
-    d: "hard"
-  },
-  // JavaScript - EASY
-  {
-    q: "What is JavaScript mainly used for?",
-    i: "https://i.postimg.cc/LXYDyMB9/sta-je-javascript-2.jpg",
-    c: ["Styling web pages", "Structuring web content", "Creating databases", "Making web pages interactive"],
-    a: 3,
-    t: "javascript",
-    d: "easy"
-  },
-  {
-    q: "Which keyword is used to declare a variable in JavaScript?",
-    i: "https://i.postimg.cc/HsyGrfqp/E-20260104-100430-0000.png",
-    c: ["ver", "vor", "var", "vur"],
-    a: 2,
-    t: "javascript",
-    d: "easy"
-  },
-  {
-    q: "Which symbol is used for comments in JavaScript?",
-    i: "https://i.postimg.cc/59p5wyMr/F_20260104_102026_0000.png",
-    c: ["##", "//", "@@", "$$"],
-    a: 1,
-    t: "javascript",
-    d: "easy"
-  },
-  // JavaScript - NORMAL
-  {
-    q: "Who created JavaScript and in what year?",
-    i: "https://i.postimg.cc/tC1SrWDG/Brendan-Eich-Mozilla-Foundation-official-photo-2.jpg",
-    c: ["Brendan Eich, 1995", "Bill Gates, 1994", "Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996"],
-    a: 0,
-    t: "javascript",
-    d: "normal"
-  },
-  {
-    q: "What will this code output?",
-    i: "https://i.postimg.cc/RZqzMWvk/G-20260104-102932-0000.png",
-    c: ["55", "10", "5 + 5", "Error"],
-    a: 1,
-    t: "javascript",
-    d: "normal"
-  },
-  // JavaScript - HARD
-  {
-    q: "What is a closure in JavaScript?",
-    i: "",
-    c: ["A function inside a function", "A way to close the browser", "A loop statement", "An error handler"],
-    a: 0,
-    t: "javascript",
-    d: "hard"
+// Poll for new messages
+setInterval(async () => {
+  if (currentUser && !document.getElementById('chatPanel').classList.contains('open')) {
+    const newMessages = await loadFromStorage('globalChat') || [];
+    if (newMessages.length > globalMessages.length) {
+      unreadMessages += (newMessages.length - globalMessages.length);
+      updateChatBadge();
+    }
+    globalMessages = newMessages;
   }
+}, 5000);
+
+// ========== FRIENDS FUNCTIONS ==========
+async function addFriend() {
+  const friendName = document.getElementById('friendUsername').value.trim();
+  
+  if (!friendName) {
+    alert('Please enter a username');
+    return;
+  }
+  
+  if (friendName === currentUser) {
+    alert('You cannot add yourself!');
+    return;
+  }
+  
+  const userExists = await loadFromStorage(`user-${friendName}`);
+  if (!userExists) {
+    alert('User not found');
+    return;
+  }
+  
+  if (friends.includes(friendName)) {
+    alert('Already friends!');
+    return;
+  }
+  
+  friends.push(friendName);
+  await saveToStorage(`friends-${currentUser}`, friends);
+  
+  document.getElementById('friendUsername').value = '';
+  displayFriends();
+  playCorrectSound();
+  alert(`${friendName} added as friend!`);
+}
+
+async function removeFriend(friendName) {
+  if (!confirm(`Remove ${friendName} from friends?`)) return;
+  
+  friends = friends.filter(f => f !== friendName);
+  await saveToStorage(`friends-${currentUser}`, friends);
+  
+  displayFriends();
+  playClickSound();
+}
+
+function displayFriends() {
+  const container = document.getElementById('friendsList');
+  
+  if (friends.length === 0) {
+    container.innerHTML = '<p style="text-align: center; color: #94a3b8;">No friends yet. Add your first friend!</p>';
+    return;
+  }
+  
+  container.innerHTML = friends.map(friend => `
+    <div class="topic-item">
+      <div>
+        <strong style="color: #00ff99;">${friend}</strong>
+      </div>
+      <button class="delete-btn" onclick="removeFriend('${friend}')">Remove</button>
+    </div>
+  `).join('');
+}
+
+async function loadFriends() {
+  friends = await loadFromStorage(`friends-${currentUser}`) || [];
+  displayFriends();
+}
+
+// ========== SCREEN NAVIGATION ==========
+function show(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  playClickSound();
+}
+
+// ========== AUTH FUNCTIONS ==========
+function showRegister() {
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('registerBox').style.display = 'block';
+}
+
+function showLogin() {
+  document.getElementById('registerBox').style.display = 'none';
+  document.getElementById('loginBox').style.display = 'block';
+}
+
+async function register() {
+  const name = document.getElementById('regName').value.trim();
+  const pass = document.getElementById('regPass').value.trim();
+  const confirm = document.getElementById('regConfirm').value.trim();
+  
+  if (!name || !pass || !confirm) {
+    alert('Please fill all fields');
+    return;
+  }
+  
+  if (pass !== confirm) {
+    alert('Passwords do not match!');
+    return;
+  }
+  
+  if (pass.length < 4) {
+    alert('Password must be at least 4 characters');
+    return;
+  }
+  
+  const existing = await loadFromStorage(`user-${name}`);
+  if (existing) {
+    alert('Username already exists!');
+    return;
+  }
+  
+  const userData = {
+    username: name,
+    password: pass,
+    createdAt: new Date().toISOString()
+  };
+  
+  await saveToStorage(`user-${name}`, userData);
+  
+  document.getElementById('regName').value = '';
+  document.getElementById('regPass').value = '';
+  document.getElementById('regConfirm').value = '';
+  
+  document.getElementById('successModal').style.display = 'flex';
+  playCorrectSound();
+}
+
+function closeSuccess() {
+  document.getElementById('successModal').style.display = 'none';
+  showLogin();
+}
+
+async function login() {
+  const name = document.getElementById('loginName').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  
+  if (!name || !pass) {
+    alert('Please fill all fields');
+    return;
+  }
+  
+  const userData = await loadFromStorage(`user-${name}`);
+  
+  if (!userData) {
+    alert('User not found');
+    return;
+  }
+  
+  if (userData.password !== pass) {
+    alert('Incorrect password');
+    return;
+  }
+  
+  currentUser = name;
+  localStorage.setItem("loggedUser", currentUser);
+  
+  document.getElementById("welcomePlayer").innerText = "Welcome, " + currentUser + "!";
+  
+  await loadUserData();
+  await initMusic();
+  
+  playCorrectSound();
+  show("mainMenu");
+  
+  document.getElementById('chatToggle').style.display = 'block';
+  loadFriends();
+}
+
+async function loadUserData() {
+  userTopics[currentUser] = await loadFromStorage(`topics-${currentUser}`) || [];
+}
+
+function logout() {
+  if (!confirm('Are you sure you want to logout?')) return;
+  
+  localStorage.removeItem("loggedUser");
+  currentUser = "";
+  
+  document.getElementById('chatToggle').style.display = 'none';
+  
+  playClickSound();
+  show("authScreen");
+}
+
+// ========== QUESTIONS DATABASE ==========
+const questions = [
+  // HTML - Easy
+  {t: "html", d: "easy", q: "What does HTML stand for?", c: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks Text Markup Language"], a: 0, i: ""},
+  {t: "html", d: "easy", q: "Which tag is used for a paragraph?", c: ["<p>", "<para>", "<pg>", "<paragraph>"], a: 0, i: ""},
+  {t: "html", d: "easy", q: "Which tag creates a link?", c: ["<link>", "<a>", "<href>", "<url>"], a: 1, i: ""},
+  {t: "html", d: "easy", q: "What is the correct HTML tag for the largest heading?", c: ["<heading>", "<h6>", "<h1>", "<head>"], a: 2, i: ""},
+  {t: "html", d: "easy", q: "Which tag is used to display an image?", c: ["<image>", "<img>", "<picture>", "<src>"], a: 1, i: ""},
+  
+  // HTML - Normal
+  {t: "html", d: "normal", q: "What attribute specifies an alternate text for an image?", c: ["title", "alt", "src", "longdesc"], a: 1, i: ""},
+  {t: "html", d: "normal", q: "Which HTML element defines the title of a document?", c: ["<meta>", "<title>", "<head>", "<header>"], a: 1, i: ""},
+  {t: "html", d: "normal", q: "Which input type defines a slider control?", c: ["slider", "controls", "range", "search"], a: 2, i: ""},
+  {t: "html", d: "normal", q: "What is the correct HTML for creating a checkbox?", c: ["<input type='check'>", "<input type='checkbox'>", "<checkbox>", "<check>"], a: 1, i: ""},
+  {t: "html", d: "normal", q: "Which HTML attribute specifies inline CSS?", c: ["class", "styles", "style", "font"], a: 2, i: ""},
+  
+  // HTML - Hard
+  {t: "html", d: "hard", q: "What is the purpose of the <canvas> element?", c: ["To draw graphics", "To play video", "To create tables", "To define sections"], a: 0, i: ""},
+  {t: "html", d: "hard", q: "Which HTML5 element is used for navigation links?", c: ["<navigation>", "<navigate>", "<nav>", "<navbar>"], a: 2, i: ""},
+  {t: "html", d: "hard", q: "What does the 'defer' attribute do in <script>?", c: ["Delays execution until HTML is parsed", "Deletes the script", "Defines a default script", "Disables the script"], a: 0, i: ""},
+  {t: "html", d: "hard", q: "Which attribute makes an input field required?", c: ["validate", "required", "mandatory", "needed"], a: 1, i: ""},
+  {t: "html", d: "hard", q: "What is the purpose of <meta charset='UTF-8'>?", c: ["Sets character encoding", "Defines metadata", "Creates a charset", "Validates UTF"], a: 0, i: ""},
+  
+  // CSS - Easy
+  {t: "css", d: "easy", q: "CSS stands for:", c: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], a: 1, i: ""},
+  {t: "css", d: "easy", q: "Which property changes text color?", c: ["text-color", "color", "font-color", "text"], a: 1, i: ""},
+  {t: "css", d: "easy", q: "Which property changes background color?", c: ["bgcolor", "background-color", "color-background", "back-color"], a: 1, i: ""},
+  {t: "css", d: "easy", q: "How do you select an element with id 'demo'?", c: [".demo", "#demo", "demo", "*demo"], a: 1, i: ""},
+  {t: "css", d: "easy", q: "Which property changes font size?", c: ["text-size", "font-style", "font-size", "text-style"], a: 2, i: ""},
+  
+  // CSS - Normal
+  {t: "css", d: "normal", q: "Which property is used to change the left margin?", c: ["margin-left", "padding-left", "indent", "left-margin"], a: 0, i: ""},
+  {t: "css", d: "normal", q: "What is the default value of the position property?", c: ["relative", "fixed", "absolute", "static"], a: 3, i: ""},
+  {t: "css", d: "normal", q: "Which unit is relative to the font-size of the root element?", c: ["em", "rem", "px", "pt"], a: 1, i: ""},
+  {t: "css", d: "normal", q: "Which property controls text alignment?", c: ["text-align", "align", "text-style", "font-align"], a: 0, i: ""},
+  {t: "css", d: "normal", q: "What does 'display: flex' do?", c: ["Hides element", "Creates flexbox container", "Makes element flexible", "Displays inline"], a: 1, i: ""},
+  
+  // CSS - Hard
+  {t: "css", d: "hard", q: "What is the z-index property used for?", c: ["Zoom level", "Stack order", "Z-axis rotation", "Zero index"], a: 1, i: ""},
+  {t: "css", d: "hard", q: "Which property creates a CSS Grid?", c: ["display: grid", "grid: create", "layout: grid", "grid: on"], a: 0, i: ""},
+  {t: "css", d: "hard", q: "What does 'box-sizing: border-box' do?", c: ["Includes padding in width", "Creates a border", "Sets box size", "Defines border width"], a: 0, i: ""},
+  {t: "css", d: "hard", q: "Which pseudo-class selects the first child?", c: [":first", ":first-child", ":child-first", ":one"], a: 1, i: ""},
+  {t: "css", d: "hard", q: "What is the purpose of @media queries?", c: ["Create media", "Responsive design", "Import media", "Define media type"], a: 1, i: ""},
+  
+  // JavaScript - Easy
+  {t: "javascript", d: "easy", q: "Which keyword declares a variable?", c: ["var", "variable", "v", "declare"], a: 0, i: ""},
+  {t: "javascript", d: "easy", q: "How do you create a function?", c: ["function myFunc()", "def myFunc()", "func myFunc()", "create myFunc()"], a: 0, i: ""},
+  {t: "javascript", d: "easy", q: "Which symbol is used for comments?", c: ["#", "//", "--", "/* */"], a: 1, i: ""},
+  {t: "javascript", d: "easy", q: "What is the output of: 2 + '2'", c: ["4", "22", "Error", "NaN"], a: 1, i: ""},
+  {t: "javascript", d: "easy", q: "How do you write 'Hello World' in an alert box?", c: ["msgBox('Hello World')", "alert('Hello World')", "msg('Hello World')", "alertBox('Hello World')"], a: 1, i: ""},
+  
+  // JavaScript - Normal
+  {t: "javascript", d: "normal", q: "What is the correct way to write an array?", c: ["var colors = 'red', 'green', 'blue'", "var colors = (1:'red', 2:'green')", "var colors = ['red', 'green', 'blue']", "var colors = 1 = 'red', 2 = 'green'"], a: 2, i: ""},
+  {t: "javascript", d: "normal", q: "Which method adds an element to an array?", c: ["add()", "push()", "append()", "insert()"], a: 1, i: ""},
+  {t: "javascript", d: "normal", q: "What does === check?", c: ["Value only", "Type only", "Value and type", "Neither"], a: 2, i: ""},
+  {t: "javascript", d: "normal", q: "Which method removes the last element of an array?", c: ["pop()", "remove()", "delete()", "shift()"], a: 0, i: ""},
+  {t: "javascript", d: "normal", q: "What is NaN?", c: ["Not a Number", "Null and Null", "New and Null", "Number and Number"], a: 0, i: ""},
+  
+  // JavaScript - Hard
+  {t: "javascript", d: "hard", q: "What is a closure in JavaScript?", c: ["A closed function", "Function with access to parent scope", "A private function", "An enclosed variable"], a: 1, i: ""},
+  {t: "javascript", d: "hard", q: "What does 'use strict' do?", c: ["Enforces strict mode", "Makes code strict", "Validates code", "Compiles faster"], a: 0, i: ""},
+  {t: "javascript", d: "hard", q: "What is the purpose of Promise?", c: ["Handle async operations", "Make promises", "Create delays", "Define functions"], a: 0, i: ""},
+  {t: "javascript", d: "hard", q: "What is event bubbling?", c: ["Events bubble up", "Event propagation upward", "Parent handles child events", "All of the above"], a: 3, i: ""},
+  {t: "javascript", d: "hard", q: "What does 'this' keyword refer to?", c: ["Current object", "Parent object", "Global object", "Depends on context"], a: 3, i: ""}
 ];
 
-let quiz=[], index=0, score=0;
-let currentUser = "";
-let selectedDifficulty = "easy";
-let customQuestions = [];
-let selectedCustomTopicCode = "";
-let userTopics = {};
-
-window.onload = () => {
-  const loggedUser = localStorage.getItem("loggedUser");
-  if (loggedUser) {
-    currentUser = loggedUser;
-    document.getElementById("welcomePlayer").innerText =
-      "Welcome, " + currentUser + "!";
-    show("mainMenu");
-  } else {
-    show("authScreen");
-  }
-  loadSettings();
-  loadUserTopics();
-};
-
-// Difficulty
-function selectDifficulty(difficulty) {
-  selectedDifficulty = difficulty;
-  document.querySelectorAll('.diff-btn').forEach(btn => {
-    btn.classList.remove('selected');
-  });
-  event.target.classList.add('selected');
-  playClickSound();
-}
-
-// Generate code
+// ========== CUSTOM TOPIC FUNCTIONS ==========
 function generateCode() {
-  return Math.random().toString(36).substr(2, 6).toUpperCase();
+  return Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
-// Custom Questions
 function addCustomQuestion() {
   const question = document.getElementById('customQuestion').value.trim();
   const c1 = document.getElementById('customChoice1').value.trim();
   const c2 = document.getElementById('customChoice2').value.trim();
   const c3 = document.getElementById('customChoice3').value.trim();
   const c4 = document.getElementById('customChoice4').value.trim();
-  const correct = parseInt(document.getElementById('customCorrect').value);
+  const correctAnswer = parseInt(document.getElementById('customCorrect').value);
   
   if (!question || !c1 || !c2 || !c3 || !c4) {
-    alert('Please fill in all fields!');
+    alert('Please fill in all fields');
+    playWrongSound();
     return;
   }
   
-  const newQuestion = {
+  customQuestions.push({
     q: question,
-    i: "",
     c: [c1, c2, c3, c4],
-    a: correct,
-    t: "custom",
-    d: "easy"
-  };
-  
-  customQuestions.push(newQuestion);
-  displayCustomQuestions();
+    a: correctAnswer,
+    i: ""
+  });
   
   document.getElementById('customQuestion').value = '';
   document.getElementById('customChoice1').value = '';
@@ -1810,29 +1705,27 @@ function addCustomQuestion() {
   document.getElementById('customChoice3').value = '';
   document.getElementById('customChoice4').value = '';
   
-  playCorrectSound();
+  playClickSound();
+  displayCustomQuestions();
+  document.getElementById('customQuestionCount').innerText = customQuestions.length;
 }
 
 function displayCustomQuestions() {
   const list = document.getElementById('customQuestionsList');
-  const count = document.getElementById('customQuestionCount');
-  
-  count.innerText = customQuestions.length;
   
   if (customQuestions.length === 0) {
-    list.innerHTML = '<p style="text-align:center; color: #94a3b8;">No questions yet.</p>';
+    list.innerHTML = '';
     return;
   }
   
   list.innerHTML = customQuestions.map((q, i) => 
     `<div class="custom-question-item">
-      <strong>Q${i+1}:</strong> ${q.q}
-      <br><small>✓ ${q.c[q.a]}</small>
+      <strong>Q${i + 1}:</strong> ${q.q.substring(0, 50)}${q.q.length > 50 ? '...' : ''}
     </div>`
   ).join('');
 }
 
-function saveCustomTopic() {
+async function saveCustomTopic() {
   const topicName = document.getElementById('customTopicName').value.trim();
   
   if (!topicName) {
@@ -1848,29 +1741,27 @@ function saveCustomTopic() {
   const code = generateCode();
   const topic = {
     name: topicName,
-    code: code,
-    questions: [...customQuestions],
     creator: currentUser,
-    created: new Date().toISOString()
+    code: code,
+    questions: customQuestions,
+    createdAt: new Date().toISOString()
   };
   
   if (!userTopics[currentUser]) {
     userTopics[currentUser] = [];
   }
   userTopics[currentUser].push(topic);
+  await saveToStorage(`topics-${currentUser}`, userTopics[currentUser]);
   
-  const globalTopics = JSON.parse(localStorage.getItem('globalTopics') || '{}');
-  globalTopics[code] = topic;
-  localStorage.setItem('globalTopics', JSON.stringify(globalTopics));
-  
-  localStorage.setItem('userTopics', JSON.stringify(userTopics));
+  await saveToStorage(`topic-${code}`, topic);
   
   document.getElementById('shareCode').innerText = code;
   document.getElementById('shareModal').style.display = 'flex';
   
-  customQuestions = [];
   document.getElementById('customTopicName').value = '';
+  customQuestions = [];
   displayCustomQuestions();
+  document.getElementById('customQuestionCount').innerText = 0;
   
   playCorrectSound();
 }
@@ -1878,13 +1769,6 @@ function saveCustomTopic() {
 function closeShareModal() {
   document.getElementById('shareModal').style.display = 'none';
   show('playMenu');
-}
-
-function loadUserTopics() {
-  const saved = localStorage.getItem('userTopics');
-  if (saved) {
-    userTopics = JSON.parse(saved);
-  }
 }
 
 function displayMyTopics() {
@@ -1908,45 +1792,21 @@ function displayMyTopics() {
   ).join('');
 }
 
-function deleteTopic(index) {
+async function deleteTopic(index) {
   if (!confirm('Delete this topic?')) return;
   
   const topic = userTopics[currentUser][index];
   
-  const globalTopics = JSON.parse(localStorage.getItem('globalTopics') || '{}');
-  delete globalTopics[topic.code];
-  localStorage.setItem('globalTopics', JSON.stringify(globalTopics));
+  await deleteFromStorage(`topic-${topic.code}`);
   
   userTopics[currentUser].splice(index, 1);
-  localStorage.setItem('userTopics', JSON.stringify(userTopics));
+  await saveToStorage(`topics-${currentUser}`, userTopics[currentUser]);
   
   displayMyTopics();
   playClickSound();
 }
 
-function displayCustomTopicButtons() {
-  const myTopics = userTopics[currentUser] || [];
-  const display = document.getElementById('customTopicsDisplay');
-  
-  if (myTopics.length === 0) {
-    display.innerHTML = '';
-    return;
-  }
-  
-  display.innerHTML = '<h3 style="margin: 15px 0;">My Custom Topics:</h3>' +
-    myTopics.map(topic => 
-      `<button class="button" onclick="selectCustomTopic('${topic.code}')">${topic.name}</button>`
-    ).join('');
-}
-
-function selectCustomTopic(code) {
-  selectedCustomTopicCode = code;
-  playClickSound();
-  alert('Custom topic selected! Click "Start Game" to play.');
-  show('difficultySelect');
-}
-
-function joinTopicWithCode() {
+async function joinTopicWithCode() {
   const code = document.getElementById('joinTopicCode').value.trim().toUpperCase();
   
   if (!code) {
@@ -1954,8 +1814,7 @@ function joinTopicWithCode() {
     return;
   }
   
-  const globalTopics = JSON.parse(localStorage.getItem('globalTopics') || '{}');
-  const topic = globalTopics[code];
+  const topic = await loadFromStorage(`topic-${code}`);
   
   if (!topic) {
     alert('Invalid code!');
@@ -1970,81 +1829,91 @@ function joinTopicWithCode() {
   show('difficultySelect');
 }
 
-function getUsers(){
-  return JSON.parse(localStorage.getItem("users")) || {};
+// ========== DIFFICULTY SELECTION ==========
+function selectDifficulty(diff) {
+  selectedDifficulty = diff;
+  document.querySelectorAll('.diff-btn').forEach(btn => btn.classList.remove('selected'));
+  event.target.classList.add('selected');
+  playClickSound();
 }
 
-function register(){
-  const name = regName.value.trim();
-  const pass = regPass.value.trim();
-  const confirm = regConfirm.value.trim();
-
-  if(!name || !pass || !confirm){
-    alert("Please fill all fields");
+// ========== QUIZ GAME ==========
+async function startGame() {
+  score = 0;
+  index = 0;
+  
+  if (selectedCustomTopicCode) {
+    const topic = await loadFromStorage(`topic-${selectedCustomTopicCode}`);
+    quiz = [...topic.questions];
+    selectedCustomTopicCode = "";
+  } else {
+    const topicValue = document.getElementById('topic').value;
+    quiz = questions.filter(q => q.t === topicValue && q.d === selectedDifficulty);
+  }
+  
+  if (quiz.length === 0) {
+    alert("No questions available!");
     return;
   }
-
-  if(pass !== confirm){
-    alert("Passwords do not match");
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem("users")) || {};
-
-  if(users[name]){
-    alert("Username already exists");
-    return;
-  }
-
-  users[name] = { password: pass };
-  localStorage.setItem("users", JSON.stringify(users));
-
-  document.getElementById("successModal").style.display = "flex";
-  playCorrectSound();
-
-  showLogin();
-}
-
-function closeSuccess(){
-  document.getElementById("successModal").style.display = "none";
-  showLogin();
-}
-
-function login(){
-  const name = loginName.value.trim();
-  const pass = loginPass.value.trim();
-
-  const users = JSON.parse(localStorage.getItem("users")) || {};
-
-  if(!users[name] || users[name].password !== pass){
-    alert("Invalid username or password");
-    playWrongSound();
-    return;
-  }
-
-  localStorage.setItem("loggedUser", name);
-  currentUser = name;
-
-  document.getElementById("welcomePlayer").innerText =
-    "Welcome, " + currentUser + "!";
-
-  playCorrectSound();
-  show("mainMenu");
-}
-
-// Particles
-for (let i = 0; i < 20; i++) {
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDuration = (3 + Math.random() * 4) + "s";
-  document.getElementById("introImageScreen").appendChild(p);
+  
+  document.getElementById("scoreBox").innerText = "Score: 0";
+  playClickSound();
+  show("quizScreen");
+  loadQuestion();
 }
 
 let timeLeft = 15;
 let timerInterval = null;
 
-function startTimer(){
+function loadQuestion() {
+  clearInterval(timerInterval);
+
+  if (index >= quiz.length) {
+    const percent = Math.round((score / quiz.length) * 100);
+    document.getElementById("finalScore").innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
+
+    const rankText = document.getElementById("rankText");
+    rankText.className = "";
+
+    if (percent === 100) {
+      rankText.innerText = "🏆 LEGEND";
+      rankText.classList.add("rank-legend");
+    } else if (percent >= 80) {
+      rankText.innerText = "🥇 MASTER";
+      rankText.classList.add("rank-master");
+    } else if (percent >= 60) {
+      rankText.innerText = "🥈 EXPERT";
+      rankText.classList.add("rank-expert");
+    } else if (percent >= 40) {
+      rankText.innerText = "🥉 INTERMEDIATE";
+      rankText.classList.add("rank-intermediate");
+    } else {
+      rankText.innerText = "🎓 BEGINNER";
+      rankText.classList.add("rank-beginner");
+    }
+
+    show("resultScreen");
+    return;
+  }
+
+  const q = quiz[index];
+  document.getElementById("question").innerText = q.q;
+  
+  const questionImage = document.getElementById("questionImage");
+  if (q.i && q.i !== "") {
+    questionImage.src = q.i;
+    questionImage.style.display = "block";
+  } else {
+    questionImage.style.display = "none";
+  }
+
+  const choiceButtons = document.querySelectorAll("#choices .button");
+  choiceButtons.forEach((b, i) => b.innerText = q.c[i]);
+
+  startTimer();
+}
+
+function startTimer() {
   if (!settings.timer) {
     document.getElementById('timerBox').style.display = 'none';
     return;
@@ -2058,106 +1927,23 @@ function startTimer(){
   const timeFill = document.getElementById("timeFill");
 
   timeText.innerText = timeLeft + "s";
-  timeText.className = "";
   timeFill.style.width = "100%";
-  timeFill.style.background = "linear-gradient(90deg, #00ff99, #00ccff)";
 
   timerInterval = setInterval(() => {
     timeLeft--;
     timeText.innerText = timeLeft + "s";
     timeFill.style.width = (timeLeft / 15) * 100 + "%";
 
-    if(timeLeft <= 5){
-      timeText.classList.add("time-danger");
-      timeFill.style.background = "linear-gradient(90deg, #ff4d4d, #ff0000)";
-    } else if(timeLeft <= 8){
-      timeText.classList.add("time-warning");
-    }
-
-    if(timeLeft <= 0){
+    if (timeLeft <= 0) {
       clearInterval(timerInterval);
       timeUp();
     }
   }, 1000);
 }
 
-function startGame(){
-  score=0; index=0;
-  
-  if (selectedCustomTopicCode) {
-    const globalTopics = JSON.parse(localStorage.getItem('globalTopics') || '{}');
-    const topic = globalTopics[selectedCustomTopicCode];
-    quiz = [...topic.questions];
-    selectedCustomTopicCode = "";
-  } else {
-    const topicValue = document.getElementById('topic').value;
-    quiz = questions.filter(q => q.t === topicValue && q.d === selectedDifficulty);
-  }
-  
-  if(quiz.length === 0){ 
-    alert("No questions available!"); 
-    return; 
-  }
-  
-  document.getElementById("scoreBox").innerText="Score: 0";
-  playClickSound();
-  show("quizScreen");
-  loadQuestion();
-}
-
-function loadQuestion(){
-  clearInterval(timerInterval);
-
-  if(index >= quiz.length){
-    const percent = Math.round((score / quiz.length) * 100);
-    finalScore.innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
-
-    const rankText = document.getElementById("rankText");
-    rankText.className = "";
-
-    if(percent === 100){
-      rankText.innerText = "🏆 LEGEND";
-      rankText.classList.add("rank-legend");
-    } else if(percent >= 80){
-      rankText.innerText = "🥇 MASTER";
-      rankText.classList.add("rank-master");
-    } else if(percent >= 60){
-      rankText.innerText = "🥈 EXPERT";
-      rankText.classList.add("rank-expert");
-    } else if(percent >= 40){
-      rankText.innerText = "🥉 INTERMEDIATE";
-      rankText.classList.add("rank-intermediate");
-    } else {
-      rankText.innerText = "🎓 BEGINNER";
-      rankText.classList.add("rank-beginner");
-    }
-
-    show("resultScreen");
-    return;
-  }
-
-  const q = quiz[index];
-  question.innerText = q.q;
-  
-  const questionImage = document.getElementById("questionImage");
-  if (q.i && q.i !== "") {
-    questionImage.src = q.i;
-    questionImage.style.display = "block";
-  } else {
-    questionImage.style.display = "none";
-  }
-
-  document.querySelectorAll("#choices .button")
-    .forEach((b,i)=> b.innerText = q.c[i]);
-
-  startTimer();
-}
-
-function timeUp(){
+function timeUp() {
   const resultBox = document.getElementById("result");
-
   resultBox.innerHTML = '<div class="wrong">⏰ Time\'s Up!</div>';
-
   playWrongSound();
   index++;
 
@@ -2167,21 +1953,20 @@ function timeUp(){
   }, 1000);
 }
 
-function answer(choice){
+function answer(choice) {
   const resultBox = document.getElementById("result");
   const btns = document.querySelectorAll("#quizScreen .button");
   const correctIndex = quiz[index].a;
 
   btns.forEach(b => b.classList.add("disabled"));
 
-  if(choice === correctIndex){
+  if (choice === correctIndex) {
     score++;
     document.getElementById("scoreBox").innerText = "Score: " + score;
     showThumbsUp();
-    fireworks();
     playCorrectSound();
   } else {
-    btns[choice].classList.add("wrong-btn", "shake");
+    btns[choice].classList.add("wrong-btn");
     btns[correctIndex].classList.add("correct");
     resultBox.innerHTML = '<div class="wrong">❌ Wrong!</div>';
     playWrongSound();
@@ -2192,47 +1977,52 @@ function answer(choice){
   setTimeout(() => {
     resultBox.innerHTML = "";
     btns.forEach(b => {
-      b.classList.remove("wrong-btn", "shake", "correct", "disabled");
+      b.classList.remove("wrong-btn", "correct", "disabled");
     });
     loadQuestion();
   }, 1200);
 }
 
-function showRegister(){
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("registerBox").style.display = "block";
-  playClickSound();
-}
-
-function showLogin(){
-  document.getElementById("registerBox").style.display = "none";
-  document.getElementById("loginBox").style.display = "block";
-  playClickSound();
-}
-
-function logout(){
-  if (!confirm('Logout?')) return;
-  localStorage.removeItem("loggedUser");
-  playClickSound();
-  location.reload();
-}
-
-function showThumbsUp(){
+function showThumbsUp() {
   const c = document.getElementById("thumbsContainer");
-  c.style.display = "block";
-  setTimeout(() => c.style.display = "none", 1000);
+  c.style.display = "flex";
+  setTimeout(() => c.style.display = "none", 1500);
 }
 
-function fireworks(){
-  for(let i=0;i<10;i++){
-    const f = document.createElement("div");
-    f.className = "firework";
-    f.style.left = Math.random()*100+"vw";
-    f.style.top = Math.random()*100+"vh";
-    document.body.appendChild(f);
-    setTimeout(() => f.remove(), 1000);
+// ========== INITIALIZATION ==========
+setTimeout(function(){
+  const intro = document.getElementById("introImageScreen");
+  intro.classList.add("fade-out");
+  setTimeout(function(){
+    intro.style.display = "none";
+    show("authScreen");
+  }, 1000);
+}, 3000);
+
+window.addEventListener('load', async () => {
+  const savedUser = localStorage.getItem("loggedUser");
+  if (savedUser) {
+    currentUser = savedUser;
+    
+    const userData = await loadFromStorage(`user-${savedUser}`);
+    if (userData) {
+      document.getElementById("welcomePlayer").innerText = "Welcome, " + currentUser + "!";
+      await loadUserData();
+      await initMusic();
+      
+      setTimeout(() => {
+        const intro = document.getElementById("introImageScreen");
+        intro.style.display = "none";
+        show("mainMenu");
+        
+        document.getElementById('chatToggle').style.display = 'block';
+        loadFriends();
+      }, 3000);
+    } else {
+      localStorage.removeItem("loggedUser");
+    }
   }
-}
+});
 </script>
 
 </body>
