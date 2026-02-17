@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>PROGAME</title>
 
-<!-- Tone.js Library for beat music -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
-
 <style>
 body {
   margin: 0;
@@ -25,7 +22,6 @@ body {
   );
   background-size: 400% 400%;
   animation: bgMove 18s ease infinite;
-  overflow-x: hidden;
 }
 
 @keyframes bgMove {
@@ -36,245 +32,43 @@ body {
 
 .screen {
   display: none;
-  padding: 20px;
+  padding: 25px;
   min-height: 100vh;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.08);
-  position: relative;
 }
-.screen.active { 
-  display: block !important; 
-}
-
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding-top: 60px;
-}
+.active { display: block; }
 
 h1, h2 {
   font-family: 'Segoe UI', sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
   color: #f1f5f9;
-  margin: 15px 0;
 }
 
-h1 { font-size: 2.2em; }
-h2 { font-size: 1.5em; }
-
-/* Logout Button - Top Right */
-.logout-btn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  padding: 8px 18px;
-  font-size: 0.85em;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #ff4444, #cc0000);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  transition: 0.2s;
-  z-index: 100;
-}
-.logout-btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #dd3333, #aa0000);
-}
-
-/* Chat Button */
-.chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00b37a, #0093c0);
-  border: none;
-  color: white;
-  font-size: 1.5em;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,255,153,0.4);
-  z-index: 140;
-  transition: 0.2s;
-}
-
-.chat-toggle:hover {
-  transform: scale(1.1);
-}
-
-.chat-toggle .badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #ff4444;
-  color: white;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-/* Chat Panel */
-.chat-panel {
-  position: fixed;
-  bottom: -500px;
-  right: 20px;
-  width: 350px;
-  height: 450px;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
-  transition: bottom 0.3s ease;
-  z-index: 150;
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-panel.open {
-  bottom: 0;
-}
-
-.chat-header {
-  padding: 15px;
-  background: linear-gradient(135deg, #00b37a, #0093c0);
-  border-radius: 15px 15px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-header h3 {
-  margin: 0;
-  color: white;
-  font-size: 1.1em;
-}
-
-.close-chat {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.3em;
-  cursor: pointer;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px;
-  background: rgba(0,0,0,0.3);
-}
-
-.chat-message {
-  margin: 10px 0;
-  padding: 10px 12px;
-  border-radius: 12px;
-  max-width: 80%;
-  word-wrap: break-word;
-}
-
-.chat-message.sent {
-  background: linear-gradient(135deg, #00b37a, #0093c0);
-  margin-left: auto;
-  text-align: right;
-}
-
-.chat-message.received {
-  background: rgba(255,255,255,0.15);
-  margin-right: auto;
-}
-
-.chat-sender {
-  font-size: 0.8em;
-  color: #94a3b8;
-  margin-bottom: 5px;
-}
-
-.chat-text {
-  color: white;
-  font-size: 0.95em;
-}
-
-.chat-input-area {
-  padding: 15px;
-  background: rgba(0,0,0,0.3);
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #00ff99;
-  background: rgba(255,255,255,0.9);
-  font-size: 0.95em;
-  color: #000;
-}
-
-.chat-send-btn {
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #00b37a, #0093c0);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.chat-send-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-
-/* Developers Grid */
-.dev-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin: 20px auto;
-  max-width: 400px;
-}
-
-.dev-item {
-  text-align: center;
-  background: rgba(255,255,255,0.1);
-  padding: 15px;
-  border-radius: 15px;
-}
-
+/* Developers Screen */
 .dev-img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 5px auto;
+  margin: 10px 0;
   border: 3px solid #00ff99;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
-
 .dev-name {
   font-weight: 600;
-  margin-top: 10px;
+  margin-bottom: 25px;
   color: #e2e8f0;
-  font-size: 0.95em;
 }
 
+
 .button {
-  width: 100%;
-  max-width: 400px;
-  padding: 14px;
-  margin: 10px auto;
-  font-size: 1em;
+  width: 90%;
+  max-width: 420px;
+  padding: 15px;
+  margin: 12px auto;
+  font-size: 1.05em;
   font-weight: 600;
   color: #e2e8f0;
   background: linear-gradient(135deg, #00b37a, #0093c0);
@@ -289,273 +83,14 @@ h2 { font-size: 1.5em; }
   transform: translateY(-2px);
   background: linear-gradient(135deg, #00965f, #007aa3);
 }
-.button:active {
-  transform: translateY(0);
-}
-
-.button-small {
-  max-width: 180px;
-  padding: 10px;
-  font-size: 0.9em;
-  display: inline-block;
-  margin: 5px;
-}
-
-/* Difficulty Buttons */
-.difficulty-section {
-  margin: 20px 0;
-}
-
-.difficulty-group {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px auto;
-  flex-wrap: wrap;
-}
-
-.diff-btn {
-  padding: 12px 25px;
-  font-size: 1em;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-.diff-easy {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-
-.diff-normal {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-}
-
-.diff-hard {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-}
-
-.diff-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-
-.diff-btn.selected {
-  box-shadow: 0 0 20px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.6);
-  transform: scale(1.05);
-}
-
-/* Form Inputs */
-.custom-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 12px;
-  margin: 10px auto;
-  border-radius: 10px;
-  border: 2px solid #00ff99;
-  background: rgba(255,255,255,0.9);
-  font-size: 1em;
-  display: block;
-  box-sizing: border-box;
-  color: #000;
-}
-
-.question-input {
-  min-height: 80px;
-  resize: vertical;
-}
-
-/* Lists */
-.custom-questions-list {
-  max-height: 300px;
-  overflow-y: auto;
-  margin: 15px auto;
-  text-align: left;
-  max-width: 400px;
-}
-
-.custom-question-item {
-  background: rgba(255,255,255,0.15);
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 10px;
-  font-size: 0.9em;
-}
-
-.topic-item {
-  background: rgba(255,255,255,0.15);
-  padding: 15px;
-  margin: 10px auto;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 400px;
-}
-
-.topic-code {
-  background: rgba(0,255,153,0.2);
-  padding: 8px 15px;
-  border-radius: 10px;
-  font-family: monospace;
-  font-size: 1.1em;
-  color: #00ff99;
-  border: 2px solid #00ff99;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-.delete-btn {
-  background: linear-gradient(135deg, #ff4444, #cc0000);
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.9em;
-  font-weight: 600;
-}
-
-.delete-btn:hover {
-  background: linear-gradient(135deg, #dd3333, #aa0000);
-  transform: translateY(-2px);
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 5000;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  padding: 30px;
-  border-radius: 20px;
-  max-width: 90%;
-  width: 400px;
-  box-shadow: 0 0 30px rgba(0,255,153,0.5);
-  border: 2px solid #00ff99;
-  text-align: center;
-}
-
-.modal h3 {
-  color: #00ff99;
-  margin-bottom: 15px;
-  font-size: 1.5em;
-}
-
-/* Settings Toggle */
-.settings-container {
-  max-width: 400px;
-  margin: 20px auto;
-}
-
-.setting-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  margin: 10px 0;
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-}
-
-.setting-row span {
-  font-size: 1.05em;
-  font-weight: 600;
-}
-
-.toggle-switch {
-  position: relative;
-  width: 55px;
-  height: 28px;
-  background: #ccc;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.toggle-switch.active {
-  background: #00ff99;
-}
-
-.toggle-slider {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 22px;
-  height: 22px;
-  background: white;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-
-.toggle-switch.active .toggle-slider {
-  transform: translateX(27px);
-}
 
 img {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
   -webkit-user-drag: none;
-  user-select: none;
-  pointer-events: auto;
-}
-
-/* Logo */
-.logo-img {
-  width: 140px;
-  height: 140px;
-  margin: 15px auto;
-  display: block;
-}
-
-/* Welcome Card */
-#welcomeCard {
-  max-width: 400px;
-  margin: 25px auto;
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-.welcome-gif {
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto 15px;
-}
-
-.welcome-gif img {
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0,255,153,0.3);
-}
-
-.welcome-text {
-  text-align: center;
-}
-
-.welcome-text h2 {
-  margin: 10px 0 5px;
-  color: #00ff99;
-  font-size: 1.5em;
-}
-
-.welcome-text p {
-  margin: 5px 0;
-  color: #cbd5e1;
+  user-select: none;         
+  pointer-events: auto;      
 }
 
 /* INTRO */
@@ -567,319 +102,571 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(-45deg, #020024, #090979, #00d4ff);
+  background: linear-gradient(
+    -45deg,
+    #020024,
+    #05053a,
+    #062a4d,
+    #044b3f
+  );
   background-size: 400% 400%;
-  animation: gradientMove 6s ease infinite;
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-#introImageScreen h1 {
-  font-size: 2.8em;
-  font-weight: 800;
-  color: #eaffea;
-  text-shadow:
-    0 0 6px #37FD12,
-    0 0 14px #00ff99,
-    0 4px 8px rgba(0,0,0,0.8);
-}
-
-#introImageScreen img {
-  max-width: 70%;
-  max-height: 50%;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow:
-    0 0 40px rgba(0,255,153,0.6),
-    0 8px 30px rgba(0,0,0,0.8);
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { box-shadow: 0 0 30px rgba(0,255,153,0.4), 0 8px 30px rgba(0,0,0,0.8); }
-  to { box-shadow: 0 0 60px rgba(0,255,153,0.8), 0 8px 30px rgba(0,0,0,0.8); }
+  animation: bgMove 18s ease infinite;
+  transition: opacity 1s ease-in-out;
 }
 
 #introImageScreen.fade-out {
   opacity: 0;
-  transform: scale(0.9);
 }
 
-/* Auth */
+#introImageScreen h1 {
+  font-size: 3em;
+  color: #00ff99;
+  text-shadow: 0 0 10px rgba(0,255,153,0.8);
+  margin-bottom: 20px;
+}
+
+#introImageScreen img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,255,153,0.5);
+}
+
+.loading-bar {
+  width: 60%;
+  max-width: 400px;
+  height: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.loading-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff99, #00ccff);
+  animation: loading 3s ease forwards;
+}
+
+@keyframes loading {
+  to { width: 100%; }
+}
+
+/* Particle animation */
+.particle {
+  position: fixed;
+  bottom: -10px;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* Welcome Card */
+#welcomeCard {
+  max-width: 350px;
+  margin: 25px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.welcome-gif img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.welcome-text h2 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.welcome-text p {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+}
+
+/* Success Modal */
 #successModal {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
-  z-index: 9001;
-  justify-content: center;
+  background: rgba(0,0,0,0.8);
+  z-index: 10000;
+  display: none;
   align-items: center;
+  justify-content: center;
 }
 
 #successBox {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: linear-gradient(135deg, #00ff99, #00bcd4);
+  color: #003333;
   padding: 40px;
-  border-radius: 20px;
-  max-width: 90%;
-  width: 400px;
-  box-shadow: 0 0 40px rgba(0,255,153,0.6);
-  border: 2px solid #00ff99;
+  border-radius: 25px;
   text-align: center;
-  animation: bounceIn 0.5s ease;
+  box-shadow: 0 0 30px rgba(0,255,153,0.8);
+  animation: popIn 0.3s ease;
 }
 
-@keyframes bounceIn {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes popIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-/* Quiz Specific */
-.qb {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-#scoreBox {
-  background: linear-gradient(135deg, #00b37a, #0093c0);
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 1.3em;
-  font-weight: 700;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,255,153,0.3);
-}
-
+/* Timer */
 #timerBox {
+  max-width: 350px;
   margin: 15px auto;
-  max-width: 300px;
+  background: rgba(0,0,0,0.4);
+  padding: 12px;
+  border-radius: 15px;
 }
 
 #timeText {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 700;
+  color: #00ff99;
   margin-bottom: 8px;
-  transition: color 0.3s;
+}
+
+.time-warning {
+  color: #fbbf24 !important;
+  animation: pulse 1s infinite;
+}
+
+.time-danger {
+  color: #ff4444 !important;
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 #timeBar {
-  height: 12px;
+  height: 10px;
   background: rgba(255,255,255,0.2);
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 }
 
 #timeFill {
   height: 100%;
+  width: 100%;
   background: linear-gradient(90deg, #00ff99, #00ccff);
   transition: width 1s linear;
-  border-radius: 6px;
 }
 
-#question {
+/* Score Box */
+.qb {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#scoreBox {
+  background: rgba(0,0,0,0.4);
+  padding: 12px 25px;
+  border-radius: 15px;
+  display: inline-block;
   font-size: 1.2em;
-  margin: 20px 0;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f1f5f9;
-}
-
-#questionImage {
-  max-width: 100%;
-  max-height: 300px;
-  margin: 15px auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-}
-
-#choices {
-  margin-top: 20px;
-}
-
-#result {
-  margin-top: 20px;
-  font-size: 1.3em;
   font-weight: 700;
+  color: #00ff99;
+  margin-bottom: 15px;
+}
+
+/* Question Image */
+#questionImage {
+  max-width: 400px;
+  max-height: 300px;
+  display: block;
+  margin: 15px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+
+/* Thumbs Container */
+#thumbsContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5000;
+  text-align: center;
+  display: none;
+}
+
+#thumbsUp {
+  width: 180px;
+  display: block;
+  margin: 0 auto;
+}
+
+#excellentText {
+  margin-top: 12px;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #eafff2;
+  background: rgba(0, 180, 120, 0.85);
+  padding: 18px 35px;
+  border-radius: 20px;
+  border: 3px solid #00ff99;
+  box-shadow:
+    0 0 15px rgba(0,255,153,0.5),
+    0 4px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.4em; }
+  .button { font-size: 1em; }
+}
+
+#rankText {
+  margin-top: 15px;
+  font-size: 1.6em;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+.rank-legend {
+  background: linear-gradient(135deg, #ffd700, #ff9f00);
+  color: black;
+}
+.rank-master {
+  background: linear-gradient(135deg, #00ffcc, #0099ff);
+  color: black;
+}
+.rank-expert {
+  background: linear-gradient(135deg, #a7f3d0, #34d399);
+  color: black;
+}
+.rank-intermediate {
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+  color: black;
+}
+.rank-beginner {
+  background: linear-gradient(135deg, #e5e7eb, #9ca3af);
+  color: black;
 }
 
 .correct {
-  background: linear-gradient(135deg, #10b981, #059669) !important;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  background: linear-gradient(135deg, #ffd700, #ffb300) !important;
+  color: black !important;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
 }
 
 .wrong {
-  color: #ff4d4d;
-  font-weight: 700;
-  animation: shake 0.3s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #ff4444;
+  background: rgba(0,0,0,0.9);
+  padding: 18px 35px;
+  border-radius: 20px;
+  border: 3px solid #ff4444;
+  box-shadow: 0 0 30px rgba(255,68,68,0.6);
+  z-index: 10000;
+  animation: wrongPulse 0.5s ease;
 }
 
-.wrong-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+@keyframes wrongPulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+.wrong-btn {
+  background: rgba(220, 38, 38, 0.9) !important;
+  color: white !important;
 }
 
 .disabled {
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
-/* Thumbs */
-#thumbsContainer {
-  display: none;
+/* Volume Control */
+.volume-control {
   position: fixed;
-  inset: 0;
-  z-index: 9998;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
+  top: 15px;
+  left: 15px;
+  background: rgba(0,0,0,0.7);
+  padding: 10px 15px;
+  border-radius: 12px;
+  display: flex;
   align-items: center;
-  animation: fadeIn 0.3s ease;
+  gap: 10px;
+  z-index: 10000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-#thumbsUp {
-  max-width: 300px;
-  animation: zoomBounce 0.6s ease;
-}
-
-@keyframes zoomBounce {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-#excellentText {
-  position: absolute;
-  bottom: 30%;
-  font-size: 3em;
-  font-weight: 800;
-  color: #ffd700;
-  text-shadow:
-    0 0 20px #ffd700,
-    0 0 40px #ffd700,
-    0 4px 8px rgba(0,0,0,0.8);
-  animation: pulse 0.8s ease infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* Rank Styles */
-.rank-legend {
-  color: #ffd700;
-  font-size: 2em;
-  text-shadow: 0 0 20px #ffd700;
-  animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-.rank-master {
-  color: #ff1493;
-  font-size: 1.8em;
-  text-shadow: 0 0 15px #ff1493;
-}
-
-.rank-expert {
-  color: #00ccff;
-  font-size: 1.6em;
-  text-shadow: 0 0 10px #00ccff;
-}
-
-.rank-intermediate {
-  color: #ffaa00;
-  font-size: 1.4em;
-}
-
-.rank-beginner {
-  color: #ff8888;
+.volume-control span {
   font-size: 1.2em;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .container { padding-top: 40px; }
-  h1 { font-size: 1.8em; }
-  h2 { font-size: 1.3em; }
-  .button { font-size: 0.95em; padding: 12px; }
-  .dev-grid { grid-template-columns: 1fr; max-width: 300px; }
-  .chat-panel { width: 100%; right: 0; }
+.volume-slider {
+  width: 100px;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  outline: none;
 }
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #00ff99;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #00ff99;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* Logout Button - Top Right */
+.logout-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.75em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: 0.2s;
+  z-index: 9999;
+  opacity: 0.7;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Back Button - Top Left */
+.back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.75em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: 0.2s;
+  z-index: 9999;
+  opacity: 0.7;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Topic Selection Cards */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.topic-card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 3px solid transparent;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ff99;
+  box-shadow: 0 8px 20px rgba(0,255,153,0.3);
+}
+
+.topic-card.selected {
+  border-color: #00ff99;
+  background: rgba(0,255,153,0.2);
+  box-shadow: 0 0 20px rgba(0,255,153,0.4);
+}
+
+.topic-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.topic-name {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #00ff99;
+}
+
+/* Play Button */
+.play-btn {
+  width: 90%;
+  max-width: 420px;
+  padding: 18px;
+  margin: 30px auto;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  transition: 0.3s;
+  display: block;
+}
+
+.play-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.play-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Fireworks effect */
+.firework {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #00ff99;
+  border-radius: 50%;
+  animation: explode 1s ease-out;
+  pointer-events: none;
+  z-index: 4000;
+}
+
+@keyframes explode {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(20); opacity: 0; }
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- Chat Toggle Button -->
-<button class="chat-toggle" id="chatToggle" onclick="toggleChat()" style="display: none;">
-  💬
-  <span class="badge" id="chatBadge" style="display: none;">0</span>
-</button>
-
-<!-- Chat Panel -->
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-header">
-    <h3>🌍 Global Chat</h3>
-    <button class="close-chat" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input-area">
-    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
-    <button class="chat-send-btn" onclick="sendMessage()">Send</button>
-  </div>
-</div>
-
-<!-- INTRO SCREEN -->
-<div id="introImageScreen">
+<!-- INTRO -->
+<div class="screen active" id="introImageScreen">
   <h1>PROGAME</h1>
-  <img src="https://i.ibb.co/bM1gDzXn/1753415138696.png" alt="PROGAME">
+  <img src="https://i.postimg.cc/1RpXCLks/1767524373820.png" alt="PROGAME Logo">
+  <div class="loading-bar"><div class="loading-fill"></div></div>
 </div>
 
 <!-- AUTH SCREEN -->
 <div class="screen" id="authScreen">
-  <div class="container">
-    <h1>🎮 PROGAME</h1>
-    <p>Test Your Knowledge!</p>
-    
-    <!-- LOGIN FORM -->
-    <div id="loginBox">
-      <input id="loginName" placeholder="Username" class="custom-input">
-      <input id="loginPass" type="password" placeholder="Password" class="custom-input">
-      <button class="button" onclick="login()">Login</button>
-      <button class="button" onclick="showRegister()">Create Account</button>
-    </div>
+  <h1>PROGAME</h1>
 
-    <!-- REGISTER FORM -->
-    <div id="registerBox" style="display:none;">
-      <input id="regName" placeholder="New Username" class="custom-input">
-      <input id="regPass" type="password" placeholder="Password" class="custom-input">
-      <input id="regConfirm" type="password" placeholder="Confirm Password" class="custom-input">
-      <button class="button" onclick="register()">Create</button>
-      <button class="button" onclick="showLogin()">Back to Login</button>
-    </div>
+  <!-- LOGIN FORM -->
+  <div id="loginBox">
+    <input id="loginName" placeholder="Username"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="loginPass" type="password" placeholder="Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <button class="button" onclick="login()">Login</button>  <br>
+    <button class="button" onclick="showRegister()">Create Account</button>
+  </div>
+
+  <!-- REGISTER FORM -->
+  <div id="registerBox" style="display:none;">
+    <input id="regName" placeholder="New Username"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="regPass" type="password" placeholder="Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <input id="regConfirm" type="password" placeholder="Confirm Password"
+      style="padding:12px;width:80%;max-width:300px;border-radius:12px;border:none;"><br><br>
+
+    <button class="button" onclick="register()">Create</button> <br>
+    <button class="button" onclick="showLogin()">Back to Login</button>
   </div>
 </div>
 
 <!-- SUCCESS MODAL -->
-<div id="successModal">
+<div id="successModal" style="display:none;">
   <div id="successBox">
     <div style="font-size:3em;">✅</div>
     <h2>Account Created!</h2>
@@ -888,305 +675,309 @@ img {
   </div>
 </div>
 
-<!-- MAIN MENU -->
-<div class="screen" id="mainMenu">
-  <button class="logout-btn" onclick="logout()">Logout</button>
+<!-- MENU -->
+<div class="screen" id="introScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
   
-  <div class="container">
-    <h1>PROGAME</h1>
-    <img src="https://i.ibb.co/bM1gDzXn/1753415138696.png" alt="Logo" class="logo-img">
+  <h1>PROGAME</h1>
+  <a href="https://ibb.co/JwnRg5HP">
+    <img src="https://i.ibb.co/bM1gDzXn/1753415138696.png" alt="Logo" width="150" height="150">
+  </a>
+<br>
+<!-- WELCOME CARD -->
+<div id="welcomeCard">
+  <div class="welcome-gif">
+    <img src="https://i.postimg.cc/KYqp5Q8B/200.gif" alt="Welcome Animation">
+  </div>
 
-    <div id="welcomeCard">
-      <div class="welcome-gif">
-        <img src="https://i.postimg.cc/KYqp5Q8B/200.gif" alt="Welcome">
-      </div>
-      <div class="welcome-text">
-        <h2 id="welcomePlayer"></h2>
-        <p>Ready to play <b>PROGAME</b>?</p>
-      </div>
+  <div class="welcome-text">
+    <h2 id="welcomePlayer"></h2>
+    <p>Ready to play <b>PROGAME</b>?</p>
+  </div>
+</div>
+
+<br>
+  <button class="button" onclick="show('topicSelectScreen')">Play</button>
+  <button class="button" onclick="show('diagnosticIntroScreen')">📋 Diagnostic Test</button>
+  <button class="button" onclick="show('settingsScreen')">Settings</button>
+
+</div>
+
+<!-- DIAGNOSTIC TEST - TOPIC SELECTION -->
+<div class="screen" id="diagnosticIntroScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="back-btn" onclick="show('introScreen')">⬅ Back</button>
+  
+  <h1>🔍 Diagnostic Test</h1>
+  <p style="font-size: 1.1em; margin-bottom: 25px;">Choose which programming language to test</p>
+  
+  <div style="max-width: 650px; margin: 20px auto;">
+    <button class="button" onclick="startDiagnosticTest('html')" style="background: linear-gradient(135deg, #e34c26, #f06529); font-size: 1.2em; padding: 18px;">
+      📘 HTML Diagnostic<br>
+      <small style="font-size: 0.75em; font-weight: 400; opacity: 0.9;">20 Questions • 15s each</small>
+    </button>
+    
+    <button class="button" onclick="startDiagnosticTest('css')" style="background: linear-gradient(135deg, #264de4, #2965f1); font-size: 1.2em; padding: 18px;">
+      📗 CSS Diagnostic<br>
+      <small style="font-size: 0.75em; font-weight: 400; opacity: 0.9;">20 Questions • 15s each</small>
+    </button>
+    
+    <button class="button" onclick="startDiagnosticTest('javascript')" style="background: linear-gradient(135deg, #f0db4f, #e8d44d); color: #333; font-size: 1.2em; padding: 18px;">
+      📙 JavaScript Diagnostic<br>
+      <small style="font-size: 0.75em; font-weight: 400; opacity: 0.9;">20 Questions • 15s each</small>
+    </button>
+    
+    <button class="button" onclick="startDiagnosticTest('java')" style="background: linear-gradient(135deg, #f89820, #5382a1); font-size: 1.2em; padding: 18px;">
+      ☕ Java Diagnostic<br>
+      <small style="font-size: 0.75em; font-weight: 400; opacity: 0.9;">20 Questions • 15s each</small>
+    </button>
+  </div>
+</div>
+
+<!-- DIAGNOSTIC RESULT SCREEN -->
+<div class="screen" id="diagnosticResultScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  
+  <h1>📊 Diagnostic Results</h1>
+  
+  <div style="max-width: 650px; margin: 25px auto; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6);">
+    
+    <!-- Player Name Display -->
+    <div style="margin-bottom: 25px; padding: 15px 25px; background: rgba(0,255,153,0.15); border-radius: 15px; border: 2px solid #00ff99; box-shadow: 0 4px 12px rgba(0,255,153,0.3);">
+      <div style="font-size: 1.1em; color: #e2e8f0; margin-bottom: 5px;">👤 Player:</div>
+      <div id="diagnosticPlayerName" style="font-size: 1.4em; font-weight: bold; color: #00ff99; text-shadow: 0 0 8px rgba(0,255,153,0.5);"></div>
     </div>
-
-    <button class="button" onclick="show('playMenu')">Play</button>
-    <button class="button" onclick="show('friendsMenu')">Friends</button>
-    <button class="button" onclick="show('optionsMenu')">Options</button>
-    <button class="button" onclick="show('settingsMenu')">Settings</button>
+    
+    <div id="diagnosticFinalScore" style="font-size: 2em; margin-bottom: 25px; font-weight: bold; color: #00ff99; text-shadow: 0 0 10px rgba(0,255,153,0.5);"></div>
+    
+    <div id="diagnosticRankBox" style="margin: 20px 0;"></div>
+    
+    <div id="diagnosticBreakdown" style="margin-top: 30px; text-align: left; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 15px; border: 2px solid rgba(0,255,153,0.3);">
+      <h3 style="margin-top: 0; color: #00ff99; font-size: 1.3em; text-align: center; margin-bottom: 20px;">📈 Quarterly Performance</h3>
+      <div id="diagnosticHTML" style="margin: 15px 0; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #e34c26;"></div>
+      <div id="diagnosticCSS" style="margin: 15px 0; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #264de4;"></div>
+      <div id="diagnosticJS" style="margin: 15px 0; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #f0db4f;"></div>
+      <div id="diagnosticJava" style="margin: 15px 0; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #f89820;"></div>
+    </div>
   </div>
+
+  <button class="button" onclick="show('diagnosticIntroScreen')">🔄 Retake Diagnostic Test</button>
+  <button class="button" onclick="show('introScreen')">🏠 Main Menu</button>
 </div>
 
-<!-- FRIENDS MENU -->
-<div class="screen" id="friendsMenu">
-  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
-  <div class="container">
-    <h2>👥 Friends</h2>
-    
-    <div style="margin: 20px auto; max-width: 400px;">
-      <input type="text" id="friendUsername" class="custom-input" placeholder="Enter friend's username">
-      <button class="button" onclick="addFriend()">Add Friend</button>
+<!-- TOPIC SELECTION SCREEN -->
+<div class="screen" id="topicSelectScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="back-btn" onclick="show('introScreen')">⬅ Back</button>
+  
+  <h1>📚 Select Topic</h1>
+  
+  <div class="topic-grid">
+    <div class="topic-card" onclick="selectTopic('html')">
+      <div class="topic-icon">📘</div>
+      <div class="topic-name">HTML</div>
     </div>
     
-    <h3 style="margin-top: 30px;">Your Friends:</h3>
-    <div id="friendsList" style="max-width: 400px; margin: 20px auto;">
-      <p style="text-align: center; color: #94a3b8;">No friends yet. Add your first friend!</p>
+    <div class="topic-card" onclick="selectTopic('css')">
+      <div class="topic-icon">📗</div>
+      <div class="topic-name">CSS</div>
     </div>
     
-    <button class="button" onclick="show('mainMenu')" style="margin-top: 30px;">Back to Main Menu</button>
-  </div>
-</div>
-
-<!-- PLAY MENU -->
-<div class="screen" id="playMenu">
-  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
-  <div class="container">
-    <h2>Play Menu</h2>
-    
-    <button class="button" onclick="show('topicSelect')">Select Topic</button>
-    <button class="button" onclick="show('createTopic')">Create Custom Topic</button>
-    <button class="button" onclick="show('joinTopic')">Join Group Study</button>
-    <button class="button" onclick="show('mainMenu')">Back to Main Menu</button>
-  </div>
-</div>
-
-<!-- TOPIC SELECTION -->
-<div class="screen" id="topicSelect">
-  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
-  <div class="container">
-    <h2>Select Topic</h2>
-    
-    <select id="topic" class="custom-input">
-      <option value="html">HTML</option>
-      <option value="css">CSS</option>
-      <option value="javascript">JavaScript</option>
-    </select>
-    
-    <div id="customTopicsDisplay"></div>
-    
-    <button class="button" onclick="show('difficultySelect')">Next: Select Difficulty ➡️</button>
-    <button class="button" onclick="show('playMenu')">Back</button>
-  </div>
-</div>
-
-<!-- DIFFICULTY SELECTION -->
-<div class="screen" id="difficultySelect">
-  <button class="logout-btn" onclick="show('topicSelect')">← Back</button>
-  <div class="container">
-    <h2>Select Difficulty</h2>
-    
-    <div class="difficulty-section">
-      <div class="difficulty-group">
-        <button class="diff-btn diff-easy selected" onclick="selectDifficulty('easy')">
-          Easy
-        </button>
-        <button class="diff-btn diff-normal" onclick="selectDifficulty('normal')">
-          Normal
-        </button>
-        <button class="diff-btn diff-hard" onclick="selectDifficulty('hard')">
-          Hard
-        </button>
-      </div>
+    <div class="topic-card" onclick="selectTopic('javascript')">
+      <div class="topic-icon">📙</div>
+      <div class="topic-name">JavaScript</div>
     </div>
-
-    <button class="button" onclick="startGame()">Start Game</button>
-    <button class="button" onclick="show('topicSelect')">Back</button>
   </div>
-</div>
-
-<!-- CREATE CUSTOM TOPIC -->
-<div class="screen" id="createTopic">
-  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
-  <div class="container">
-    <h2>Create Custom Topic</h2>
-    
-    <input type="text" id="customTopicName" class="custom-input" placeholder="Topic Name (e.g., Math Exam)">
-    
-    <h3 style="margin: 15px 0;">Add Question</h3>
-    <textarea id="customQuestion" class="custom-input question-input" placeholder="Enter your question"></textarea>
-    
-    <input type="text" id="customChoice1" class="custom-input" placeholder="Choice 1">
-    <input type="text" id="customChoice2" class="custom-input" placeholder="Choice 2">
-    <input type="text" id="customChoice3" class="custom-input" placeholder="Choice 3">
-    <input type="text" id="customChoice4" class="custom-input" placeholder="Choice 4">
-    
-    <select id="customCorrect" class="custom-input">
-      <option value="0">Choice 1 is correct</option>
-      <option value="1">Choice 2 is correct</option>
-      <option value="2">Choice 3 is correct</option>
-      <option value="3">Choice 4 is correct</option>
-    </select>
-    
-    <button class="button" onclick="addCustomQuestion()">➕ Add Question</button>
-    
-    <div id="customQuestionsList" class="custom-questions-list"></div>
-    
-    <p style="font-size: 1em; color: #a7f3d0; margin: 10px 0;">
-      Questions added: <span id="customQuestionCount">0</span>
-    </p>
-
-    <button class="button" onclick="saveCustomTopic()">Save Topic & Get Code</button>
-    <button class="button" onclick="show('playMenu')">Back</button>
-  </div>
-</div>
-
-<!-- JOIN GROUP STUDY -->
-<div class="screen" id="joinTopic">
-  <button class="logout-btn" onclick="show('playMenu')">← Back</button>
-  <div class="container">
-    <h2>Join Group Study</h2>
-    
-    <p style="font-size: 1em; margin: 20px 0;">Enter the 6-digit code shared by your friend:</p>
-    
-    <input type="text" id="joinTopicCode" class="custom-input" placeholder="Enter code (e.g., A3X9K2)" style="text-transform: uppercase; text-align: center; font-size: 1.3em; letter-spacing: 3px;">
-    
-    <button class="button" onclick="joinTopicWithCode()">Join Topic</button>
-    <button class="button" onclick="show('playMenu')">Back</button>
-  </div>
-</div>
-
-<!-- OPTIONS MENU -->
-<div class="screen" id="optionsMenu">
-  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
-  <div class="container">
-    <h2>Options</h2>
-    
-    <button class="button" onclick="show('developersScreen')">Developers</button>
-    <button class="button" onclick="show('myTopics')">My Custom Topics</button>
-    <button class="button" onclick="show('mainMenu')">Back to Main Menu</button>
-  </div>
-</div>
-
-<!-- DEVELOPERS -->
-<div class="screen" id="developersScreen">
-  <button class="logout-btn" onclick="show('optionsMenu')">← Back</button>
-  <div class="container">
-    <h2>Developers</h2>
-
-    <div class="dev-grid">
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.postimg.cc/nz6vLRjd/Screenshot-20251225-144406-2.jpg">
-        <div class="dev-name">Lee Malajos</div>
-      </div>
-
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.ibb.co/d489M9sK/quality-restoration-20250724104525132.jpg">
-        <div class="dev-name">Ash Salgado</div>
-      </div>
-
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.ibb.co/qLmbQt36/beauty-20250726133004.jpg">
-        <div class="dev-name">Christian Tenorio</div>
-      </div>
-
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.postimg.cc/sxh1vTPv/received-754104770781678-2.jpg">
-        <div class="dev-name">Vyncent Bagadiong</div>
-      </div>
-
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.ibb.co/gFRSNprt/Picsart-25-07-24-13-51-31-183.jpg">
-        <div class="dev-name">Mavy Servenias</div>
-      </div>
-
-      <div class="dev-item">
-        <img class="dev-img" src="https://i.postimg.cc/SRB2rBQG/Screenshot-20250907-091806-2.jpg">
-        <div class="dev-name">Ashley Kid Maño</div>
-      </div>
-    </div>
-
-    <button class="button" onclick="show('optionsMenu')">Back</button>
-  </div>
-</div>
-
-<!-- MY TOPICS -->
-<div class="screen" id="myTopics">
-  <button class="logout-btn" onclick="show('optionsMenu')">← Back</button>
-  <div class="container">
-    <h2>My Custom Topics</h2>
-    
-    <div id="myTopicsList"></div>
-    
-    <button class="button" onclick="show('optionsMenu')">Back</button>
-  </div>
+  
+  <button class="play-btn" id="playBtn" disabled onclick="startGameFromSelection()">▶ PLAY</button>
 </div>
 
 <!-- SETTINGS -->
-<div class="screen" id="settingsMenu">
-  <button class="logout-btn" onclick="show('mainMenu')">← Back</button>
-  <div class="container">
-    <h2>Settings</h2>
+<div class="screen" id="settingsScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="back-btn" onclick="show('introScreen')">⬅ Back</button>
+  
+  <h2>⚙ Settings</h2>
+  
+  <div style="max-width: 500px; margin: 30px auto; padding: 25px; background: rgba(255,255,255,0.1); border-radius: 15px;">
     
-    <div class="settings-container">
-      <div class="setting-row">
-        <span>Sound Effects</span>
-        <div class="toggle-switch active" id="soundToggle" onclick="toggleSound()">
-          <div class="toggle-slider"></div>
+    <!-- Volume Control -->
+    <div style="margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 12px;">
+      <h3 style="color: #00ff99; margin-top: 0;">🔊 Volume Control</h3>
+      
+      <!-- Music Volume -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 1em; color: #e2e8f0; margin-bottom: 8px; font-weight: 500;">🎵 Background Music</div>
+        <div style="display: flex; align-items: center; gap: 15px; justify-content: center;">
+          <span style="font-size: 1.5em;">🔇</span>
+          <input type="range" class="volume-slider" id="musicSlider" min="0" max="100" value="50" 
+            style="flex: 1; max-width: 300px; height: 8px; border-radius: 10px; background: rgba(255,255,255,0.2); outline: none; cursor: pointer;">
+          <span style="font-size: 1.5em;">🔊</span>
+        </div>
+        <div style="text-align: center; margin-top: 8px; font-size: 1em; color: #00ff99; font-weight: 600;">
+          <span id="musicPercent">50%</span>
         </div>
       </div>
       
-      <div class="setting-row">
-        <span>Background Music</span>
-        <div class="toggle-switch active" id="musicToggle" onclick="toggleMusic()">
-          <div class="toggle-slider"></div>
+      <!-- Sound Effects Volume -->
+      <div>
+        <div style="font-size: 1em; color: #e2e8f0; margin-bottom: 8px; font-weight: 500;">🔔 Sound Effects</div>
+        <div style="display: flex; align-items: center; gap: 15px; justify-content: center;">
+          <span style="font-size: 1.5em;">🔇</span>
+          <input type="range" class="volume-slider" id="sfxSlider" min="0" max="100" value="50" 
+            style="flex: 1; max-width: 300px; height: 8px; border-radius: 10px; background: rgba(255,255,255,0.2); outline: none; cursor: pointer;">
+          <span style="font-size: 1.5em;">🔊</span>
         </div>
-      </div>
-      
-      <div class="setting-row">
-        <span>Timer</span>
-        <div class="toggle-switch active" id="timerToggle" onclick="toggleTimer()">
-          <div class="toggle-slider"></div>
+        <div style="text-align: center; margin-top: 8px; font-size: 1em; color: #00ff99; font-weight: 600;">
+          <span id="sfxPercent">50%</span>
         </div>
-      </div>
-      
-      <div class="setting-row">
-        <span>Music Volume</span>
-        <input type="range" min="0" max="100" value="30" style="width: 60%;" oninput="adjustMusicVolume(this.value)">
-      </div>
-      
-      <div class="setting-row">
-        <span>Sound Effects Volume</span>
-        <input type="range" min="0" max="100" value="50" style="width: 60%;" oninput="adjustSfxVolume(this.value)">
       </div>
     </div>
     
-    <button class="button" onclick="show('mainMenu')">Back to Main Menu</button>
   </div>
+  
+  <button class="button" onclick="showDevelopers()">ℹ️ About</button>
 </div>
+
+<!-- ABOUT / DEVELOPERS -->
+<div class="screen" id="developersScreen">
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="back-btn" onclick="goBackToSettings()">⬅ Back</button>
+  
+  <h2>ℹ️ About</h2>
+
+  <div style="max-width: 700px; margin: 20px auto; padding: 25px; background: rgba(255,255,255,0.1); border-radius: 15px; text-align: left;">
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px;">🎮 Game Title</h3>
+    <p><strong>PROGAME</strong> - Programming Quiz Game</p>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">📝 Description</h3>
+    <p>PROGAME is an interactive educational quiz game designed to help students test and improve their programming knowledge across multiple computer languages. Through engaging gameplay mechanics and diagnostic testing, players can identify their strengths and weaknesses in various programming topics.</p>
+    <p><strong>Genre:</strong> Educational, Quiz, Learning Platform</p>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">🕹️ How to Play</h3>
+    <p><strong>Controls & Mechanics:</strong></p>
+    <ul style="line-height: 1.8;">
+      <li>Click/Tap buttons to select answers</li>
+      <li>Choose your topic from the main menu</li>
+      <li>Answer questions within the time limit (15 seconds each)</li>
+      <li>Each correct answer adds to your score</li>
+      <li>Complete all questions to see your rank</li>
+    </ul>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">🧩 Features</h3>
+    <ul style="line-height: 1.8;">
+      <li>3 Programming Languages: HTML, CSS, JavaScript, Java</li>
+      <li>Diagnostic Testing System for each language (20 questions each)</li>
+      <li>Timed quiz mode with visual countdown</li>
+      <li>Performance tracking and rank system</li>
+      <li>Interactive feedback with sound effects</li>
+      <li>User authentication system</li>
+      <li>Volume control settings</li>
+    </ul>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">🏆 Ranking System</h3>
+    <ul style="line-height: 1.8;">
+      <li>🏆 LEGEND - 100% Perfect Score</li>
+      <li>🥇 MASTER - 80% to 99%</li>
+      <li>🥈 EXPERT - 60% to 79%</li>
+      <li>🥉 INTERMEDIATE - 40% to 59%</li>
+      <li>🎓 BEGINNER - Below 40%</li>
+    </ul>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">🔊 Credits</h3>
+    <p><strong>Assets & Resources:</strong></p>
+    <ul style="line-height: 1.8;">
+      <li>Images: Custom graphics and free game assets</li>
+      <li>Sound Effects: Open source audio library</li>
+      <li>Icons: Emoji and custom designs</li>
+    </ul>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">📅 Version</h3>
+    <p><strong>Version 1.0</strong> - 2026</p>
+    
+    <h3 style="color: #00ff99; border-bottom: 2px solid #00ff99; padding-bottom: 8px; margin-top: 20px;">📩 Contact & Feedback</h3>
+    <p>For suggestions, bug reports, or feedback, please contact the development team.</p>
+    <p style="font-style: italic; color: #00ff99;">Your feedback helps us improve the learning experience!</p>
+  </div>
+  
+  <h3 style="margin-top: 40px;">👩‍🏫 Special Thanks to Our Teacher</h3>
+‎
+‎  <div style="max-width: 500px; margin: 15px auto; padding: 20px; background: rgba(0,255,153,0.1); border: 2px solid #00ff99; border-radius: 20px;">
+‎    <img class="dev-img" src="https://i.ibb.co/q3QwRrCq/quality-restoration-20260217165032723.jpg" style="width: 140px; height: 140px; border: 3px solid #ffd700; box-shadow: 0 0 20px rgba(255,215,0,0.5);">
+‎    <div class="dev-name" style="font-size: 1.1em; color: #ffd700; margin-bottom: 8px;">Marissa P. Agdong</div>
+‎    <p style="font-size: 0.9em; color: #a0f0cc; font-style: italic; margin: 0; line-height: 1.6;">
+‎      "We sincerely thank you for your support, guidance, and encouragement in making this project possible."
+‎    </p>
+‎  </div>
+
+  <h3 style="margin-top: 40px;">👥 Developer Team</h3>
+
+  <img class="dev-img" src="https://i.postimg.cc/nz6vLRjd/Screenshot-20251225-144406-2.jpg">
+  <div class="dev-name">Lee Malajos</div>
+
+  <img class="dev-img" src="https://i.ibb.co/d489M9sK/quality-restoration-20250724104525132.jpg">
+  <div class="dev-name">Ash Salgado</div>
+
+  <img class="dev-img" src="https://i.ibb.co/qLmbQt36/beauty-20250726133004.jpg">
+  <div class="dev-name">Christian Tenorio</div>
+
+  <img class="dev-img" src="https://i.postimg.cc/sxh1vTPv/received-754104770781678-2.jpg">
+  <div class="dev-name">Vyncent Bagadiong</div>
+
+  <img class="dev-img" src="https://i.ibb.co/gFRSNprt/Picsart-25-07-24-13-51-31-183.jpg">
+  <div class="dev-name">Mavy Servenias</div>
+
+  <img class="dev-img" src="https://i.postimg.cc/SRB2rBQG/Screenshot-20250907-091806-2.jpg">
+  <div class="dev-name">Ashley Kid Maño</div>
+</div>
+
 
 <!-- QUIZ -->
 <div class="screen" id="quizScreen">
-  <div class="container">
-    <div class="qb">
-      <div id="scoreBox">Score: 0</div>
-      
-      <div id="timerBox">
-        <div id="timeText">15s</div>
-        <div id="timeBar">
-          <div id="timeFill"></div>
-        </div>
-      </div>
-
-      <h2 id="question"></h2>
-      <img id="questionImage" alt="Question Image" style="display:none;">
-      
-      <div id="choices">
-        <button class="button" onclick="answer(0)"></button>
-        <button class="button" onclick="answer(1)"></button>
-        <button class="button" onclick="answer(2)"></button>
-        <button class="button" onclick="answer(3)"></button>
-      </div>
-    </div>
-    <div id="result"></div>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <button class="back-btn" onclick="exitQuiz()">⬅ Back</button>
+  
+  <div class="qb">
+    <div id="scoreBox">Score: 0</div>
+	<!-- TIMER -->
+<div id="timerBox">
+  <div id="timeText">15s</div>
+  <div id="timeBar">
+    <div id="timeFill"></div>
   </div>
+</div>
+
+    <h2 id="question"></h2>
+    <img id="questionImage" alt="Question Image"><br><br>
+    <div id="choices">
+      <button class="button" onclick="answer(0)"></button>
+      <button class="button" onclick="answer(1)"></button>
+      <button class="button" onclick="answer(2)"></button>
+      <button class="button" onclick="answer(3)"></button>
+    </div>
+  </div>
+  <div id="result"></div>
 </div>
 
 <!-- RESULT -->
 <div class="screen" id="resultScreen">
-  <div class="container">
-    <h1>Quiz Complete!</h1>
-    <p id="finalScore"></p>
-    <h2 id="rankText"></h2>
-
-    <button class="button" onclick="show('mainMenu')">Main Menu</button>
-    <button class="button" onclick="show('playMenu')">Play Again</button>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  
+  <h1>🎉 Quiz Complete!</h1>
+  
+  <!-- Player Name Display -->
+  <div style="max-width: 500px; margin: 20px auto; padding: 15px 25px; background: rgba(0,255,153,0.15); border-radius: 15px; border: 2px solid #00ff99; box-shadow: 0 4px 12px rgba(0,255,153,0.3);">
+    <div style="font-size: 1.1em; color: #e2e8f0; margin-bottom: 5px;">👤 Player:</div>
+    <div id="resultPlayerName" style="font-size: 1.4em; font-weight: bold; color: #00ff99; text-shadow: 0 0 8px rgba(0,255,153,0.5);"></div>
   </div>
+  
+ <p id="finalScore"></p>
+<h2 id="rankText"></h2>
+
+<br>
+  <button class="button" onclick="startGameFromSelection()">🔄 Play Again</button>
+  <button class="button" onclick="show('introScreen')">🏠 Main Menu</button>
 </div>
 
 <div id="thumbsContainer">
@@ -1194,697 +985,1318 @@ img {
   <div id="excellentText">Excellent</div>
 </div>
 
-<!-- Share Topic Modal -->
-<div class="modal" id="shareModal">
-  <div class="modal-content">
-    <h3>Topic Created!</h3>
-    <p style="font-size: 1.1em; margin: 15px 0;">Share this code with others:</p>
-    <div class="topic-code" id="shareCode" style="font-size: 1.8em; margin: 20px 0;"></div>
-    <p style="font-size: 0.95em; color: #a7f3d0;">Others can join using this code in "Join Group Study"</p>
-    <button class="button" onclick="closeShareModal()">OK</button>
-  </div>
-</div>
-
 <script>
-// ========== STORAGE HELPERS (localStorage) ==========
-async function saveToStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch (error) {
-    console.error('Storage save error:', error);
-    return false;
-  }
-}
+// INTRO
+setTimeout(() => {
+  const intro = document.getElementById("introImageScreen");
+  intro.classList.add("fade-out");
 
-async function loadFromStorage(key) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw) {
-      return JSON.parse(raw);
+  setTimeout(() => {
+    intro.remove();
+
+    const loggedUser = localStorage.getItem("loggedUser");
+
+    if (loggedUser) {
+      currentUser = loggedUser;
+      document.getElementById("welcomePlayer").innerText =
+        "👋 Welcome back, " + currentUser + "!";
+      show("introScreen");
+    } else {
+      show("authScreen");
     }
-    return null;
-  } catch (error) {
-    return null;
+
+  }, 1000);
+}, 3000);
+
+
+function goMenu(){ show("introScreen"); }
+function showOptions(){ show("optionsScreen"); }
+function showSettings(){ show("settingsScreen"); }
+function showDevelopers(){ show("developersScreen"); }
+function goBackToSettings(){ show("settingsScreen"); }
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+// Select all images
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  img.addEventListener('contextmenu', function(e){
+    e.preventDefault(); 
+  });
+});
+
+// QUESTIONS
+// REGULAR QUIZ QUESTIONS (for Select Topic)
+const questions = [
+ {
+    q: "Who is considered the founder of HTML and in what year was it introduced?",
+    i: "https://i.ibb.co/LXyDz0Mh/berners-lee-2.jpg",
+    c: ["Bill Gates, 1995", "Tim Berners-Lee, 1991", "Steve Jobs, 1989", "Mark Zuckerberg, 2004"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What does HTML stand for?",
+    i: "https://i.ibb.co/8VrGqpy/images-5-2.jpg",
+    c: ["Hyperlink and Text Markup Language", "Home Tool Markup Language", "Hyper Text Markup Language", "Hyper Transfer Markup Language"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which HTML tag is used to create a hyperlink?",
+    i: "https://i.postimg.cc/CLQ5BQcQ/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-175157-0000.png",
+    c: ["<link>", "<a>", "<href>", "<url>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to insert an image in HTML?",
+    i: "https://i.postimg.cc/59gy7HC6/a-href-https-www-w3schools-com-Visit-W3Schools-com-a-20260103-180828-0000.png",
+    c: ["<picture>", "<image>", "<img>", "<src>"],
+    a: 2,
+    t: "html"
+  },
+  //need edit hmtl
+  {
+    q: "Which tag is used to create a paragraph?",
+    i: "https://i.ibb.co/39bfYCs7/DOCTYPE-html-html-body-p-This-is-a-paragraph-p-p-This-is-a-para-20260210-132801-0000.png",
+    c: ["<p>", "<h1>", "<div>", "<span>"],
+    a: 0,
+    t: "html"
+  },
+  {
+    q: "Which attribute provides alternative text for an image?",
+    i: "https://i.ibb.co/tT7YkFyp/DOCTYPE-html-html-body-p-This-is-a-paragraph-p-p-This-is-a-para-20260210-132801-0001.png",
+    c: ["title", "src", "alt", "href"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which attribute specifies the link address?",
+    i: "https://i.ibb.co/nqHwGJXk/Ha-20260210-144228-0000.png",
+    c: ["src", "link", "href", "url"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to create an unordered list?",
+    i: "https://i.ibb.co/LhCyXfHH/Ul-20260210-185636-0000.png",
+    c: ["<ol>", "<li>", "<ul>", "<list>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used for list items?",
+    i: "https://i.ibb.co/jYZBBRj/li-20260210-185930-0000.png",
+    c: ["<ul>", "<li>", "<ol>", "<item>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag creates a line break?",
+    i: "https://i.ibb.co/bg7Dx0jp/Br-20260210-190314-0000.png",
+    c: ["<break>", "<lb>", "<hr>", "<br>"],
+    a: 3,
+    t: "html"
+  },
+  {
+    q: "Which tag creates a horizontal line?",
+    i: "https://i.ibb.co/ZRGj8Rzb/Hr-20260210-191014-0000.png",
+    c: ["<hr>", "<line>", "<br>", "<border>"],
+    a: 0,
+    t: "html"
+  },
+  {
+    q: "Where is the page title placed?",
+    i: "https://i.ibb.co/s9dvMrDb/Ttl-20260210-191320-0000.png",
+    c: ["<body>", "<head>", "<meta>", "<title>"],
+    a: 3,
+    t: "html"
+  },
+  {
+    q: "Which tag contains the visible content of the webpage?",
+    i: "https://i.ibb.co/0VfmTGLW/Bdy-20260210-191647-0000.png",
+    c: ["<html>", "<head>", "<body>", "<title>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to make text bold?",
+    i: "https://i.ibb.co/rKBQH7R0/Stg-20260210-192029-0000.png",
+    c: ["<bold>", "<strong>", "<btext>", "<em>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to make text italic?",
+    i: "https://i.ibb.co/7N6mjrw1/Itl-20260210-192247-0000.png",
+    c: ["<i>", "<italic>", "<it>", "<style>"],
+    a: 0,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to create a table?",
+    i: "https://i.ibb.co/RkZzD0kL/tbl-20260210-192903-0000.png",
+    c: ["<tr>", "<table>", "<td>", "<tab>"],
+    a: 1,
+    t: "html"
+  },
+  //CSS
+  {
+    q: "Who developed CSS and when was it first introduced?",
+    i: "https://i.postimg.cc/5083RzR5/Håkon_Wium_Lie_2009_03_2.jpg",
+    c: ["Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996", "Brendan Eich, 1995", "Bill Gates, 1998"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "What does CSS stand for?",
+    i: "https://i.ibb.co/8L33Rj6k/images-6-2.jpg",
+    c: ["Colorful Style Sheets", "Creative Style System", "Cascading Style Sheets", "Computer Style Sheets"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which CSS property is used to change text color?",
+    i: "https://i.postimg.cc/mrnXqMyW/B-20260103-195630-0000.png",
+    c: ["font-color", "color", "text-color", "style"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which symbol is used to select a class in CSS?",
+    i: "https://i.postimg.cc/HWvwtHzh/C-20260103-201039-0000.png",
+    c: ["#", "*", ".", "@"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which CSS property controls the size of text?",
+    i: "https://i.postimg.cc/26h4jBhH/D-20260103-202258-0000.png",
+    c: ["text-size", "font-style", "text-style", "font-size"],
+    a: 3,
+    t: "css"
+  },
+  {
+    q: "Who created JavaScript and in what year?",
+    i: "https://i.postimg.cc/tC1SrWDG/Brendan-Eich-Mozilla-Foundation-official-photo-2.jpg",
+    c: ["Brendan Eich, 1995", "Bill Gates, 1994", "Tim Berners-Lee, 1991", "Håkon Wium Lie, 1996"],
+    a: 0,
+    t: "javascript"
+  },
+  {
+    q: "What is JavaScript mainly used for?",
+    i: "https://i.postimg.cc/LXYDyMB9/sta-je-javascript-2.jpg",
+    c: ["Styling web pages", "Structuring web content", "Creating databases", "Making web pages interactive"],
+    a: 3,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword is used to declare a variable in JavaScript?",
+    i: "https://i.postimg.cc/HsyGrfqp/E-20260104-100430-0000.png",
+    c: ["ver", "vor", "var", "vur"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which symbol is used for comments in JavaScript?",
+    i: "https://i.postimg.cc/59p5wyMr/F_20260104_102026_0000.png",
+    c: ["##", "//", "@@", "$$"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "What will this code output?",
+    i: "https://i.postimg.cc/RZqzMWvk/G-20260104-102932-0000.png",
+    c: ["55", "10", "5 + 5", "Error"],
+    a: 1,
+    t: "javascript"
+  },
+  // Additional HTML Questions
+  {
+    q: "Which tag is used to define a table header?",
+    i: "https://i.ibb.co/7dNzymkj/th-20260210-193311-0000.png",
+    c: ["<thead>", "<th>", "<header>", "<td>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What is the correct HTML for creating a text input?",
+    i: "https://i.ibb.co/5XbgdwmF/Crc-20260210-193804-0000.png",
+    c: ["<input type='text'>", "<textinput>", "<text>", "<input='text'>"],
+    a: 0,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to create a dropdown list?",
+    i: "https://i.ibb.co/TzgkDFq/Slc-20260210-194202-0000.png",
+    c: ["<list>", "<dropdown>", "<select>", "<option>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which HTML attribute specifies an input field is required?",
+    i: "https://i.ibb.co/xqqY48mT/Rqrd-20260210-194458-0000.png",
+    c: ["validate", "required", "mandatory", "needed"],
+    a: 1,
+    t: "html"
+  },
+  // Additional CSS Questions
+  {
+    q: "Which CSS property is used to change background color?",
+    i: "https://i.ibb.co/SDb4XBMs/Bg-20260211-125324-0000.png",
+    c: ["bg-color", "background-color", "color-bg", "bgcolor"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property adds space inside an element's border?",
+    i: "https://i.ibb.co/DD898hcy/Pdng-20260211-125655-0000.png",
+    c: ["margin", "padding", "spacing", "border-space"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which CSS property is used to change the text alignment?",
+    i: "https://i.ibb.co/qYrWwJrr/Txt-20260211-130120-0000.png",
+    c: ["text-align", "align", "text-position", "alignment"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property controls the width of an element?",
+    i: "https://i.ibb.co/d4JW58b1/Wd-20260211-130549-0000.png",
+    c: ["size", "width", "element-width", "w"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property is used to create rounded corners?",
+    i: "https://i.ibb.co/b5WxkYHq/Brd-20260211-130932-0000.png",
+    c: ["border-round", "corner-radius", "border-radius", "rounded-corner"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which CSS property controls the spacing between lines of text?",
+    i: "https://i.ibb.co/KjnKS4ys/lh-20260211-131527-0000.png",
+    c: ["line-height", "text-spacing", "spacing", "line-space"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property is used to add shadow to text?",
+    i: "https://i.ibb.co/JwK3x37T/Ts-20260211-133105-0000.png",
+    c: ["shadow", "text-shadow", "font-shadow", "shadow-text"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which CSS property changes the font family?",
+    i: "https://i.ibb.co/rGqRjyRv/Ff-20260211-133657-0000.png",
+    c: ["font-type", "font-family", "typeface", "font-name"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property controls the stacking order of elements?",
+    i: "https://i.ibb.co/tTWb3kvK/Zidx-20260211-133949-0000.png",
+    c: ["z-index", "stack-order", "layer", "position-order"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which CSS property is used to make text bold?",
+    i: "https://i.ibb.co/k2xWQLV6/Fw-20260211-134406-0000.png",
+    c: ["text-weight", "font-bold", "font-weight", "bold"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which property controls the transparency of an element?",
+    i: "https://i.ibb.co/RG7MzmC2/Opcty-20260212-125811-0000.png",
+    c: ["visibility", "transparency", "opacity", "alpha"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which property is used to create a flexbox layout?",
+    i: "https://i.ibb.co/HDK5yrFk/Df-20260212-130204-0000.png",
+    c: ["display: flex", "layout: flex", "flex: box", "flexbox: true"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property adds space outside an element's border?",
+    i: "https://i.ibb.co/bkvLXvC/Mrgn-20260212-130737-0000.png",
+    c: ["padding", "margin", "spacing", "border-space"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property controls how overflowing content is handled?",
+    i: "https://i.ibb.co/hF3rK1Gg/Ovflw-20260217-154046-0000.png",
+    c: ["overflow", "flow", "content-flow", "scroll"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property is used to make text italic?",
+    i: "https://i.ibb.co/TDjyWzfj/Fstyle-20260217-154649-0000.png",
+    c: ["text-style", "font-italic", "font-style", "italic"],
+    a: 2,
+    t: "css"
+  },
+  // Additional JavaScript Questions
+  {
+    q: "Which function displays a message in the browser console?",
+    i: "https://i.ibb.co/N2vdGN6y/Csole-20260217-155041-0000.png",
+    c: ["print()", "console.log()", "alert()", "display()"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which operator is used for strict equality in JavaScript?",
+    i: "https://i.ibb.co/5X8Fr2S2/Se-20260217-155352-0000.png",
+    c: ["==", "===", "=", "!="],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword is used to define a function?",
+    i: "https://i.ibb.co/pvt8bXy4/Fctn-20260217-155810-0000.png",
+    c: ["func", "define", "function", "method"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which method adds an element to the end of an array?",
+    i: "https://i.ibb.co/1tSK2RWJ/Psh-20260217-160045-0000.png",
+    c: ["append()", "push()", "add()", "insert()"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which event occurs when a user clicks an element?",
+    i: "https://i.ibb.co/1GhsBJrL/Clk-20260217-160354-0000.png",
+    c: ["onpress", "onclick", "onhit", "onselect"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword is used to create a constant variable?",
+    i: "https://i.ibb.co/Mk3CP6qJ/Cns-20260217-160658-0000.png",
+    c: ["var", "let", "const", "constant"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which method converts a string to uppercase?",
+    i: "https://i.ibb.co/zgmK5zN/Tupc-20260217-161017-0000.png",
+    c: ["toUpper()", "toUpperCase()", "uppercase()", "upper()"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which symbol is used to access object properties?",
+    i: "https://i.ibb.co/svNdnc7T/Dt-20260217-161422-0000.png",
+    c: [":", ".", "->", "#"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which method removes the last element from an array?",
+    i: "https://i.ibb.co/8gyZMfvT/Pop2-20260217-164656-0000.png",
+    c: ["pop()", "remove()", "delete()", "shift()"],
+    a: 0,
+    t: "javascript"
+  },
+  {
+    q: "Which statement is used to exit a loop?",
+    i: "https://i.ibb.co/S7MMRSMf/Brk-20260217-162230-0000.png",
+    c: ["exit", "stop", "break", "return"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which method returns the length of a string?",
+    i: "https://i.ibb.co/DsbvJYG/Lngt-20260217-162642-0000.png",
+    c: ["size()", "length", "count()", "len()"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which method is used to find an element by its ID?",
+    i: "https://i.ibb.co/Hpq8Mkc8/Gid-20260217-163013-0000.png",
+    c: ["getElementById()", "findById()", "getElement()", "selectId()"],
+    a: 0,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword is used in a conditional statement?",
+    i: "https://i.ibb.co/vxcjK3Rk/If-20260217-163326-0000.png",
+    c: ["when", "if", "check", "condition"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which loop iterates through array elements?",
+    i: "https://i.ibb.co/21wMy2zT/Fr-20260217-163543-0000.png",
+    c: ["for", "while", "do-while", "loop"],
+    a: 0,
+    t: "javascript"
+  },
+  {
+    q: "Which data type represents true or false?",
+    i: "https://i.ibb.co/RpHjFQgw/Blln-20260217-163904-0000.png",
+    c: ["boolean", "binary", "bit", "bool"],
+    a: 0,
+    t: "javascript"
+  }
+];
+
+// DIAGNOSTIC TEST QUESTIONS (20 items per topic)
+const diagnosticQuestions = [
+  // HTML Diagnostic Test (20 Items)
+  {
+    q: "What does HTML stand for?",
+    c: ["Hyper Trainer Marking Language", "Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Markup Language"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag is used for the largest heading?",
+    c: ["<h6>", "<heading>", "<h1>", "<head>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used for a paragraph?",
+    c: ["<p>", "<text>", "<paragraph>", "<para>"],
+    a: 0,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to display an image?",
+    c: ["<image>", "<img>", "<src>", "<picture>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which attribute specifies the image file?",
+    c: ["link", "href", "src", "url"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to create a hyperlink?",
+    c: ["<link>", "<href>", "<a>", "<url>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which is the correct HTML document structure?",
+    c: ["head, html, body", "body, html, head", "html, head, body", "head, body, html"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag creates a line break?",
+    c: ["<break>", "<br>", "<lb>", "<newline>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What is the purpose of the <title> tag?",
+    c: ["Page content", "Page footer", "Page title", "Page header"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which is the correct HTML comment?",
+    c: ["// comment", "/* comment */", "<!-- comment -->", "# comment"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag creates a numbered list?",
+    c: ["<ul>", "<ol>", "<li>", "<list>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which tag defines a table row?",
+    c: ["<td>", "<tr>", "<th>", "<table>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What does <th> represent?",
+    c: ["Table row", "Table data", "Table header", "Table body"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to create a form?",
+    c: ["<input>", "<form>", "<submit>", "<data>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "Which attribute specifies where form data is sent?",
+    c: ["type", "method", "action", "submit"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which is a self-closing tag?",
+    c: ["<p>", "<div>", "<img>", "<body>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tags make text bold?",
+    c: ["<b>", "<strong>", "Both A and B", "<bold>"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which is the correct DOCTYPE declaration?",
+    c: ["<!HTML>", "<!DOCTYPE html>", "<DOCTYPE>", "<!DOC>"],
+    a: 1,
+    t: "html"
+  },
+  {
+    q: "What is the purpose of the <meta> tag?",
+    c: ["Styling", "Layout", "Page information", "Images"],
+    a: 2,
+    t: "html"
+  },
+  {
+    q: "Which tag is used to embed video?",
+    c: ["<media>", "<movie>", "<video>", "<mp4>"],
+    a: 2,
+    t: "html"
+  },
+
+  // CSS Diagnostic Test (20 Items)
+  {
+    q: "What does CSS stand for?",
+    c: ["Colorful Style Sheets", "Cascading Style Sheets", "Creative Style System", "Computer Style Sheets"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which is the correct CSS comment?",
+    c: ["// comment", "<!-- comment -->", "/* comment */", "# comment"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which property changes text color?",
+    c: ["font-color", "text-color", "color", "background"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which symbol is used for ID selectors?",
+    c: [".", "#", "*", "@"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which symbol is used for class selectors?",
+    c: ["#", ".", "*", "%"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "What is the universal selector?",
+    c: ["*", "#", ".", "@"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property sets background color?",
+    c: ["bg-color", "color", "background-color", "background-image"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which is the correct CSS syntax?",
+    c: ["selector = property:value", "selector { property: value; }", "selector (property:value)", "selector: property=value"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property sets font size?",
+    c: ["font-style", "text-size", "font-size", "size"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which are valid CSS units?",
+    c: ["px", "em", "%", "All of the above"],
+    a: 3,
+    t: "css"
+  },
+  {
+    q: "Which tag links an external CSS file?",
+    c: ["<style>", "<css>", "<link>", "<script>"],
+    a: 2,
+    t: "css"
+  },
+  {
+    q: "Which property centers text?",
+    c: ["align", "text-align", "center", "float"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "What is the default position value?",
+    c: ["fixed", "absolute", "relative", "static"],
+    a: 3,
+    t: "css"
+  },
+  {
+    q: "Which hides an element?",
+    c: ["display: none", "hide", "invisible", "opacity: 100"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which are part of the box model?",
+    c: ["margin", "padding", "border", "All of the above"],
+    a: 3,
+    t: "css"
+  },
+  {
+    q: "Which rounds element corners?",
+    c: ["border-style", "border-radius", "border-width", "curve"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which enables Flexbox?",
+    c: ["display: flex", "float", "clear", "grid"],
+    a: 0,
+    t: "css"
+  },
+  {
+    q: "Which property controls element transparency?",
+    c: ["visibility", "opacity", "transparent", "filter"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which property adds space inside an element?",
+    c: ["margin", "padding", "border", "gap"],
+    a: 1,
+    t: "css"
+  },
+  {
+    q: "Which layout system uses rows and columns?",
+    c: ["Flexbox", "Grid", "Float", "Inline"],
+    a: 1,
+    t: "css"
+  },
+
+  // JavaScript Diagnostic Test (20 Items)
+  {
+    q: "What is JavaScript mainly used for?",
+    c: ["Styling", "Structure", "Interactivity", "Database"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword declares a variable?",
+    c: ["var", "let", "const", "All of the above"],
+    a: 3,
+    t: "javascript"
+  },
+  {
+    q: "Which symbol ends a JavaScript statement?",
+    c: [":", ";", ".", ","],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "How do you display output in the browser console?",
+    c: ["print()", "echo()", "console.log()", "output()"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which is a correct JavaScript comment?",
+    c: ["<!-- -->", "//", "#", "**"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which data type stores true or false?",
+    c: ["String", "Boolean", "Number", "Object"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which operator compares value and type?",
+    c: ["==", "=", "===", "!="],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which loop repeats a block of code?",
+    c: ["if", "for", "switch", "case"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword defines a function?",
+    c: ["func", "define", "function", "method"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "How do you call a function?",
+    c: ["functionName", "call functionName", "functionName()", "run functionName"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which stores multiple values?",
+    c: ["Variable", "Array", "String", "Boolean"],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "How do you write an array?",
+    c: ["{}", "()", "[]", "<>"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which gets an element by ID?",
+    c: ["getElement()", "getId()", "document.getElementById()", "document.query()"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which event happens when a button is clicked?",
+    c: ["onload", "onhover", "onclick", "onchange"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which converts text to number?",
+    c: ["Number()", "parseInt()", "parseFloat()", "All of the above"],
+    a: 3,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword stops a loop?",
+    c: ["stop", "exit", "break", "end"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which shows a pop-up alert?",
+    c: ["prompt()", "confirm()", "alert()", "message()"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "Which operator means NOT equal?",
+    c: ["==", "!=", "===", "<="],
+    a: 1,
+    t: "javascript"
+  },
+  {
+    q: "Which keyword returns a value from a function?",
+    c: ["send", "output", "return", "break"],
+    a: 2,
+    t: "javascript"
+  },
+  {
+    q: "JavaScript runs on the ______.",
+    c: ["Server only", "Browser", "Database", "Compiler"],
+    a: 1,
+    t: "javascript"
+  },
+
+  // Java Diagnostic Test (20 Items)
+  {
+    q: "Java is a ______ language.",
+    c: ["Low-level", "High-level", "Machine", "Assembly"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Who developed Java?",
+    c: ["Microsoft", "Apple", "Sun Microsystems", "Google"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which method is the program entry point?",
+    c: ["start()", "main()", "run()", "init()"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Which keyword creates an object?",
+    c: ["class", "new", "object", "make"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Which keyword defines a class?",
+    c: ["define", "object", "class", "new"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which prints output in Java?",
+    c: ["print()", "System.out.println()", "console.log()", "echo()"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Which data type stores whole numbers?",
+    c: ["float", "double", "int", "char"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which data type stores text?",
+    c: ["String", "char", "text", "word"],
+    a: 0,
+    t: "java"
+  },
+  {
+    q: "Which symbol ends a Java statement?",
+    c: [":", ";", ".", ","],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Which operator adds values?",
+    c: ["*", "-", "+", "/"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which is a conditional statement?",
+    c: ["for", "while", "if", "loop"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which loop runs at least once?",
+    c: ["for", "while", "do-while", "foreach"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which keyword stops a loop?",
+    c: ["stop", "exit", "break", "end"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which access modifier allows access anywhere?",
+    c: ["private", "protected", "public", "default"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which keyword inherits a class?",
+    c: ["inherits", "extends", "implements", "uses"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Which is NOT a Java primitive type?",
+    c: ["int", "boolean", "String", "double"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Which handles errors?",
+    c: ["try-catch", "if-else", "for-loop", "switch"],
+    a: 0,
+    t: "java"
+  },
+  {
+    q: "Which keyword creates a constant?",
+    c: ["const", "static", "final", "fixed"],
+    a: 2,
+    t: "java"
+  },
+  {
+    q: "Java code is compiled into ______.",
+    c: ["Machine code", "Bytecode", "Binary", "Assembly"],
+    a: 1,
+    t: "java"
+  },
+  {
+    q: "Java programs run on the ______.",
+    c: ["Browser", "JVM", "OS", "CPU"],
+    a: 1,
+    t: "java"
+  }
+];
+
+// ===== AUDIO SYSTEM =====
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let bgOscillators = [];
+let musicVolume = 0.5;  // Volume for background music
+let sfxVolume = 0.5;    // Volume for sound effects (buttons, correct, wrong)
+let bgMasterGain = null; // Add master gain node for background music
+
+// IMPROVED Background Music - Melodic
+function playBackgroundMusic() {
+  if (bgOscillators.length > 0) return;
+  
+  // Create master gain node for smooth volume control
+  bgMasterGain = audioContext.createGain();
+  bgMasterGain.gain.value = musicVolume * 0.08;
+  bgMasterGain.connect(audioContext.destination);
+  
+  // Melody: C, E, G, C (higher octave)
+  const melody = [261.63, 329.63, 392.00, 523.25];
+  const noteDuration = 1.5;
+  
+  let currentNote = 0;
+  
+  function playNextNote() {
+    const osc = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    osc.connect(gainNode);
+    gainNode.connect(bgMasterGain); // Connect to master gain instead of destination
+    
+    osc.type = 'sine';
+    osc.frequency.value = melody[currentNote % melody.length];
+    gainNode.gain.value = 1; // Individual note volume controlled by master gain
+    
+    osc.start();
+    
+    const fadeTime = audioContext.currentTime + noteDuration - 0.2;
+    gainNode.gain.exponentialRampToValueAtTime(0.001, fadeTime);
+    osc.stop(audioContext.currentTime + noteDuration);
+    
+    bgOscillators.push(osc);
+    
+    currentNote++;
+    setTimeout(playNextNote, noteDuration * 1000);
+  }
+  
+  playNextNote();
+}
+
+function stopBackgroundMusic() {
+  bgOscillators.forEach(osc => {
+    try {
+      osc.stop();
+    } catch(e) {}
+  });
+  bgOscillators = [];
+  if (bgMasterGain) {
+    bgMasterGain.disconnect();
+    bgMasterGain = null;
   }
 }
 
-async function deleteFromStorage(key) {
-  try {
-    localStorage.removeItem(key);
-    return true;
-  } catch (error) {
-    return false;
-  }
+// Yeheey Sound - Correct Answer
+function playCorrectSound() {
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+  
+  osc.type = 'sine';
+  gain.gain.value = sfxVolume * 0.4;
+  
+  const now = audioContext.currentTime;
+  osc.frequency.setValueAtTime(523, now);
+  osc.frequency.setValueAtTime(659, now + 0.15);
+  osc.frequency.setValueAtTime(784, now + 0.3);
+  
+  osc.start(now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+  osc.stop(now + 0.5);
 }
 
-// Settings object - must be defined first
-const settings = {
-  sound: true,
-  music: true,
-  timer: true
+// Buzzer Sound - Wrong Answer
+function playWrongSound() {
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+  
+  osc.type = 'sawtooth';
+  osc.frequency.value = 150;
+  gain.gain.value = sfxVolume * 0.5;
+  
+  const now = audioContext.currentTime;
+  osc.start(now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+  osc.stop(now + 0.3);
+}
+
+// Click Sound
+function playClickSound() {
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+  
+  osc.frequency.value = 800;
+  gain.gain.value = sfxVolume * 0.3;
+  
+  osc.start();
+  gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+  osc.stop(audioContext.currentTime + 0.1);
+}
+
+// Volume Control - Music
+document.getElementById('musicSlider').addEventListener('input', function(e) {
+  musicVolume = e.target.value / 100;
+  document.getElementById('musicPercent').textContent = e.target.value + '%';
+  
+  // Smoothly adjust background music volume without restarting
+  if (bgMasterGain) {
+    bgMasterGain.gain.setValueAtTime(musicVolume * 0.08, audioContext.currentTime);
+  }
+});
+
+// Volume Control - Sound Effects
+document.getElementById('sfxSlider').addEventListener('input', function(e) {
+  sfxVolume = e.target.value / 100;
+  document.getElementById('sfxPercent').textContent = e.target.value + '%';
+});
+
+let quiz=[], index=0, score=0;
+let currentUser = "";
+let selectedTopic = "";
+let choiceMapping = []; // Track shuffled choices
+
+// Diagnostic test variables
+let diagnosticQuiz = [];
+let diagnosticScore = 0;
+let diagnosticIndex = 0;
+let diagnosticTopic = "";
+let isDiagnosticMode = false;
+
+// AUTO LOGIN
+window.onload = () => {
+  const loggedUser = localStorage.getItem("loggedUser");
+  if (loggedUser) {
+    currentUser = loggedUser;
+    document.getElementById("welcomePlayer").innerText =
+      "👋 Welcome back, " + currentUser + "!";
+    playBackgroundMusic();
+    show("introScreen");
+  } else {
+    show("authScreen");
+  }
 };
 
-let synth = null;
-let bgPattern = null;
-let musicVolume = 0.3;
-let sfxVolume = 0.5;
-
-// ========== TONE.JS MUSIC SETUP ==========
-async function initMusic() {
-  await Tone.start();
-  
-  synth = new Tone.PolySynth(Tone.Synth).toDestination();
-  synth.volume.value = Tone.gainToDb(musicVolume);
-  
-  const melody = ["C4", "E4", "G4", "A4"];
-  
-  bgPattern = new Tone.Pattern((time, note) => {
-    if (settings.music) {
-      synth.triggerAttackRelease(note, "8n", time);
-    }
-  }, melody, "up");
-  
-  Tone.Transport.bpm.value = 100;
-  
-  if (settings.music) {
-    bgPattern.start(0);
-    Tone.Transport.start();
-  }
+// GET USERS
+function getUsers(){
+  return JSON.parse(localStorage.getItem("users")) || {};
 }
 
-function toggleMusic() {
-  const toggle = document.getElementById('musicToggle');
-  toggle.classList.toggle('active');
-  settings.music = toggle.classList.contains('active');
-  
-  if (settings.music && bgPattern) {
-    bgPattern.start(0);
-    Tone.Transport.start();
-  } else if (bgPattern) {
-    Tone.Transport.stop();
-  }
+// SAVE USERS
+function saveUsers(users){
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
-function toggleSound() {
-  const toggle = document.getElementById('soundToggle');
-  toggle.classList.toggle('active');
-  settings.sound = toggle.classList.contains('active');
-}
+// REGISTER
+function register(){
+  const name = regName.value.trim();
+  const pass = regPass.value.trim();
+  const confirm = regConfirm.value.trim();
 
-function toggleTimer() {
-  const toggle = document.getElementById('timerToggle');
-  toggle.classList.toggle('active');
-  settings.timer = toggle.classList.contains('active');
-}
-
-function adjustMusicVolume(val) {
-  musicVolume = val / 100;
-  if (synth) {
-    synth.volume.value = Tone.gainToDb(musicVolume);
-  }
-}
-
-function adjustSfxVolume(val) {
-  sfxVolume = val / 100;
-}
-
-function playClickSound() {
-  if (!settings.sound || !synth) return;
-  const now = Tone.now();
-  synth.triggerAttackRelease("C5", "16n", now, sfxVolume);
-}
-
-function playCorrectSound() {
-  if (!settings.sound || !synth) return;
-  const now = Tone.now();
-  synth.triggerAttackRelease("E5", "8n", now, sfxVolume);
-  synth.triggerAttackRelease("G5", "8n", now + 0.1, sfxVolume);
-}
-
-function playWrongSound() {
-  if (!settings.sound || !synth) return;
-  const now = Tone.now();
-  synth.triggerAttackRelease("C3", "8n", now, sfxVolume);
-}
-
-// ========== GLOBAL VARIABLES ==========
-let currentUser = "";
-let score = 0;
-let index = 0;
-let quiz = [];
-let selectedDifficulty = "easy";
-let selectedCustomTopicCode = "";
-let customQuestions = [];
-let userTopics = {};
-let friends = [];
-
-// Chat
-let globalMessages = [];
-let unreadMessages = 0;
-
-// ========== CHAT FUNCTIONS ==========
-function toggleChat() {
-  const panel = document.getElementById('chatPanel');
-  panel.classList.toggle('open');
-  
-  if (panel.classList.contains('open')) {
-    loadChat();
-    unreadMessages = 0;
-    updateChatBadge();
-  }
-}
-
-async function loadChat() {
-  globalMessages = await loadFromStorage('globalChat') || [];
-  displayMessages();
-}
-
-function displayMessages() {
-  const container = document.getElementById('chatMessages');
-  
-  if (globalMessages.length === 0) {
-    container.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:20px;">No messages yet. Start the conversation!</p>';
+  if(!name || !pass || !confirm){
+    alert("Please fill all fields");
     return;
   }
-  
-  container.innerHTML = globalMessages.slice(-50).map(msg => {
-    const isSent = msg.sender === currentUser;
-    return `
-      <div class="chat-message ${isSent ? 'sent' : 'received'}">
-        ${!isSent ? `<div class="chat-sender">${msg.sender}</div>` : ''}
-        <div class="chat-text">${msg.text}</div>
-      </div>
-    `;
-  }).join('');
-  
-  container.scrollTop = container.scrollHeight;
-}
 
-async function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  
-  if (!text) return;
-  
-  const message = {
-    sender: currentUser,
-    text: text,
-    timestamp: Date.now()
-  };
-  
-  globalMessages.push(message);
-  await saveToStorage('globalChat', globalMessages);
-  
-  input.value = '';
-  displayMessages();
-  playClickSound();
-}
-
-function updateChatBadge() {
-  const badge = document.getElementById('chatBadge');
-  if (unreadMessages > 0) {
-    badge.textContent = unreadMessages;
-    badge.style.display = 'flex';
-  } else {
-    badge.style.display = 'none';
-  }
-}
-
-// Poll for new messages
-setInterval(async () => {
-  if (currentUser && !document.getElementById('chatPanel').classList.contains('open')) {
-    const newMessages = await loadFromStorage('globalChat') || [];
-    if (newMessages.length > globalMessages.length) {
-      unreadMessages += (newMessages.length - globalMessages.length);
-      updateChatBadge();
-    }
-    globalMessages = newMessages;
-  }
-}, 5000);
-
-// ========== FRIENDS FUNCTIONS ==========
-async function addFriend() {
-  const friendName = document.getElementById('friendUsername').value.trim();
-  
-  if (!friendName) {
-    alert('Please enter a username');
+  if(pass !== confirm){
+    alert("Passwords do not match");
     return;
   }
-  
-  if (friendName === currentUser) {
-    alert('You cannot add yourself!');
+
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+
+  if(users[name]){
+    alert("Username already exists");
     return;
   }
-  
-  const userExists = await loadFromStorage(`user-${friendName}`);
-  if (!userExists) {
-    alert('User not found');
-    return;
-  }
-  
-  if (friends.includes(friendName)) {
-    alert('Already friends!');
-    return;
-  }
-  
-  friends.push(friendName);
-  await saveToStorage(`friends-${currentUser}`, friends);
-  
-  document.getElementById('friendUsername').value = '';
-  displayFriends();
+
+  users[name] = { password: pass };
+  localStorage.setItem("users", JSON.stringify(users));
+
+  document.getElementById("successModal").style.display = "flex";
   playCorrectSound();
-  alert(`${friendName} added as friend!`);
-}
 
-async function removeFriend(friendName) {
-  if (!confirm(`Remove ${friendName} from friends?`)) return;
-  
-  friends = friends.filter(f => f !== friendName);
-  await saveToStorage(`friends-${currentUser}`, friends);
-  
-  displayFriends();
-  playClickSound();
-}
-
-function displayFriends() {
-  const container = document.getElementById('friendsList');
-  
-  if (friends.length === 0) {
-    container.innerHTML = '<p style="text-align: center; color: #94a3b8;">No friends yet. Add your first friend!</p>';
-    return;
-  }
-  
-  container.innerHTML = friends.map(friend => `
-    <div class="topic-item">
-      <div>
-        <strong style="color: #00ff99;">${friend}</strong>
-      </div>
-      <button class="delete-btn" onclick="removeFriend('${friend}')">Remove</button>
-    </div>
-  `).join('');
-}
-
-async function loadFriends() {
-  friends = await loadFromStorage(`friends-${currentUser}`) || [];
-  displayFriends();
-}
-
-// ========== SCREEN NAVIGATION ==========
-function show(screenId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
-  playClickSound();
-}
-
-// ========== AUTH FUNCTIONS ==========
-function showRegister() {
-  document.getElementById('loginBox').style.display = 'none';
-  document.getElementById('registerBox').style.display = 'block';
-}
-
-function showLogin() {
-  document.getElementById('registerBox').style.display = 'none';
-  document.getElementById('loginBox').style.display = 'block';
-}
-
-async function register() {
-  const name = document.getElementById('regName').value.trim();
-  const pass = document.getElementById('regPass').value.trim();
-  const confirm = document.getElementById('regConfirm').value.trim();
-  
-  if (!name || !pass || !confirm) {
-    alert('Please fill all fields');
-    return;
-  }
-  
-  if (pass !== confirm) {
-    alert('Passwords do not match!');
-    return;
-  }
-  
-  if (pass.length < 4) {
-    alert('Password must be at least 4 characters');
-    return;
-  }
-  
-  const existing = await loadFromStorage(`user-${name}`);
-  if (existing) {
-    alert('Username already exists!');
-    return;
-  }
-  
-  const userData = {
-    username: name,
-    password: pass,
-    createdAt: new Date().toISOString()
-  };
-  
-  await saveToStorage(`user-${name}`, userData);
-  
-  document.getElementById('regName').value = '';
-  document.getElementById('regPass').value = '';
-  document.getElementById('regConfirm').value = '';
-  
-  document.getElementById('successModal').style.display = 'flex';
-  playCorrectSound();
-}
-
-function closeSuccess() {
-  document.getElementById('successModal').style.display = 'none';
   showLogin();
 }
 
-async function login() {
-  const name = document.getElementById('loginName').value.trim();
-  const pass = document.getElementById('loginPass').value.trim();
-  
-  if (!name || !pass) {
-    alert('Please fill all fields');
-    return;
-  }
-  
-  const userData = await loadFromStorage(`user-${name}`);
-  
-  if (!userData) {
-    alert('User not found');
-    return;
-  }
-  
-  if (userData.password !== pass) {
-    alert('Incorrect password');
-    return;
-  }
-  
-  currentUser = name;
-  localStorage.setItem("loggedUser", currentUser);
-  
-  document.getElementById("welcomePlayer").innerText = "Welcome, " + currentUser + "!";
-  
-  await loadUserData();
-  await initMusic();
-  
-  playCorrectSound();
-  show("mainMenu");
-  
-  document.getElementById('chatToggle').style.display = 'block';
-  loadFriends();
+function closeSuccess(){
+  document.getElementById("successModal").style.display = "none";
+  showLogin();
 }
 
-async function loadUserData() {
-  userTopics[currentUser] = await loadFromStorage(`topics-${currentUser}`) || [];
-}
 
-function logout() {
-  if (!confirm('Are you sure you want to logout?')) return;
-  
-  localStorage.removeItem("loggedUser");
-  currentUser = "";
-  
-  document.getElementById('chatToggle').style.display = 'none';
-  
-  playClickSound();
-  show("authScreen");
-}
+// LOGIN
+function login(){
+  const name = loginName.value.trim();
+  const pass = loginPass.value.trim();
 
-// ========== QUESTIONS DATABASE ==========
-const questions = [
-  // HTML - Easy
-  {t: "html", d: "easy", q: "What does HTML stand for?", c: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks Text Markup Language"], a: 0, i: ""},
-  {t: "html", d: "easy", q: "Which tag is used for a paragraph?", c: ["<p>", "<para>", "<pg>", "<paragraph>"], a: 0, i: ""},
-  {t: "html", d: "easy", q: "Which tag creates a link?", c: ["<link>", "<a>", "<href>", "<url>"], a: 1, i: ""},
-  {t: "html", d: "easy", q: "What is the correct HTML tag for the largest heading?", c: ["<heading>", "<h6>", "<h1>", "<head>"], a: 2, i: ""},
-  {t: "html", d: "easy", q: "Which tag is used to display an image?", c: ["<image>", "<img>", "<picture>", "<src>"], a: 1, i: ""},
-  
-  // HTML - Normal
-  {t: "html", d: "normal", q: "What attribute specifies an alternate text for an image?", c: ["title", "alt", "src", "longdesc"], a: 1, i: ""},
-  {t: "html", d: "normal", q: "Which HTML element defines the title of a document?", c: ["<meta>", "<title>", "<head>", "<header>"], a: 1, i: ""},
-  {t: "html", d: "normal", q: "Which input type defines a slider control?", c: ["slider", "controls", "range", "search"], a: 2, i: ""},
-  {t: "html", d: "normal", q: "What is the correct HTML for creating a checkbox?", c: ["<input type='check'>", "<input type='checkbox'>", "<checkbox>", "<check>"], a: 1, i: ""},
-  {t: "html", d: "normal", q: "Which HTML attribute specifies inline CSS?", c: ["class", "styles", "style", "font"], a: 2, i: ""},
-  
-  // HTML - Hard
-  {t: "html", d: "hard", q: "What is the purpose of the <canvas> element?", c: ["To draw graphics", "To play video", "To create tables", "To define sections"], a: 0, i: ""},
-  {t: "html", d: "hard", q: "Which HTML5 element is used for navigation links?", c: ["<navigation>", "<navigate>", "<nav>", "<navbar>"], a: 2, i: ""},
-  {t: "html", d: "hard", q: "What does the 'defer' attribute do in <script>?", c: ["Delays execution until HTML is parsed", "Deletes the script", "Defines a default script", "Disables the script"], a: 0, i: ""},
-  {t: "html", d: "hard", q: "Which attribute makes an input field required?", c: ["validate", "required", "mandatory", "needed"], a: 1, i: ""},
-  {t: "html", d: "hard", q: "What is the purpose of <meta charset='UTF-8'>?", c: ["Sets character encoding", "Defines metadata", "Creates a charset", "Validates UTF"], a: 0, i: ""},
-  
-  // CSS - Easy
-  {t: "css", d: "easy", q: "CSS stands for:", c: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], a: 1, i: ""},
-  {t: "css", d: "easy", q: "Which property changes text color?", c: ["text-color", "color", "font-color", "text"], a: 1, i: ""},
-  {t: "css", d: "easy", q: "Which property changes background color?", c: ["bgcolor", "background-color", "color-background", "back-color"], a: 1, i: ""},
-  {t: "css", d: "easy", q: "How do you select an element with id 'demo'?", c: [".demo", "#demo", "demo", "*demo"], a: 1, i: ""},
-  {t: "css", d: "easy", q: "Which property changes font size?", c: ["text-size", "font-style", "font-size", "text-style"], a: 2, i: ""},
-  
-  // CSS - Normal
-  {t: "css", d: "normal", q: "Which property is used to change the left margin?", c: ["margin-left", "padding-left", "indent", "left-margin"], a: 0, i: ""},
-  {t: "css", d: "normal", q: "What is the default value of the position property?", c: ["relative", "fixed", "absolute", "static"], a: 3, i: ""},
-  {t: "css", d: "normal", q: "Which unit is relative to the font-size of the root element?", c: ["em", "rem", "px", "pt"], a: 1, i: ""},
-  {t: "css", d: "normal", q: "Which property controls text alignment?", c: ["text-align", "align", "text-style", "font-align"], a: 0, i: ""},
-  {t: "css", d: "normal", q: "What does 'display: flex' do?", c: ["Hides element", "Creates flexbox container", "Makes element flexible", "Displays inline"], a: 1, i: ""},
-  
-  // CSS - Hard
-  {t: "css", d: "hard", q: "What is the z-index property used for?", c: ["Zoom level", "Stack order", "Z-axis rotation", "Zero index"], a: 1, i: ""},
-  {t: "css", d: "hard", q: "Which property creates a CSS Grid?", c: ["display: grid", "grid: create", "layout: grid", "grid: on"], a: 0, i: ""},
-  {t: "css", d: "hard", q: "What does 'box-sizing: border-box' do?", c: ["Includes padding in width", "Creates a border", "Sets box size", "Defines border width"], a: 0, i: ""},
-  {t: "css", d: "hard", q: "Which pseudo-class selects the first child?", c: [":first", ":first-child", ":child-first", ":one"], a: 1, i: ""},
-  {t: "css", d: "hard", q: "What is the purpose of @media queries?", c: ["Create media", "Responsive design", "Import media", "Define media type"], a: 1, i: ""},
-  
-  // JavaScript - Easy
-  {t: "javascript", d: "easy", q: "Which keyword declares a variable?", c: ["var", "variable", "v", "declare"], a: 0, i: ""},
-  {t: "javascript", d: "easy", q: "How do you create a function?", c: ["function myFunc()", "def myFunc()", "func myFunc()", "create myFunc()"], a: 0, i: ""},
-  {t: "javascript", d: "easy", q: "Which symbol is used for comments?", c: ["#", "//", "--", "/* */"], a: 1, i: ""},
-  {t: "javascript", d: "easy", q: "What is the output of: 2 + '2'", c: ["4", "22", "Error", "NaN"], a: 1, i: ""},
-  {t: "javascript", d: "easy", q: "How do you write 'Hello World' in an alert box?", c: ["msgBox('Hello World')", "alert('Hello World')", "msg('Hello World')", "alertBox('Hello World')"], a: 1, i: ""},
-  
-  // JavaScript - Normal
-  {t: "javascript", d: "normal", q: "What is the correct way to write an array?", c: ["var colors = 'red', 'green', 'blue'", "var colors = (1:'red', 2:'green')", "var colors = ['red', 'green', 'blue']", "var colors = 1 = 'red', 2 = 'green'"], a: 2, i: ""},
-  {t: "javascript", d: "normal", q: "Which method adds an element to an array?", c: ["add()", "push()", "append()", "insert()"], a: 1, i: ""},
-  {t: "javascript", d: "normal", q: "What does === check?", c: ["Value only", "Type only", "Value and type", "Neither"], a: 2, i: ""},
-  {t: "javascript", d: "normal", q: "Which method removes the last element of an array?", c: ["pop()", "remove()", "delete()", "shift()"], a: 0, i: ""},
-  {t: "javascript", d: "normal", q: "What is NaN?", c: ["Not a Number", "Null and Null", "New and Null", "Number and Number"], a: 0, i: ""},
-  
-  // JavaScript - Hard
-  {t: "javascript", d: "hard", q: "What is a closure in JavaScript?", c: ["A closed function", "Function with access to parent scope", "A private function", "An enclosed variable"], a: 1, i: ""},
-  {t: "javascript", d: "hard", q: "What does 'use strict' do?", c: ["Enforces strict mode", "Makes code strict", "Validates code", "Compiles faster"], a: 0, i: ""},
-  {t: "javascript", d: "hard", q: "What is the purpose of Promise?", c: ["Handle async operations", "Make promises", "Create delays", "Define functions"], a: 0, i: ""},
-  {t: "javascript", d: "hard", q: "What is event bubbling?", c: ["Events bubble up", "Event propagation upward", "Parent handles child events", "All of the above"], a: 3, i: ""},
-  {t: "javascript", d: "hard", q: "What does 'this' keyword refer to?", c: ["Current object", "Parent object", "Global object", "Depends on context"], a: 3, i: ""}
-];
+  const users = JSON.parse(localStorage.getItem("users")) || {};
 
-// ========== CUSTOM TOPIC FUNCTIONS ==========
-function generateCode() {
-  return Math.random().toString(36).substring(2, 8).toUpperCase();
-}
-
-function addCustomQuestion() {
-  const question = document.getElementById('customQuestion').value.trim();
-  const c1 = document.getElementById('customChoice1').value.trim();
-  const c2 = document.getElementById('customChoice2').value.trim();
-  const c3 = document.getElementById('customChoice3').value.trim();
-  const c4 = document.getElementById('customChoice4').value.trim();
-  const correctAnswer = parseInt(document.getElementById('customCorrect').value);
-  
-  if (!question || !c1 || !c2 || !c3 || !c4) {
-    alert('Please fill in all fields');
+  if(!users[name] || users[name].password !== pass){
+    alert("Invalid username or password");
     playWrongSound();
     return;
   }
+
+  localStorage.setItem("loggedUser", name);
+  currentUser = name;
+
+  document.getElementById("welcomePlayer").innerText =
+    "👋 Welcome, " + currentUser + "!";
+
+  playCorrectSound();
+  playBackgroundMusic();
+  show("introScreen");
+}
+
+// Topic Selection
+function selectTopic(topic) {
+  playClickSound();
+  selectedTopic = topic;
   
-  customQuestions.push({
-    q: question,
-    c: [c1, c2, c3, c4],
-    a: correctAnswer,
-    i: ""
+  // Remove selected class from all cards
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.classList.remove('selected');
   });
   
-  document.getElementById('customQuestion').value = '';
-  document.getElementById('customChoice1').value = '';
-  document.getElementById('customChoice2').value = '';
-  document.getElementById('customChoice3').value = '';
-  document.getElementById('customChoice4').value = '';
+  // Add selected class to clicked card
+  event.target.closest('.topic-card').classList.add('selected');
   
+  // Enable play button
+  document.getElementById('playBtn').disabled = false;
+}
+
+function startGameFromSelection() {
+  if (!selectedTopic) return;
   playClickSound();
-  displayCustomQuestions();
-  document.getElementById('customQuestionCount').innerText = customQuestions.length;
+  startGame();
 }
 
-function displayCustomQuestions() {
-  const list = document.getElementById('customQuestionsList');
-  
-  if (customQuestions.length === 0) {
-    list.innerHTML = '';
-    return;
-  }
-  
-  list.innerHTML = customQuestions.map((q, i) => 
-    `<div class="custom-question-item">
-      <strong>Q${i + 1}:</strong> ${q.q.substring(0, 50)}${q.q.length > 50 ? '...' : ''}
-    </div>`
-  ).join('');
-}
-
-async function saveCustomTopic() {
-  const topicName = document.getElementById('customTopicName').value.trim();
-  
-  if (!topicName) {
-    alert('Please enter a topic name!');
-    return;
-  }
-  
-  if (customQuestions.length === 0) {
-    alert('Please add at least one question!');
-    return;
-  }
-  
-  const code = generateCode();
-  const topic = {
-    name: topicName,
-    creator: currentUser,
-    code: code,
-    questions: customQuestions,
-    createdAt: new Date().toISOString()
-  };
-  
-  if (!userTopics[currentUser]) {
-    userTopics[currentUser] = [];
-  }
-  userTopics[currentUser].push(topic);
-  await saveToStorage(`topics-${currentUser}`, userTopics[currentUser]);
-  
-  await saveToStorage(`topic-${code}`, topic);
-  
-  document.getElementById('shareCode').innerText = code;
-  document.getElementById('shareModal').style.display = 'flex';
-  
-  document.getElementById('customTopicName').value = '';
-  customQuestions = [];
-  displayCustomQuestions();
-  document.getElementById('customQuestionCount').innerText = 0;
-  
-  playCorrectSound();
-}
-
-function closeShareModal() {
-  document.getElementById('shareModal').style.display = 'none';
-  show('playMenu');
-}
-
-function displayMyTopics() {
-  const list = document.getElementById('myTopicsList');
-  const myTopics = userTopics[currentUser] || [];
-  
-  if (myTopics.length === 0) {
-    list.innerHTML = '<p style="text-align:center;">You haven\'t created any topics yet.</p>';
-    return;
-  }
-  
-  list.innerHTML = myTopics.map((topic, i) => 
-    `<div class="topic-item">
-      <div>
-        <strong style="font-size: 1.1em;">${topic.name}</strong><br>
-        <small>${topic.questions.length} questions</small><br>
-        <div class="topic-code">${topic.code}</div>
-      </div>
-      <button class="delete-btn" onclick="deleteTopic(${i})">Delete</button>
-    </div>`
-  ).join('');
-}
-
-async function deleteTopic(index) {
-  if (!confirm('Delete this topic?')) return;
-  
-  const topic = userTopics[currentUser][index];
-  
-  await deleteFromStorage(`topic-${topic.code}`);
-  
-  userTopics[currentUser].splice(index, 1);
-  await saveToStorage(`topics-${currentUser}`, userTopics[currentUser]);
-  
-  displayMyTopics();
-  playClickSound();
-}
-
-async function joinTopicWithCode() {
-  const code = document.getElementById('joinTopicCode').value.trim().toUpperCase();
-  
-  if (!code) {
-    alert('Please enter a code!');
-    return;
-  }
-  
-  const topic = await loadFromStorage(`topic-${code}`);
-  
-  if (!topic) {
-    alert('Invalid code!');
-    playWrongSound();
-    return;
-  }
-  
-  selectedCustomTopicCode = code;
-  
-  playCorrectSound();
-  alert(`Joined: ${topic.name}\nBy: ${topic.creator}\nQuestions: ${topic.questions.length}`);
-  show('difficultySelect');
-}
-
-// ========== DIFFICULTY SELECTION ==========
-function selectDifficulty(diff) {
-  selectedDifficulty = diff;
-  document.querySelectorAll('.diff-btn').forEach(btn => btn.classList.remove('selected'));
-  event.target.classList.add('selected');
-  playClickSound();
-}
-
-// ========== QUIZ GAME ==========
-async function startGame() {
-  score = 0;
-  index = 0;
-  
-  if (selectedCustomTopicCode) {
-    const topic = await loadFromStorage(`topic-${selectedCustomTopicCode}`);
-    quiz = [...topic.questions];
-    selectedCustomTopicCode = "";
-  } else {
-    const topicValue = document.getElementById('topic').value;
-    quiz = questions.filter(q => q.t === topicValue && q.d === selectedDifficulty);
-  }
-  
-  if (quiz.length === 0) {
-    alert("No questions available!");
-    return;
-  }
-  
-  document.getElementById("scoreBox").innerText = "Score: 0";
-  playClickSound();
-  show("quizScreen");
-  loadQuestion();
+// PARTICLES INTRO
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (3 + Math.random() * 4) + "s";
+  document.getElementById("introImageScreen").appendChild(p);
 }
 
 let timeLeft = 15;
 let timerInterval = null;
 
-function loadQuestion() {
+function startTimer(){
+  clearInterval(timerInterval);
+  timeLeft = 15;
+
+  const timeText = document.getElementById("timeText");
+  const timeFill = document.getElementById("timeFill");
+
+  timeText.innerText = timeLeft + "s";
+  timeText.className = "";
+  timeFill.style.width = "100%";
+  timeFill.style.background =
+    "linear-gradient(90deg, #00ff99, #00ccff)";
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timeText.innerText = timeLeft + "s";
+    timeFill.style.width = (timeLeft / 15) * 100 + "%";
+
+    if(timeLeft <= 5){
+      timeText.classList.add("time-danger");
+      timeFill.style.background =
+        "linear-gradient(90deg, #ff4d4d, #ff0000)";
+    } else if(timeLeft <= 8){
+      timeText.classList.add("time-warning");
+    }
+
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      timeUp();
+    }
+  }, 1000);
+}
+
+// Shuffle function
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function startGame(){
+  score=0; index=0;
+  quiz = questions.filter(q => q.t === selectedTopic);
+  if(quiz.length===0){ alert("No questions"); return; }
+  
+  // Shuffle quiz questions
+  shuffleArray(quiz);
+  
+  document.getElementById("scoreBox").innerText="Score: 0";
+  show("quizScreen");
+  loadQuestion();
+}
+
+function loadQuestion(){
   clearInterval(timerInterval);
 
-  if (index >= quiz.length) {
+  if(index >= quiz.length){
     const percent = Math.round((score / quiz.length) * 100);
-    document.getElementById("finalScore").innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
+    finalScore.innerText = `Your Score: ${score}/${quiz.length} (${percent}%)`;
+
+    // Display player name
+    document.getElementById("resultPlayerName").innerText = currentUser;
 
     const rankText = document.getElementById("rankText");
     rankText.className = "";
 
-    if (percent === 100) {
+    if(percent === 100){
       rankText.innerText = "🏆 LEGEND";
       rankText.classList.add("rank-legend");
-    } else if (percent >= 80) {
+    } else if(percent >= 80){
       rankText.innerText = "🥇 MASTER";
       rankText.classList.add("rank-master");
-    } else if (percent >= 60) {
+    } else if(percent >= 60){
       rankText.innerText = "🥈 EXPERT";
       rankText.classList.add("rank-expert");
-    } else if (percent >= 40) {
+    } else if(percent >= 40){
       rankText.innerText = "🥉 INTERMEDIATE";
       rankText.classList.add("rank-intermediate");
     } else {
@@ -1897,53 +2309,43 @@ function loadQuestion() {
   }
 
   const q = quiz[index];
-  document.getElementById("question").innerText = q.q;
+  question.innerText = q.q;
   
-  const questionImage = document.getElementById("questionImage");
-  if (q.i && q.i !== "") {
+  // Show or hide image based on whether question has one
+  if (q.i) {
     questionImage.src = q.i;
     questionImage.style.display = "block";
   } else {
     questionImage.style.display = "none";
   }
 
-  const choiceButtons = document.querySelectorAll("#choices .button");
-  choiceButtons.forEach((b, i) => b.innerText = q.c[i]);
+  // Shuffle choices
+  const choices = [...q.c];
+  const correctAnswer = q.a;
+  
+  // Create array of indices for shuffling
+  choiceMapping = [0, 1, 2, 3];
+  shuffleArray(choiceMapping);
+  
+  // Apply shuffled choices to buttons
+  const buttons = document.querySelectorAll("#choices .button");
+  buttons.forEach((b, i) => {
+    b.innerText = choices[choiceMapping[i]];
+  });
+  
+  // Find new position of correct answer
+  quiz[index].shuffledCorrectIndex = choiceMapping.indexOf(correctAnswer);
 
   startTimer();
 }
 
-function startTimer() {
-  if (!settings.timer) {
-    document.getElementById('timerBox').style.display = 'none';
-    return;
-  }
-  
-  document.getElementById('timerBox').style.display = 'block';
-  clearInterval(timerInterval);
-  timeLeft = 15;
 
-  const timeText = document.getElementById("timeText");
-  const timeFill = document.getElementById("timeFill");
-
-  timeText.innerText = timeLeft + "s";
-  timeFill.style.width = "100%";
-
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    timeText.innerText = timeLeft + "s";
-    timeFill.style.width = (timeLeft / 15) * 100 + "%";
-
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      timeUp();
-    }
-  }, 1000);
-}
-
-function timeUp() {
+function timeUp(){
   const resultBox = document.getElementById("result");
-  resultBox.innerHTML = '<div class="wrong">⏰ Time\'s Up!</div>';
+
+  resultBox.innerHTML =
+    '<div class="wrong">⏰ Time\'s Up!</div>';
+
   playWrongSound();
   index++;
 
@@ -1953,21 +2355,35 @@ function timeUp() {
   }, 1000);
 }
 
-function answer(choice) {
+
+// ANSWER
+function answer(choice){
+  // Check if in diagnostic mode
+  if(isDiagnosticMode) {
+    answerDiagnostic(choice);
+    return;
+  }
+  
   const resultBox = document.getElementById("result");
   const btns = document.querySelectorAll("#quizScreen .button");
-  const correctIndex = quiz[index].a;
+  const correctIndex = quiz[index].shuffledCorrectIndex;
 
+  // disable all buttons
   btns.forEach(b => b.classList.add("disabled"));
 
-  if (choice === correctIndex) {
+  if(choice === correctIndex){
     score++;
     document.getElementById("scoreBox").innerText = "Score: " + score;
     showThumbsUp();
+    fireworks();
     playCorrectSound();
   } else {
-    btns[choice].classList.add("wrong-btn");
+    // maling pinindot = RED + SHAKE
+    btns[choice].classList.add("wrong-btn", "shake");
+
+    // tamang sagot = GOLD
     btns[correctIndex].classList.add("correct");
+
     resultBox.innerHTML = '<div class="wrong">❌ Wrong!</div>';
     playWrongSound();
   }
@@ -1976,54 +2392,216 @@ function answer(choice) {
 
   setTimeout(() => {
     resultBox.innerHTML = "";
+
+    // reset styles
     btns.forEach(b => {
-      b.classList.remove("wrong-btn", "correct", "disabled");
+      b.classList.remove("wrong-btn", "shake", "correct", "disabled");
     });
+
     loadQuestion();
   }, 1200);
 }
 
-function showThumbsUp() {
-  const c = document.getElementById("thumbsContainer");
-  c.style.display = "flex";
-  setTimeout(() => c.style.display = "none", 1500);
+function showRegister(){
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("registerBox").style.display = "block";
 }
 
-// ========== INITIALIZATION ==========
-setTimeout(function(){
-  const intro = document.getElementById("introImageScreen");
-  intro.classList.add("fade-out");
-  setTimeout(function(){
-    intro.style.display = "none";
-    show("authScreen");
-  }, 1000);
-}, 3000);
+function showLogin(){
+  document.getElementById("registerBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+}
 
-window.addEventListener('load', async () => {
-  const savedUser = localStorage.getItem("loggedUser");
-  if (savedUser) {
-    currentUser = savedUser;
-    
-    const userData = await loadFromStorage(`user-${savedUser}`);
-    if (userData) {
-      document.getElementById("welcomePlayer").innerText = "Welcome, " + currentUser + "!";
-      await loadUserData();
-      await initMusic();
-      
-      setTimeout(() => {
-        const intro = document.getElementById("introImageScreen");
-        intro.style.display = "none";
-        show("mainMenu");
-        
-        document.getElementById('chatToggle').style.display = 'block';
-        loadFriends();
-      }, 3000);
-    } else {
-      localStorage.removeItem("loggedUser");
-    }
+function logout(){
+  stopBackgroundMusic();
+  localStorage.removeItem("loggedUser");
+  location.reload();
+}
+
+function exitQuiz() {
+  playClickSound();
+  clearInterval(timerInterval);
+  
+  if(isDiagnosticMode) {
+    isDiagnosticMode = false;
+    show('diagnosticIntroScreen');
+  } else {
+    show('topicSelectScreen');
   }
-});
+}
+
+// EFFECTS
+function showThumbsUp(){
+  const c = document.getElementById("thumbsContainer");
+  c.style.display = "block";
+  setTimeout(() => c.style.display = "none", 1000);
+}
+
+function fireworks(){
+  for(let i=0;i<10;i++){
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = Math.random()*100+"vw";
+    f.style.top = Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
+  }
+}
+
+// ============================================
+// DIAGNOSTIC TEST FUNCTIONS
+// ============================================
+
+function startDiagnosticTest(topic) {
+  playClickSound();
+  
+  // Reset diagnostic variables
+  diagnosticScore = 0;
+  diagnosticIndex = 0;
+  diagnosticTopic = topic;
+  isDiagnosticMode = true;
+  
+  // Get 20 questions from selected topic from diagnosticQuestions
+  const topicQuestions = diagnosticQuestions.filter(q => q.t === topic);
+  
+  // Shuffle and take 20
+  shuffleArray(topicQuestions);
+  
+  diagnosticQuiz = topicQuestions.slice(0, 20);
+  
+  // Use the same quiz screen
+  quiz = diagnosticQuiz;
+  index = 0;
+  score = 0;
+  
+  document.getElementById("scoreBox").innerText = "Score: 0";
+  show("quizScreen");
+  loadQuestion();
+}
+
+function answerDiagnostic(choice) {
+  const resultBox = document.getElementById("result");
+  const btns = document.querySelectorAll("#quizScreen .button");
+  const correctIndex = diagnosticQuiz[diagnosticIndex].shuffledCorrectIndex;
+
+  // disable all buttons
+  btns.forEach(b => b.classList.add("disabled"));
+
+  if(choice === correctIndex){
+    diagnosticScore++;
+    score++;
+    document.getElementById("scoreBox").innerText = "Score: " + score;
+    showThumbsUp();
+    fireworks();
+    playCorrectSound();
+  } else {
+    btns[choice].classList.add("wrong-btn", "shake");
+    btns[correctIndex].classList.add("correct");
+    resultBox.innerHTML = '<div class="wrong">❌ Wrong!</div>';
+    playWrongSound();
+  }
+
+  diagnosticIndex++;
+  index++;
+
+  setTimeout(() => {
+    resultBox.innerHTML = "";
+    btns.forEach(b => {
+      b.classList.remove("wrong-btn", "shake", "correct", "disabled");
+    });
+    
+    if(diagnosticIndex >= diagnosticQuiz.length) {
+      showDiagnosticResults();
+    } else {
+      loadQuestion();
+    }
+  }, 1200);
+}
+
+function showDiagnosticResults() {
+  clearInterval(timerInterval);
+  
+  const percent = Math.round((diagnosticScore / diagnosticQuiz.length) * 100);
+  
+  // Display player name
+  document.getElementById("diagnosticPlayerName").innerText = currentUser;
+  
+  // Display results
+  document.getElementById("diagnosticFinalScore").innerText = 
+    `Your Score: ${diagnosticScore}/${diagnosticQuiz.length} (${percent}%)`;
+  
+  // Rank display
+  const rankBox = document.getElementById("diagnosticRankBox");
+  let rankHTML = '<div id="rankText" style="margin-top: 15px; font-size: 1.6em; font-weight: bold; padding: 15px 30px; border-radius: 20px; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">';
+  
+  if(percent === 100){
+    rankHTML += '<span class="rank-legend">🏆 LEGEND</span>';
+  } else if(percent >= 80){
+    rankHTML += '<span class="rank-master">🥇 MASTER</span>';
+  } else if(percent >= 60){
+    rankHTML += '<span class="rank-expert">🥈 EXPERT</span>';
+  } else if(percent >= 40){
+    rankHTML += '<span class="rank-intermediate">🥉 INTERMEDIATE</span>';
+  } else {
+    rankHTML += '<span class="rank-beginner">🎓 BEGINNER</span>';
+  }
+  rankHTML += '</div>';
+  rankBox.innerHTML = rankHTML;
+  
+  // Topic display names and colors
+  const topicDisplayNames = {
+    'html': '📘 HTML',
+    'css': '📗 CSS',
+    'javascript': '📙 JavaScript',
+    'java': '☕ Java'
+  };
+  
+  const topicColors = {
+    'html': '#e34c26',
+    'css': '#264de4',
+    'javascript': '#f0db4f',
+    'java': '#f89820'
+  };
+  
+  // Show only the tested topic
+  document.getElementById("diagnosticHTML").innerHTML = 
+    `<strong style="color: ${topicColors[diagnosticTopic]}; font-size: 1.1em;">${topicDisplayNames[diagnosticTopic]}:</strong> ${diagnosticScore}/${diagnosticQuiz.length} correct (${percent}%)`;
+  
+  // Hide other topic displays
+  document.getElementById("diagnosticCSS").style.display = 'none';
+  document.getElementById("diagnosticJS").style.display = 'none';
+  document.getElementById("diagnosticJava").style.display = 'none';
+  
+  isDiagnosticMode = false;
+  show("diagnosticResultScreen");
+}
+
+function acceptDiagnosticRecommendation() {
+  playClickSound();
+  selectedTopic = diagnosticTopic;
+  
+  // Highlight the recommended topic card
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.classList.remove('selected');
+  });
+  
+  show('topicSelectScreen');
+  
+  // Auto-select the topic
+  setTimeout(() => {
+    const topicCards = document.querySelectorAll('.topic-card');
+    topicCards.forEach(card => {
+      const topicName = card.getAttribute('onclick');
+      if(topicName && topicName.includes(diagnosticTopic)) {
+        card.classList.add('selected');
+        document.getElementById('playBtn').disabled = false;
+      }
+    });
+  }, 100);
+}
+
 </script>
 
 </body>
 </html>
+
